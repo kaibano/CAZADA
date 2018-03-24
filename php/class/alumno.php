@@ -6,6 +6,7 @@ class alumno
     private $nombre;
     private $apellidos;
     private $id_clase;
+    private $id_centro;
     private $dni_padre;
     private $asignaturas;
     private $notas;
@@ -20,7 +21,7 @@ class alumno
      * @param $asignaturas
      * @param $notas
      */
-    public function __construct($dni, $nombre, $apellidos, $id_clase, $dni_padre, $asignaturas, $notas)
+    public function __construct($dni, $nombre, $apellidos, $id_clase, $id_centro, $dni_padre, $asignaturas, $notas)
     {
         $this->dni = $dni;
         $this->nombre = $nombre;
@@ -61,6 +62,14 @@ class alumno
     public function getIdClase()
     {
         return $this->id_clase;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCentro()
+    {
+        return $this->id_centro;
     }
 
     /**

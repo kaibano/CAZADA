@@ -64,6 +64,6 @@
     echo ($alumno1->getApellidos()."<br>");
     echo ($alumno1->getDni()."<br>");
     echo ($alumno1->getIdClase()."<br>");
-    echo ("Media de ".$alumno1->getAsignaturas()[0].": ".(($alumno1->getNota("LENGUA")[0]+$alumno1->getNota("LENGUA")[1]+$alumno1->getNota("LENGUA")[2])/2)."<br>");
-    echo ("Media de ".$alumno1->getAsignaturas()[1].": ".(($alumno1->getNota("MATEMATICAS")[0]+$alumno1->getNota("MATEMATICAS")[1]+$alumno1->getNota("MATEMATICAS")[2])/2)."<br>");
-    echo ("Media de ".$alumno1->getAsignaturas()[2].": ".(($alumno1->getNota("HISTORIA")[0]+$alumno1->getNota("HISTORIA")[1]+$alumno1->getNota("HISTORIA")[2])/2)."<br>");
+    echo ("Media de ".$alumno1->getAsignaturas()[0].": ".(($alumno1->getNota("LENGUA")[0]+$alumno1->getNota("LENGUA")[1]+$alumno1->getNota("LENGUA")[2])/3)."<br>");
+    echo ("Media de ".$alumno1->getAsignaturas()[1].": ".(($alumno1->getNota("MATEMATICAS")[0]+$alumno1->getNota("MATEMATICAS")[1]+$alumno1->getNota("MATEMATICAS")[2])/3)."<br>");
+    echo ("Media de ".$alumno1->getAsignaturas()[2].": ".(($alumno1->getNota("HISTORIA")[0]+$alumno1->getNota("HISTORIA")[1]+$alumno1->getNota("HISTORIA")[2])/3)."<br>");
