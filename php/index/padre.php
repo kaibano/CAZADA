@@ -26,6 +26,7 @@
         <div class="typepanel">
             <p><span>Panel</span><span>MADRE/PADRE/TUTOR</span></p>
         </div>
+        <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión</a>
     </div>
     <div id="content">
 

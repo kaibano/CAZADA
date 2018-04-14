@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../../css/header-index.css">
+    <script type="application/javascript" src="../../js/admin.js"></script>
 </head>
 <body>
     <div id="main">
@@ -26,9 +27,10 @@
             <div class="typepanel">
                 <p><span>Panel</span><span>ADMINISTRADOR</span></p>
             </div>
+            <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión</a>
         </div>
         <div id="content">
-
+            <
         </div>
         <div id="footer">
 

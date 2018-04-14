@@ -23,3 +23,5 @@ body #header{
 #header .typepanel{display: inline-block;text-align: center;float:right;right: 15px;top:40px;position: relative;}
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
 #header .typepanel span:nth-child(2){font-size: 32px;font-weight: bold;}
+
+#header .cerrarSesion{position: relative;float: right;right: -240px;top: 5px;text-decoration: underline;}
