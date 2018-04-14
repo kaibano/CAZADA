@@ -3,14 +3,14 @@
 .login-page {
     width: 360px;
     padding: 8% 0 0;
-    margin: auto;
+    margin: -50px auto 0 auto;
 }
 .form {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
     max-width: 360px;
-    margin: 0 auto 100px;
+    margin: 0 auto;
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -30,7 +30,7 @@
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    background: #d15b5b;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -41,7 +41,7 @@
     cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-    background: #43A047;
+    background: #fb5e5e;
 }
 .form .message {
     margin: 15px 0 0;
@@ -98,3 +98,24 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.divlogo{
+    width: 100%;
+    margin-bottom: 15px;
+    background: #76b852;
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);}
+.divlogo img{width: 50%;padding-top: 15px;}
+.divlogo p{color:white;margin: 0;}
+.divlogo p span:nth-child(1){font-weight: bold;font-size: 28px;}
+.divlogo p span:nth-child(2){display: block;font-size: 20px;}
+.divlogo{padding-bottom: 15px;}
+
+.developed{text-align: center;}
+.developed div{margin-top: 15px;}
+.developed > div:nth-child(1){margin-top: 25px !important;}
+.developed > div:nth-child(1){font-weight: bold;text-transform: uppercase;}
+.developed > div:nth-child(2){width: 50%;margin: 0 auto;text-align: left;padding-left: 15px;}
+.developed div img{width: 25%;vertical-align: middle;margin-right: 5px;}
