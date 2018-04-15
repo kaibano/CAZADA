@@ -69,5 +69,18 @@
             $this->desconectar();
             return $resul;
         }
+        
+        function consultaLista($tabla){
+            $this->conectar();
+            $lista = array();
+            $this->resultado = $this->conexion->query("SELECT * FROM $tabla");
+            if ($this->resultado->num_rows > 0){
+                while ($fila = $this->resultado->fetch_assoc()){
+                    array_push($lista, $fila);
+                }    
+            }
+            $this->desconectar();
+            return $lista;
+        }
     }
 
