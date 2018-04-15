@@ -9,7 +9,9 @@
             if ($this->conexion->connect_error){
                 die("Error de Conexion(.$this->conexion->connect_errno.).$this->conexion->connect_error");
             }
+            return $this->conexion;
         }
+
         function desconectar() {
             $this->conexion->close();
         }
@@ -68,4 +70,4 @@
             return $resul;
         }
     }
-?>
+
