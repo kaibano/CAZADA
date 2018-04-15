@@ -1,15 +1,54 @@
-#content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid;}
+/*BOTONES LISTAR Y AÑADIR*/
+#content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid; margin: 0 auto;}
 #content #addButtonsBar > div{width: 100%;margin: 10px 0;}
 #content #addButtonsBar .addButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #419944;border-radius: 10px;cursor:pointer;transition: 0.5s;}
 #content #addButtonsBar .addButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
 #content #addButtonsBar .addButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
-
 #content #addButtonsBar .listButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #92e064;border-radius: 10px;cursor: pointer;transition: 0.5s;}
 #content #addButtonsBar .listButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
 #content #addButtonsBar .listButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
 
+/*FORMULARIO NUEVA ASIGNATURA*/
 #content #freeContent{width: 100%; text-align: center;}
 #content #freeContent #divNewAsignatura{width:100%;margin-top: 20px;}
 #content #freeContent #divNewAsignatura input{display: block;margin: 0 auto;width: 300px;padding: 5px;font-size: 18px;text-align: center;}
 #content #freeContent #divNewAsignatura .botonAnnadir{transition: 0.5s;display: block;margin: 10px auto 0;padding: 5px 25px;font-size: 16px;background-color: #F06565;width: 70px;cursor: pointer;font-weight: bold;text-transform: uppercase;border-radius:5px;border:1px solid black;}
 #content #freeContent #divNewAsignatura .botonAnnadir:hover{background-color: white;transition: 0.5s;}
+
+/*FORMULARIO NUEVA CLASE*/
+
+
+/*FORMULARIO NUEVO PROFESOR*/
+
+
+/*FORMULARIO NUEVO ALUMNO*/
+
+
+/*TABLA DE CLASES LISTADA*/
+.divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #claseContent{padding-top: 50px;}
+#content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .divIdClase{width: 40px;}
+#content #freeContent #claseContent .divClase .divNombreClase{width: 120px;}
+#content #freeContent #claseContent .divClase .divTutorClase{width: 300px;}
+#content #freeContent #claseContent .divClase .divOpcionesClase img{width: 25px; margin-right: 5px;cursor: pointer;}
+
+/*TABLA DE PROFESORES LISTADA*/
+.divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
+#content #freeContent #profesContent{padding-top: 50px;}
+#content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
+#content #freeContent #profesContent .divProfe .divUsuProfe{width: 70px;}
+#content #freeContent #profesContent .divProfe .divNombreProfe{width: 80px;}
+#content #freeContent #profesContent .divProfe .divApellidosProfe{width: 170px;}
+#content #freeContent #profesContent .divProfe .divMailProfe{width: 220px;}
+#content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 80px;}
+#content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
+#content #freeContent #profesContent .divProfe .divOpcionesProfe img{width: 25px; margin-right: 5px;cursor: pointer;}
+
+/*TABLA DE ASIGNATURAS LISTADA*/
+.divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #asignaturasContent{padding-top: 50px;}
+#content #freeContent #asignaturasContent .divAsignaturas:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 55%;margin: 0 auto;}
+#content #freeContent #asignaturasContent .divAsignaturas .divIdAsignatura{width: 100px;}
+#content #freeContent #asignaturasContent .divAsignaturas .divNombreAsignatura{width: 250px;}
+#content #freeContent #asignaturasContent .divAsignaturas .divOpcionesAsignatura img{width: 25px; margin-right: 5px;cursor: pointer;}
