@@ -1,0 +1,3 @@
+#content #addButtonsBar{width: 100%;padding: 5px;}
+#content #addButtonsBar .addButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #4CAF50;border-radius: 10px;cursor:pointer;}
+#content #addButtonsBar .addButton img{width: 25px;vertical-align: middle;margin-right: 5px;}

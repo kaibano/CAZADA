@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../../css/header-index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
     <script type="application/javascript" src="../../js/admin.js"></script>
 </head>
 <body>
@@ -30,7 +31,12 @@
             <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión</a>
         </div>
         <div id="content">
-            <
+            <div id="addButtonsBar">
+                <div id="addClase" class="addButton"><img src="../../img/plus.png">Clase</div>
+                <div id="addProfe" class="addButton"><img src="../../img/plus.png">Profesor</div>
+                <div id="addAlumno" class="addButton"><img src="../../img/plus.png">Alumno</div>
+                <div id="addAsignatura" class="addButton"><img src="../../img/plus.png">Asignatura</div>
+            </div>
         </div>
         <div id="footer">
 
