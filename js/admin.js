@@ -77,7 +77,7 @@ window.addEventListener("load",function(){
                 var listado = JSON.parse(req.responseText);
                 eliminarDom(document.getElementById('freeContent').childNodes[1]);
                 if (lista == 'clases'){
-                    for (var i = 0; i < lista.length; i++){
+                    for (var i = 0; i < listado.length; i++){
                     $('#freeContent').append("<div data-id='"+listado['ID_Clase']+">"+listado['Clase']+"</div>")
                 }
                 }
