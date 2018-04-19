@@ -28,7 +28,7 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCTIONES DE AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
-    function addAsignatura(asignatura)
+    function addAsignatura(asignatura){
         //FUNCION POR RESOLVER ALGUN ERROR. INSERTA LA ASIGNATURA PERO NO DEVUELVE EL VALOR ESPERADO PARA CONTINUAR
         var parametros = {"asignatura" : asignatura};
         $.ajax({
