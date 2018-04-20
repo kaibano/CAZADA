@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2018 a las 20:21:02
+-- Tiempo de generación: 20-04-2018 a las 13:41:17
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -61,7 +61,7 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`, `Asignaturas`) VALUES
-(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1,2,3,4,8,9,10,11,12');
+(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1 2 3 4 8 9 10 11 12');
 
 -- --------------------------------------------------------
 
@@ -80,21 +80,17 @@ CREATE TABLE `asignaturas` (
 
 INSERT INTO `asignaturas` (`ID_Asig`, `Nombre`) VALUES
 (1, 'Lengua y Literatura'),
-(2, 'Matemáticas'),
-(3, 'Educación física'),
+(2, 'Matematicas'),
+(3, 'Educacion fisica'),
 (4, 'Ciencias sociales'),
 (5, 'Ciencias naturales'),
-(6, 'Física'),
-(7, 'Química'),
-(8, 'Música'),
-(9, 'Educación plástica'),
-(10, 'Inglés'),
-(11, 'Francés'),
-(12, 'Religión'),
-(13, 'Estudio'),
-(14, 'Ética'),
-(15, 'Filosofía'),
-(16, 'Economía');
+(6, 'Fisica'),
+(7, 'Quimica'),
+(8, 'Musica'),
+(9, 'Educacion plastica'),
+(10, 'Ingles'),
+(11, 'Frances'),
+(12, 'Religion/Estudio');
 
 -- --------------------------------------------------------
 
@@ -105,16 +101,21 @@ INSERT INTO `asignaturas` (`ID_Asig`, `Nombre`) VALUES
 CREATE TABLE `clases` (
   `ID_Clase` int(11) NOT NULL,
   `Tutor` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Turno` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `Clase` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `Clase` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `Lunes` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
+  `Martes` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
+  `Miercoles` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
+  `Jueves` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
+  `Viernes` varchar(400) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `clases`
 --
 
-INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Turno`, `Clase`) VALUES
-(1, '74125968H', 'diurno', '1º A - ESO');
+INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Clase`, `Lunes`, `Martes`, `Miercoles`, `Jueves`, `Viernes`) VALUES
+(1, '74125968H', '1A - ESO', '1 2 3 8 10 11', '1 2 4 10 12 3', '1 2 5 10 11 9', '2 4 5 8 12 11', '1 3 4 5 9 10'),
+(2, '96325481D', '2A - ESO', '2 4 5 8 12 11\r\n', '1 3 4 5 9 10', '1 2 3 8 10 11', '1 2 5 10 11 9', '1 2 4 10 12 3');
 
 -- --------------------------------------------------------
 
@@ -126,16 +127,16 @@ CREATE TABLE `faltas` (
   `ID_Alumno` int(5) NOT NULL,
   `ID_Asig` int(11) NOT NULL,
   `Fecha` date NOT NULL,
-  `Estado` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `Hora` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `faltas`
 --
 
-INSERT INTO `faltas` (`ID_Alumno`, `ID_Asig`, `Fecha`, `Estado`) VALUES
-(5942, 2, '2018-04-08', 'F'),
-(5942, 4, '2018-04-05', 'R');
+INSERT INTO `faltas` (`ID_Alumno`, `ID_Asig`, `Fecha`, `Hora`) VALUES
+(5942, 2, '2018-04-05', 1),
+(5942, 11, '2018-04-08', 6);
 
 -- --------------------------------------------------------
 
@@ -205,7 +206,8 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Tutoria`, `Clases`) VALUES
-('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1, '1');
+('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1, '1'),
+('96325481D', '1234', 'profe2@gmail.com', 'Manuela', 'Velasco Zorrilla', 2, '1 2');
 
 --
 -- Índices para tablas volcadas
@@ -279,7 +281,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

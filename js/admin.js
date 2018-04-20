@@ -65,20 +65,41 @@ window.addEventListener("load",function(){
     document.getElementById('addClase').onclick = printNewClase;
 
     /***** FUNCIONES DE LISTAR CLASES,PROFESORES Y ASIGNATURAS *****/
-    function listarClases(){
-
+    function listar(lista){
+        var req;
+        if (window.XMLHttpRequest) {
+            req = new XMLHttpRequest();
+        } else if (window.ActiceXObject) {
+            req = ActiveXObject("Microsoft.XMLHTTP");
+        }
+        req.onreadystatechange = function(){
+            if (req.readyState == 4 && req.status == 200) {
+                var listado = JSON.parse(req.responseText);
+                eliminarDom(document.getElementById('freeContent').childNodes[1]);
+                if (lista == 'clases'){
+                    for (var i = 0; i < listado.length; i++){
+                    $('#freeContent').append("<div data-id='"+listado['ID_Clase']+">"+listado['Clase']+"</div>")
+                }
+                }
+                
+            }
+        }
+        req.open("POST", "../administrador/listar.php");
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send("lista=" + lista);
+        
+        
     }
 
-    function listarProfesores(){
-
-    }
-
-    function listarAsignaturas(){
-
-    }
 
     /***** FUNCTION ONLCICK PARA LOS BOTONES DE LISTAR *****/
-    document.getElementById('listaClases').onclick = listarClases;
-    document.getElementById('listaProfesores').onclick = listarProfesores;
-    document.getElementById('listaAsignaturas').onclick = listarAsignaturas;
+    document.getElementById('listaClases').onclick = function(){
+        listar('clases');
+    }
+    document.getElementById('listaProfesores').onclick = function(){
+        listar('profesores');
+    }
+    document.getElementById('listaAsignaturas').onclick = function(){
+        listar('asignaturas');
+    }
 });
