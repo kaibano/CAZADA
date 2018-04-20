@@ -80,21 +80,21 @@ CREATE TABLE `asignaturas` (
 
 INSERT INTO `asignaturas` (`ID_Asig`, `Nombre`) VALUES
 (1, 'Lengua y Literatura'),
-(2, 'Matemáticas'),
-(3, 'Educación física'),
+(2, 'Matematicas'),
+(3, 'Educacion fisica'),
 (4, 'Ciencias sociales'),
 (5, 'Ciencias naturales'),
-(6, 'Física'),
-(7, 'Química'),
-(8, 'Música'),
-(9, 'Educación plástica'),
-(10, 'Inglés'),
-(11, 'Francés'),
-(12, 'Religión'),
+(6, 'Fisica'),
+(7, 'Quimica'),
+(8, 'Musica'),
+(9, 'Educacion plastica'),
+(10, 'Ingles'),
+(11, 'Frances'),
+(12, 'Religion'),
 (13, 'Estudio'),
-(14, 'Ética'),
-(15, 'Filosofía'),
-(16, 'Economía');
+(14, 'Etica'),
+(15, 'Filosofia'),
+(16, 'Economia');
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE `clases` (
 --
 
 INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Turno`, `Clase`) VALUES
-(1, '74125968H', 'diurno', '1º A - ESO');
+(1, '74125968H', 'diurno', '1A - ESO');
 
 -- --------------------------------------------------------
 

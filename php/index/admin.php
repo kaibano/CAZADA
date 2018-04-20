@@ -46,13 +46,7 @@
                 </div>
             </div>
             <div id="freeContent">
-                <div id="clasescargadas"><br><br>Aqui estarian las clases cargadas<br><br>
-                    Este mensaje es un div manual que cargara las clases cuando la funcion listar clases este programada<br><br>
-                    La idea es que cada uno de los botones que veis arriba elimine este div con la funcion eliminarDom que encontrareis en admin.js<br><br>
-                    Tras eso, pintara o hara lo que tenga que hacer. En el caso de listar pues listara lo que se pida y en el caso de añadir<br>
-                    pintara unos inputs para añadir lo que sea (vease el ejemplo ya programado para añadir asigantura).
 
-                </div>
             </div>
         </div>
         <div id="footer">

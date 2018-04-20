@@ -136,4 +136,7 @@ window.addEventListener("load",function(){
     document.getElementById('listaAsignaturas').onclick = function(){
         getArrayLista("asignaturas");
     };
+
+    /***** FUNCTION QUE SE EJECUTA AL INICIO TRAS EL LOGIN *****/
+    getArrayLista("clases");
 });
