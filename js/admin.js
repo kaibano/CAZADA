@@ -22,22 +22,32 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCTIONES DE AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
-    function addAsignatura(asignatura){
-        //FUNCION POR RESOLVER ALGUN ERROR. INSERTA LA ASIGNATURA PERO NO DEVUELVE EL VALOR ESPERADO PARA CONTINUAR
-        var parametros = {"asignatura" : asignatura};
-        $.ajax({
-            data:  parametros, //datos que se envian a traves de ajax
-            url:   '../administrador/addAsignaturas.php', //archivo que recibe la peticion
-            type:  'post', //método de envio
-            beforeSend: function () {
-                $('#freeContent').html("Procesando, espere por favor...");
-            },
-            success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                $("#resultado").html(response);
-            },error: function (error) {
-                $("#resultado").html(error);
-            }
-        });
+    function addAsignatura(asignatura) {
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        if(connection.responseText === "true"){
+                            console.log('Asignatura insertada');
+                            printNewAsignatura();
+                        }else{
+                            console.log('Error al insertar asignatura, es posible que ya exista una con este nombre');
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/addAsignaturas.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("asig=" + asignatura);
+        }
     }
 
     function addAlumno(){
@@ -89,6 +99,30 @@ window.addEventListener("load",function(){
         }
     }
 
+    /***** FUNCION PARA OBTENER EL NOMBRE DE UN PROFESOR A PARTIR DE SU ID *****/
+    function getNombreProfesor(id){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        console.log(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getNombreProfe.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+id);
+        }
+    }
+
     function pintarListaClase(arrayLista){
         $('#content #freeContent').empty().append('<div id="claseContent"><div class="divClase"><div class="divIdClase">ID</div><div class="divNombreClase">Nombre</div><div class="divTutorClase">Tutor</div><div class="divOpcionesClase">Opciones</div></div></div>');
 
@@ -96,33 +130,75 @@ window.addEventListener("load",function(){
             $('#content #freeContent #claseContent').append('<div class="divClase">' +
                 '<div class="divIdClase">'+arrayLista[x]['ID_Clase']+'</div>' +
                 '<div class="divNombreClase">'+arrayLista[x]['Clase']+'</div>' +
-                '<div class="divTutorClase">'+arrayLista[x]['Tutor']+'</div>' +
+                '<div class="divTutorClase">'+arrayLista[x]['Tutor'][0]['Nombre']+' '+arrayLista[x]['Tutor'][0]['Apellidos']+'</div>' +
                 '<div class="divOpcionesClase"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></div></div>');
         }
     }
 
     function pintarListaProfesores(arrayLista) {
-        $('#content #freeContent').empty().append('<div id="profesContent"><div class="divProfe"><div class="divUsuProfe">Usuario</div><div class="divNombreProfe">Nombre</div><div class="divApellidosProfe">Apellidos</div><div class="divMailProfe">Email</div><div class="divTutoriaProfe">Tutoria</div><div class="divClasesProfe">Clases</div><div class="divOpcionesProfe">Opciones</div></div></div>');
+        $('#content #freeContent').empty().append('<table id="profesContent"><tr class="divProfe"><td class="divUsuProfe">Usuario</td><td class="divNombreProfe">Nombre</td><td class="divMailProfe">Email</td><td class="divTutoriaProfe">Tutoria</td><td class="divClasesProfe">Clases</td><td class="divOpcionesProfe">Opciones</td></tr></table>');
 
         for (var x = 0; x < arrayLista.length; x++) {
-            $('#content #freeContent #profesContent').append('<div class="divProfe">' +
-                '<div class="divUsuProfe">' + arrayLista[x]['Usuario'] + '</div>' +
-                '<div class="divNombreProfe">' + arrayLista[x]['Nombre'] + '</div>' +
-                '<div class="divApellidosProfe">' + arrayLista[x]['Apellidos'] + '</div>' +
-                '<div class="divMailProfe">' + arrayLista[x]['Mail'] + '</div>' +
-                '<div class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</div>' +
-                '<div class="divClasesProfe">' + arrayLista[x]['Clases'] + '</div>' +
-                '<div class="divOpcionesProfe"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></div></div>');
+            $('#content #freeContent #profesContent').append('<tr class="divProfe">' +
+                '<td class="divUsuProfe">' + arrayLista[x]['Usuario'] + '</td>' +
+                '<td class="divNombreProfe">' + arrayLista[x]['Nombre'] + ' ' + arrayLista[x]['Apellidos'] + '</td>' +
+                '<td class="divMailProfe">' + arrayLista[x]['Mail'] + '</td>' +
+                '<td class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</td>' +
+                '<td class="divClasesProfe"></td>' +
+                '<td class="divOpcionesProfe"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></td></tr>');
+            for(var y = 0 ; y < arrayLista[x]['Clases'].length ; y++){
+                 var divClase = document.createElement('DIV');
+                    divClase.innerHTML = arrayLista[x]['Clases'][y];
+                document.getElementById('profesContent').childNodes[0].childNodes[x+1].childNodes[4].appendChild(divClase);
+            }
         }
     }
 
     function pintarListaAsignaturas(arrayLista) {
-        $('#content #freeContent').empty().append('<div id="asignaturasContent"><div class="divAsignaturas"><div class="divIdAsignatura">ID</div><div class="divNombreAsignatura">Nombre</div><div class="divOpcionesAsignatura">Opciones</div></div></div>');
+        $('#content #freeContent').empty().append('<table id="asignaturasContent"><tr class="divAsignaturas"><td class="divIdAsignatura">ID</td><td class="divNombreAsignatura">Nombre</td><td class="divOpcionesAsignatura">Opciones</td></tr></table>');
         for (var x = 0; x < arrayLista.length; x++) {
-            $('#content #freeContent #asignaturasContent').append('<div class="divAsignaturas">' +
-                '<div class="divIdAsignatura">'+arrayLista[x]['ID_Asig']+'</div>' +
-                '<div class="divNombreAsignatura">'+arrayLista[x]['Nombre']+'</div>' +
-                '<div class="divOpcionesAsignatura"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></div></div>');
+            $('#content #freeContent #asignaturasContent').append('<tr class="divAsignaturas">' +
+                '<td class="divIdAsignatura">'+arrayLista[x]['ID_Asig']+'</td>' +
+                '<td class="divNombreAsignatura">'+arrayLista[x]['Nombre']+'</td>' +
+                '<td class="divOpcionesAsignatura"><img class="editAsig" src="../../img/modificar.png"><img class="deleteAsig" src="../../img/eliminar.png"></td></tr>');
+        }
+
+        $('.editAsig').click(function(){
+
+        });
+
+        $('.deleteAsig').click(function(){
+           var id = this.parentNode.parentNode.firstChild.innerHTML;
+           deleteAsignatura(this.parentNode.parentNode,id);
+        });
+    }
+
+    /***** FUNCIONES PARA ELIMINAR ELEMENTO *****/
+    function deleteAsignatura(objeto,id){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        if(connection.responseText === '1'){
+                            console.log('Esta asignatura no puede ser borrada por entrar en conflicto con otra tablas');
+                        }else{
+                            console.log('Asignatura eliminada');
+                            getArrayLista('asignaturas');
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/deleteAsignatura.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("asig="+id);
         }
     }
 

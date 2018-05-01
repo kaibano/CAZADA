@@ -1,3 +1,6 @@
+/*TABLA*/
+table{margin:0 auto;}
+
 /*BOTONES LISTAR Y AÑADIR*/
 #content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid; margin: 0 auto;}
 #content #addButtonsBar > div{width: 100%;margin: 10px 0;}
@@ -37,10 +40,10 @@
 .divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
 #content #freeContent #profesContent{padding-top: 50px;}
 #content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
-#content #freeContent #profesContent .divProfe .divUsuProfe{width: 70px;}
-#content #freeContent #profesContent .divProfe .divNombreProfe{width: 80px;}
+#content #freeContent #profesContent .divProfe .divUsuProfe{width: 100px;}
+#content #freeContent #profesContent .divProfe .divNombreProfe{width: 120px;}
 #content #freeContent #profesContent .divProfe .divApellidosProfe{width: 170px;}
-#content #freeContent #profesContent .divProfe .divMailProfe{width: 220px;}
+#content #freeContent #profesContent .divProfe .divMailProfe{width: 170px;}
 #content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 80px;}
 #content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
 #content #freeContent #profesContent .divProfe .divOpcionesProfe img{width: 25px; margin-right: 5px;cursor: pointer;}
