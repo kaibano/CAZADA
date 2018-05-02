@@ -154,7 +154,7 @@ CREATE TABLE `horarios` (
   `Dia` int(1) NOT NULL,
   `Hora` int(1) NOT NULL,
   `Asignatura` int(11) NOT NULL,
-  `Profesor` varchar(10) COLLATE utf8_spanish_ci NULL
+  `Profesor` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
