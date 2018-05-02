@@ -6,17 +6,11 @@
     $salir = false;
 
     $bbdd = new Conexion();
-    $resultado = $bbdd->consulta("SELECT * FROM clases");
+    $resultado = $bbdd->consulta("SELECT Asignatura FROM horarios");
 
     while (!$encontrado && !$salir){
         for($x = 0 ; $x < count($resultado) ; $x++){
-            if(strpos($resultado[$x]['Lunes'],' '.$id.' ') !== false || strpos($resultado[$x]['Martes'],' '.$id.' ') !== false || strpos($resultado[$x]['Miercoles'],' '.$id.' ') !== false || strpos($resultado[$x]['Jueves'],' '.$id.' ') !== false || strpos($resultado[$x]['Viernes'],' '.$id.' ') !== false){
-                $encontrado = true;
-            }
-            if(strpos($resultado[$x]['Lunes'],$id.' ') !== false || strpos($resultado[$x]['Martes'],$id.' ') !== false || strpos($resultado[$x]['Miercoles'],$id.' ') !== false || strpos($resultado[$x]['Jueves'],$id.' ') !== false || strpos($resultado[$x]['Viernes'],$id.' ') !== false){
-                $encontrado = true;
-            }
-            if(strpos($resultado[$x]['Lunes'],' '.$id) !== false || strpos($resultado[$x]['Martes'],' '.$id) !== false || strpos($resultado[$x]['Miercoles'],' '.$id) !== false || strpos($resultado[$x]['Jueves'],' '.$id) !== false || strpos($resultado[$x]['Viernes'],' '.$id) !== false){
+            if($resultado[$x]['Asignatura'] === $id){
                 $encontrado = true;
             }
         }

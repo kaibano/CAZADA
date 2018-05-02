@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98cd62eb-0c9a-4359-ae1a-0ed490e80dd8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/administrador/listar.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/administrador/listar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/administrador/addProfesor.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/administrador/addProfesor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/administrador/deleteAsignatura.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/administrador/deleteAsignatura.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/administrador/deleteProfesor.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/administrador/deleteProfesor.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,17 +35,44 @@
       <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="225" column="247" selection-start-line="225" selection-start-column="247" selection-end-line="225" selection-end-column="247" />
+            <state relative-caret-position="1174">
+              <caret line="129" column="61" selection-start-line="129" selection-start-column="61" selection-end-line="129" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listar.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/php/administrador/listar.php">
+      <file leaf-file-name="deleteAsignatura.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/administrador/deleteAsignatura.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+            <state relative-caret-position="285">
+              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deleteProfesor.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/administrador/deleteProfesor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="88" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cazada.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BBDD/cazada.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="239" column="27" lean-forward="true" selection-end-line="399" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addProfesor.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/administrador/addProfesor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -94,23 +124,23 @@
         <option value="$PROJECT_DIR$/php/index/padre.php" />
         <option value="$PROJECT_DIR$/js/general.js" />
         <option value="$PROJECT_DIR$/js/jquery-min.js" />
-        <option value="$PROJECT_DIR$/BBDD/cazada.sql" />
         <option value="$PROJECT_DIR$/php/index/admin.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/56e34b90-213c-477b-a490-3d7df8fc1475/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/56e34b90-213c-477b-a490-3d7df8fc1475/console_1.sql" />
         <option value="$PROJECT_DIR$/php/administrador/getNombreProfe.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/56e34b90-213c-477b-a490-3d7df8fc1475/console_2.sql" />
         <option value="$PROJECT_DIR$/php/class/conexiones.php" />
-        <option value="$PROJECT_DIR$/php/administrador/deleteAsignatura.php" />
         <option value="$PROJECT_DIR$/php/administrador/addAsignaturas.php" />
         <option value="$PROJECT_DIR$/php/administrador/modificarAsignatura.php" />
         <option value="$PROJECT_DIR$/css/header-index.css" />
         <option value="$PROJECT_DIR$/php/administrador/getArrayClasesSinTutor.php" />
         <option value="$PROJECT_DIR$/css/admin.css" />
-        <option value="$PROJECT_DIR$/php/administrador/addProfesor.php" />
-        <option value="$PROJECT_DIR$/php/administrador/deleteProfesor.php" />
-        <option value="$PROJECT_DIR$/js/admin.js" />
         <option value="$PROJECT_DIR$/php/administrador/listar.php" />
+        <option value="$PROJECT_DIR$/BBDD/cazada.sql" />
+        <option value="$PROJECT_DIR$/php/administrador/deleteProfesor.php" />
+        <option value="$PROJECT_DIR$/php/administrador/deleteAsignatura.php" />
+        <option value="$PROJECT_DIR$/js/admin.js" />
+        <option value="$PROJECT_DIR$/php/administrador/addProfesor.php" />
       </list>
     </option>
   </component>
@@ -226,15 +256,15 @@
     <property name="settings.editor.selected.configurable" value="tasks" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/php/administrador" />
-      <recent name="C:\xampp\htdocs\CAZADA\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/img" />
       <recent name="C:\xampp\htdocs\CAZADA\img" />
       <recent name="C:\xampp\htdocs\CAZADA" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/php/administrador" />
+      <recent name="C:\xampp\htdocs\CAZADA\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -282,7 +312,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92771000" />
+    <option name="totallyTimeSpent" value="95657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -293,7 +323,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.16583541" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.16583541" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19384836" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.67453504" />
@@ -327,24 +357,24 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12313433" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20386267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32960895" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.33769062" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.33665836" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.3298731" />
       <window_info anchor="right" id="Database" order="3" weight="0.6748401" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.19664805" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.14339152" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32960895" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49928468" weight="0.32917705" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
@@ -603,13 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/administrador/addProfesor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="99" selection-start-line="17" selection-start-column="99" selection-end-line="17" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/admin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -617,38 +640,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/php/administrador/listar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/php/administrador/deleteAsignatura.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="273" lean-forward="true" selection-start-line="18" selection-start-column="273" selection-end-line="18" selection-end-column="273" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/administrador/deleteProfesor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBDD/cazada.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="140" selection-start-line="140" selection-end-line="140" />
+        <state relative-caret-position="285">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="225" column="247" selection-start-line="225" selection-start-column="247" selection-end-line="225" selection-end-column="247" />
+        <state relative-caret-position="1174">
+          <caret line="129" column="61" selection-start-line="129" selection-start-column="61" selection-end-line="129" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/administrador/listar.php">
+    <entry file="file://$PROJECT_DIR$/php/administrador/deleteProfesor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+        <state relative-caret-position="105">
+          <caret line="7" column="88" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/administrador/addProfesor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BBDD/cazada.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="239" column="27" lean-forward="true" selection-end-line="399" />
         </state>
       </provider>
     </entry>

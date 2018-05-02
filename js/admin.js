@@ -49,7 +49,6 @@ window.addEventListener("load",function(){
             '<div class="divEachNewProfe"><div class="newProfeLabel">Email*</div><input id="newEmailProfe" class="newProfeInput" type="text" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Contraseña*</div><input id="newPassProfe" class="newProfeInput" type="password" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Tutor/a</div><select id="newProfeSelect" class="newProfeInput"><option name="tutor" value="0"></option></select></div>'+
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Clases</div><div id="newProfeClases" class="newProfeInput"></div></div> '+
             '<div id="addNewProfesorButton" class="botonAnnadir">Añadir</div>' +
             '</div>');
 
@@ -61,22 +60,7 @@ window.addEventListener("load",function(){
             document.getElementById('newProfeSelect').appendChild(option);
         }
 
-        for(var y = 0 ; y < arrayClases[1].length ; y++){
-            var divCheck = document.createElement('DIV');
-            var check = document.createElement('INPUT');
-                check.setAttribute('type','checkbox');
-                check.setAttribute('name','check[]');
-                check.setAttribute('value',arrayClases[1][y]['ID_Clase']);
-            document.getElementById('newProfeClases').appendChild(divCheck);
-            divCheck.appendChild(check);
-            divCheck.append(arrayClases[1][y]['Clase']);
-        }
-
         document.getElementById('addNewProfesorButton').onclick = function(){
-            var clases = '';
-            $('#newProfeClases div input[type=checkbox]:checked').each(function(){
-                clases += $(this).val()+' ';
-            });
             addProfesor(
                 this.parentNode,
                 document.getElementById('newNombreProfe').value,
@@ -84,8 +68,7 @@ window.addEventListener("load",function(){
                 document.getElementById('newDniProfe').value,
                 document.getElementById('newEmailProfe').value,
                 document.getElementById('newPassProfe').value,
-                document.getElementById('newProfeSelect').value,
-                clases
+                document.getElementById('newProfeSelect').value
             );
         }
     }
@@ -127,7 +110,7 @@ window.addEventListener("load",function(){
 
     }
 
-    function addProfesor(objeto,nombre,apellidos,dni,email,password,tutor,clases) {
+    function addProfesor(objeto,nombre,apellidos,dni,email,password,tutor) {
         var connection = null;
         var msg = null;
         if(objeto.childNodes[11]) {
@@ -144,6 +127,7 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
+                        console.log(connection.responseText);
                         var divMsg = document.createElement('DIV');
                         divMsg.setAttribute('class','msgProfe');
                         objeto.appendChild(divMsg);
@@ -163,7 +147,7 @@ window.addEventListener("load",function(){
             };
             connection.open("POST", "../administrador/addProfesor.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("nombre=" + nombre + '&apellidos=' + apellidos + '&dni=' + dni + '&email=' + email + '&pass=' + password+'&tutor='+tutor+'&clases='+clases);
+            connection.send("nombre=" + nombre + '&apellidos=' + apellidos + '&dni=' + dni + '&email=' + email + '&pass=' + password+'&tutor='+tutor);
         }
     }
 

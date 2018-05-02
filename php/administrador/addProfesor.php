@@ -7,14 +7,16 @@
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $tutor = $_POST['tutor'];
-    $clases = $_POST['clases'];
 
     if($nombre !== "" && $apellidos !== "" && $dni !== "" && $email !== "" && $pass !== ""){
 
         $bbdd = new Conexion();
         $resultado = $bbdd->consulta("SELECT * FROM profesores WHERE Usuario = '$dni'");
         if(empty($resultado)){
-            $resultado = $bbdd->conectar()->query("INSERT INTO profesores (Usuario, Password, Mail, Nombre, Apellidos, Tutoria, Clases) VALUES ('$dni','$pass','$email','$nombre','$apellidos','$tutor','$clases')");
+            if($tutor === 0){
+                $tutor = 1234;
+            }
+            $resultado = $bbdd->conectar()->query("INSERT INTO profesores (Usuario, Password, Mail, Nombre, Apellidos, Tutoria) VALUES ('$dni','$pass','$email','$nombre','$apellidos','$tutor'");
             $bbdd->conectar()->query("UPDATE clases SET Tutor = '$dni' WHERE ID_Clase = '$tutor'");
             if($resultado){
                 echo "true";
