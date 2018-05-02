@@ -51,6 +51,8 @@ table{margin:0 auto;}
 /*TABLA DE ASIGNATURAS LISTADA*/
 .divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
 #content #freeContent #asignaturasContent{padding-top: 50px;}
+#content #freeContent #asignaturasContent .divAsignaturas{position: relative;}
+#content #freeContent #asignaturasContent .divAsignaturas .msg{width: 600px;color: red;border: 1px solid;right: 0;}
 #content #freeContent #asignaturasContent .divAsignaturas:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 55%;margin: 0 auto;}
 #content #freeContent #asignaturasContent .divAsignaturas .divIdAsignatura{width: 100px;}
 #content #freeContent #asignaturasContent .divAsignaturas .divNombreAsignatura{width: 250px;}

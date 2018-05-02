@@ -163,8 +163,15 @@ window.addEventListener("load",function(){
                 '<td class="divOpcionesAsignatura"><img class="editAsig" src="../../img/modificar.png"><img class="deleteAsig" src="../../img/eliminar.png"></td></tr>');
         }
 
-        $('.editAsig').click(function(){
-
+        $('.editAsig').click(function () {
+            var id = this.parentNode.parentNode.firstChild.innerHTML;
+            var asigNombre = this.parentNode.parentNode.childNodes[1].innerHTML;
+            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreAsignatura" value="' + asigNombre + '"></input>').select();
+            $(this).removeClass('editAsig').addClass('aceptarCambios').attr('src', '../../img/tick.png').off().click(function () {
+                var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
+                modificarAsignatura(nombreAsignado,id);
+            });
+            $(this.nextSibling).hide();
         });
 
         $('.deleteAsig').click(function(){
@@ -187,8 +194,11 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
-                        if(connection.responseText === '1'){
-                            console.log('Esta asignatura no puede ser borrada por entrar en conflicto con otra tablas');
+                        if(connection.responseText === '1') {
+                            var divMsg = document.createElement('DIV');
+                                divMsg.setAttribute('class','msg');
+                                divMsg.innerHTML = 'Error. La asignatura no puede ser eliminada por entrar en conflicto con otras tablas.';
+                            objeto.appendChild(divMsg);
                         }else{
                             console.log('Asignatura eliminada');
                             getArrayLista('asignaturas');
@@ -199,6 +209,28 @@ window.addEventListener("load",function(){
             connection.open("POST", "../administrador/deleteAsignatura.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send("asig="+id);
+        }
+    }
+
+    /***** FUNCION PARA MODIFICAR ASIGNATURA *****/
+    function modificarAsignatura(nombre,id){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4 && connection.status === 200) {
+                    getArrayLista('asignaturas');
+                }
+            };
+            connection.open("POST", "../administrador/modificarAsignatura.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("asig="+nombre+"&id="+id);
         }
     }
 
