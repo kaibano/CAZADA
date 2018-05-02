@@ -110,6 +110,8 @@
         <option value="$PROJECT_DIR$/php/administrador/deleteAsignatura.php" />
         <option value="$PROJECT_DIR$/php/administrador/addProfesor.php" />
         <option value="$PROJECT_DIR$/php/administrador/addAsignaturas.php" />
+        <option value="$PROJECT_DIR$/php/index/admin.php" />
+        <option value="$PROJECT_DIR$/BBDD/cazada.sql" />
         <option value="$PROJECT_DIR$/js/admin.js" />
         <option value="$PROJECT_DIR$/BBDD/cazada.sql" />
       </list>
@@ -135,60 +137,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BBDD" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="administrador" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="class" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -211,6 +159,27 @@
               <item name="CAZADA" type="cbb8eebc:String" user="CAZADA" />
               <item name="php" type="cbb8eebc:String" user="php" />
               <item name="class" type="cbb8eebc:String" user="class" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="BBDD" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="CAZADA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAZADA" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -289,7 +258,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32917705" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
