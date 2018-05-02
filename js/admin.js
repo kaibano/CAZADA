@@ -223,7 +223,7 @@ window.addEventListener("load",function(){
     }
 
     function pintarListaProfesores(arrayLista) {
-        $('#content #freeContent').empty().append('<table id="profesContent"><tr class="divProfe"><td class="divUsuProfe">Usuario</td><td class="divNombreProfe">Nombre</td><td class="divMailProfe">Email</td><td class="divTutoriaProfe">Tutoria</td><td class="divClasesProfe">Clases</td><td class="divOpcionesProfe">Opciones</td></tr></table>');
+        $('#content #freeContent').empty().append('<table id="profesContent"><tr class="divProfe"><td class="divUsuProfe">Usuario</td><td class="divNombreProfe">Nombre</td><td class="divMailProfe">Email</td><td class="divTutoriaProfe">Tutoria</td><td class="divOpcionesProfe">Opciones</td></tr></table>');
 
         for (var x = 0; x < arrayLista.length; x++) {
             $('#content #freeContent #profesContent').append('<tr class="divProfe">' +
@@ -231,13 +231,7 @@ window.addEventListener("load",function(){
                 '<td class="divNombreProfe">' + arrayLista[x]['Nombre'] + ' ' + arrayLista[x]['Apellidos'] + '</td>' +
                 '<td class="divMailProfe">' + arrayLista[x]['Mail'] + '</td>' +
                 '<td class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</td>' +
-                '<td class="divClasesProfe"></td>' +
                 '<td class="divOpcionesProfe"><img src="../../img/modificar.png"><img class="deleteProfesor" src="../../img/eliminar.png"></td></tr>');
-            for(var y = 0 ; y < arrayLista[x]['Clases'].length ; y++){
-                 var divClase = document.createElement('DIV');
-                    divClase.innerHTML = arrayLista[x]['Clases'][y];
-                document.getElementById('profesContent').childNodes[0].childNodes[x+1].childNodes[4].appendChild(divClase);
-            }
         }
 
         $('.deleteProfesor').click(function(){

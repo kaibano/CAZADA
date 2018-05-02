@@ -12,7 +12,7 @@
         foreach ($res as $clase) {
             $tutor = $clase['Tutor'];
             $nombreCompleto = array();
-            $ans = $con->query("SELECT Nombre,Apellidos FROM `profesores` WHERE Usuario = '$tutor'");
+            $ans = $con->query("SELECT Nombre,Apellidos FROM profesores WHERE Usuario = '$tutor'");
             foreach ($ans as $parte) {
                 array_push($nombreCompleto, $parte);
             }
@@ -28,17 +28,12 @@
     if($tabla === "profesores") {
         foreach ($res as $profe){
             $tutoria = $profe['Tutoria'];
-            $ans2 = $con->query("SELECT Clase FROM `clases` WHERE ID_Clase = '$tutoria'")->fetch_array(MYSQLI_NUM);
-            $profe['Tutoria'] = $ans2[0];
-
-            $clases = explode(" ",$profe['Clases']);
-            $arrayClases = array();
-            foreach ($clases as $clase){
-                $ans3 = $con->query("SELECT Clase FROM `clases` WHERE ID_Clase = '$clase'")->fetch_array(MYSQLI_NUM);
-                array_push($arrayClases,$ans3[0]);
+            $ans2 = $con->query("SELECT Clase FROM clases WHERE ID_Clase = '$tutoria'")->fetch_array(MYSQLI_NUM);
+            if($ans2[0] !== null) {
+                $profe['Tutoria'] = $ans2[0];
+            }else{
+                $profe['Tutoria'] = '-';
             }
-            $profe['Clases'] = $arrayClases;
-
             array_push($array,$profe);
         }
     }
