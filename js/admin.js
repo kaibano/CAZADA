@@ -313,10 +313,6 @@ window.addEventListener("load",function(){
 
     function deleteProfesor(objeto,id){
         var connection = null;
-        var msg = null;
-        if(objeto.childNodes[11]) {
-            objeto.childNodes[11].remove();
-        }
 
         if (window.XMLHttpRequest) {
             connection = new XMLHttpRequest();
@@ -329,20 +325,10 @@ window.addEventListener("load",function(){
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
                         if(connection.responseText === "true"){
-                            var divMsg = document.createElement('DIV');
-                            divMsg.setAttribute('class','msgProfe');
-                            objeto.appendChild(divMsg);
-
-                            if(connection.responseText === "true") {
-                                $('.newProfeInput').val('');
-                                divMsg.setAttribute('style','color:green !important');
-                                msg = 'Nuevo profesor/profesora insertado/a';
-                            }else if(connection.responseText === 'existe'){
-                                msg = 'El usuario ya existe en la base de datos';
-                            }else if(connection.responseText === 'vacio'){
-                                msg = 'Algún campo obligatorio está vacio';
-                            }
-                            divMsg.innerHTML = msg;
+                            console.log('Profesor eliminado');
+                            getArrayLista('profesores');
+                        }else{
+                            console.log('Ha ocurrido un error');
                         }
                     }
                 }
