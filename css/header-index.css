@@ -24,4 +24,14 @@ body #header{
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
 #header .typepanel span:nth-child(2){font-size: 32px;font-weight: bold;}
 
-#header .cerrarSesion{position: relative;float: right;right: -240px;top: 5px;text-decoration: underline;}
+#header .cerrarSesion{position: absolute;right: 0;text-decoration: underline;vertical-align: top;margin-right: 10px;}
+
+#footer{
+    margin-top:50px;
+    height: 100px;
+    background: #76b852;
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+}

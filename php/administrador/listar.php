@@ -16,7 +16,11 @@
             foreach ($ans as $parte) {
                 array_push($nombreCompleto, $parte);
             }
-            $clase['Tutor'] = $nombreCompleto;
+            if(!empty($clase['Tutor'])) {
+                $clase['Tutor'] = $nombreCompleto;
+            }else{
+                $clase['Tutor'] = array(array("Nombre"=>"-","Apellidos"=>"-"));
+            }
             array_push($array, $clase);
         }
     }
