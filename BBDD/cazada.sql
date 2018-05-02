@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2018 a las 20:21:02
+-- Tiempo de generación: 02-05-2018 a las 18:10:11
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -61,7 +61,7 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`, `Asignaturas`) VALUES
-(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1,2,3,4,8,9,10,11,12');
+(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1 2 3 4 8 9 10 11 12');
 
 -- --------------------------------------------------------
 
@@ -90,11 +90,7 @@ INSERT INTO `asignaturas` (`ID_Asig`, `Nombre`) VALUES
 (9, 'Educacion plastica'),
 (10, 'Ingles'),
 (11, 'Frances'),
-(12, 'Religion'),
-(13, 'Estudio'),
-(14, 'Etica'),
-(15, 'Filosofia'),
-(16, 'Economia');
+(12, 'Religion/Estudio');
 
 -- --------------------------------------------------------
 
@@ -105,7 +101,6 @@ INSERT INTO `asignaturas` (`ID_Asig`, `Nombre`) VALUES
 CREATE TABLE `clases` (
   `ID_Clase` int(11) NOT NULL,
   `Tutor` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Turno` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `Clase` varchar(25) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -113,8 +108,9 @@ CREATE TABLE `clases` (
 -- Volcado de datos para la tabla `clases`
 --
 
-INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Turno`, `Clase`) VALUES
-(1, '74125968H', 'diurno', '1A - ESO');
+INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Clase`) VALUES
+(1, '74125968H', '1A - ESO'),
+(2, '96325481D', '2A - ESO');
 
 -- --------------------------------------------------------
 
@@ -126,16 +122,67 @@ CREATE TABLE `faltas` (
   `ID_Alumno` int(5) NOT NULL,
   `ID_Asig` int(11) NOT NULL,
   `Fecha` date NOT NULL,
-  `Estado` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `Hora` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `faltas`
 --
 
-INSERT INTO `faltas` (`ID_Alumno`, `ID_Asig`, `Fecha`, `Estado`) VALUES
-(5942, 2, '2018-04-08', 'F'),
-(5942, 4, '2018-04-05', 'R');
+INSERT INTO `faltas` (`ID_Alumno`, `ID_Asig`, `Fecha`, `Hora`) VALUES
+(5942, 2, '2018-04-05', 1),
+(5942, 11, '2018-04-08', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horarios`
+--
+
+CREATE TABLE `horarios` (
+  `Clase` int(11) NOT NULL,
+  `Dia` int(1) NOT NULL,
+  `Hora` int(1) NOT NULL,
+  `Asignatura` int(11) NOT NULL,
+  `Profesor` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `horarios`
+--
+
+INSERT INTO `horarios` (`Clase`, `Dia`, `Hora`, `Asignatura`, `Profesor`) VALUES
+(1, 1, 1, 1, '23569874K'),
+(1, 1, 2, 2, '41203587T'),
+(1, 1, 3, 3, '74125968H'),
+(1, 1, 4, 4, '85246781D'),
+(1, 1, 5, 5, '96321548S'),
+(1, 1, 6, 8, '96325481D');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horas`
+--
+
+CREATE TABLE `horas` (
+  `Hora` int(1) NOT NULL,
+  `Start` time NOT NULL,
+  `End` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `horas`
+--
+
+INSERT INTO `horas` (`Hora`, `Start`, `End`) VALUES
+(1, '08:30:00', '09:20:00'),
+(2, '09:25:00', '10:15:00'),
+(3, '10:20:00', '11:10:00'),
+(4, '11:35:00', '12:25:00'),
+(5, '12:30:00', '13:20:00'),
+(6, '13:25:00', '14:15:00'),
+(7, '14:20:00', '15:10:00');
 
 -- --------------------------------------------------------
 
@@ -196,16 +243,20 @@ CREATE TABLE `profesores` (
   `Mail` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
-  `Tutoria` int(11) DEFAULT NULL,
-  `Clases` varchar(400) COLLATE utf8_spanish_ci NOT NULL
+  `Tutoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `profesores`
 --
 
-INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Tutoria`, `Clases`) VALUES
-('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1, '1');
+INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Tutoria`) VALUES
+('23569874K', '1234', 'pro@gmail.com', 'Agustin', 'Hidalgo Ramirez', NULL),
+('41203587T', '1234', 'profesora@gmail.com', 'Elena', 'Vazquez Bernal', NULL),
+('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1),
+('85246781D', '1234', 'teacher@hotmail.com', 'Tomas', 'Linda Soriano', NULL),
+('96321548S', '1234', 'profess@gmail.com', 'Paloma', 'Estaban Garrido', NULL),
+('96325481D', '1234', 'profe2@gmail.com', 'Manuela', 'Velasco Zorrilla', 2);
 
 --
 -- Índices para tablas volcadas
@@ -246,6 +297,21 @@ ALTER TABLE `faltas`
   ADD KEY `ID_Asig` (`ID_Asig`);
 
 --
+-- Indices de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  ADD PRIMARY KEY (`Clase`,`Hora`),
+  ADD KEY `Hora` (`Hora`),
+  ADD KEY `Profesor` (`Profesor`),
+  ADD KEY `Asignatura` (`Asignatura`);
+
+--
+-- Indices de la tabla `horas`
+--
+ALTER TABLE `horas`
+  ADD PRIMARY KEY (`Hora`);
+
+--
 -- Indices de la tabla `notas`
 --
 ALTER TABLE `notas`
@@ -273,13 +339,13 @@ ALTER TABLE `profesores`
 -- AUTO_INCREMENT de la tabla `asignaturas`
 --
 ALTER TABLE `asignaturas`
-  MODIFY `ID_Asig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_Asig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -304,6 +370,15 @@ ALTER TABLE `clases`
 ALTER TABLE `faltas`
   ADD CONSTRAINT `faltas_ibfk_1` FOREIGN KEY (`ID_Alumno`) REFERENCES `alumnos` (`ID_Alumno`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `faltas_ibfk_2` FOREIGN KEY (`ID_Asig`) REFERENCES `asignaturas` (`ID_Asig`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  ADD CONSTRAINT `horarios_ibfk_1` FOREIGN KEY (`Clase`) REFERENCES `clases` (`ID_Clase`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `horarios_ibfk_2` FOREIGN KEY (`Hora`) REFERENCES `horas` (`Hora`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `horarios_ibfk_3` FOREIGN KEY (`Profesor`) REFERENCES `profesores` (`Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `horarios_ibfk_4` FOREIGN KEY (`Asignatura`) REFERENCES `asignaturas` (`ID_Asig`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `notas`
