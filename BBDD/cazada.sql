@@ -61,7 +61,17 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`, `Asignaturas`) VALUES
-(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1 2 3 4 8 9 10 11 12');
+(5942, 1, '49268543X', 'Jacinto', 'Perez Pacuito', '1 2 3 4 8 9 10 11 12'),
+(5943, 1, '49268544X', 'Ramon', 'Casas Martinez', '1 2 3 4 8 9 10 11 12'),
+(5944, 1, '49268545X', 'Carlos', 'Ramon Sanchez', '1 2 3 4 8 9 10 11 12'),
+(5945, 1, '49268546X', 'Juan', 'Buenavida Pascual', '1 2 3 4 8 9 10 11 12'),
+(5946, 1, '49268547X', 'Raul', 'Martin Perez', '1 2 3 4 8 9 10 11 12'),
+(5947, 1, '49268548X', 'Ruben', 'Perez Santiago', '1 2 3 4 8 9 10 11 12'),
+(5948, 1, '49268549X', 'David', 'Carmelo Blanco', '1 2 3 4 8 9 10 11 12'),
+(5949, 1, '49268540X', 'Daniel', 'Carrero Humanes', '1 2 3 4 8 9 10 11 12'),
+(5950, 1, '49268550X', 'Fernando', 'Sol Luz', '1 2 3 4 8 9 10 11 12'),
+(5951, 1, '49268553X', 'Francisco', 'Felipe Santos', '1 2 3 4 8 9 10 11 12'),
+(5952, 1, '49268552X', 'Manuel', 'Carro Gomez', '1 2 3 4 8 9 10 11 12');
 
 -- --------------------------------------------------------
 
@@ -229,7 +239,18 @@ CREATE TABLE `padres` (
 --
 
 INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alumnos`) VALUES
-('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '5942');
+('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '5942'),
+('49268544X', '1234', 'padre2@gmail.com', 'Papa', 'papito papi', '5943'),
+('49268545X', '1234', 'padre3@gmail.com', 'Papa', 'papito papi', '5944'),
+('49268546X', '1234', 'padre4@gmail.com', 'Papa', 'papito papi', '5945'),
+('49268547X', '1234', 'padre5@gmail.com', 'Papa', 'papito papi', '5946'),
+('49268548X', '1234', 'padre6@gmail.com', 'Papa', 'papito papi', '5947'),
+('49268549X', '1234', 'padre7@gmail.com', 'Papa', 'papito papi', '5948'),
+('49268540X', '1234', 'padre8@gmail.com', 'Papa', 'papito papi', '5949'),
+('49268550X', '1234', 'padre9@gmail.com', 'Papa', 'papito papi', '5950'),
+('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '5951'),
+('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '5952')
+;
 
 -- --------------------------------------------------------
 

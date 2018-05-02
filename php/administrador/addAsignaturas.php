@@ -6,7 +6,9 @@
     $bbdd = new Conexion();
     $respuesta = $bbdd->consulta("SELECT * FROM asignaturas WHERE Nombre = '$nombreAsignatura'");
 
-    if(empty($respuesta)) {
+    if($nombreAsignatura === ''){
+        echo 'vacio';
+    }else if(empty($respuesta)) {
         $conexion = $bbdd->conectar();
         $resultado = $conexion->query("INSERT INTO asignaturas (Nombre) VALUE ('$nombreAsignatura')");
         if ($resultado) {

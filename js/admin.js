@@ -29,7 +29,7 @@ window.addEventListener("load",function(){
         $('#content #freeContent').empty();
         $('#freeContent').append('<div id="divNewAsignatura"><div>Nueva asignatura</div><div class="condiciones">*Introduzca un nombre de asignatura que no exista.</div><input type="text" id="newAsignaturaInput"><div id="addNewAsiganturaButton" class="botonAnnadir">Añadir</div></div>');
         document.getElementById('addNewAsiganturaButton').onclick = function(){
-            addAsignatura(document.getElementById('newAsignaturaInput').value);
+            addAsignatura(this.parentNode,document.getElementById('newAsignaturaInput').value);
         }
     }
 
@@ -78,8 +78,12 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCTIONES DE AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
-    function addAsignatura(asignatura) {
+    function addAsignatura(objeto,asignatura) {
         var connection = null;
+        var msg = null;
+        if(objeto.childNodes[4]){
+            objeto.childNodes[4].remove();
+        }
 
         if (window.XMLHttpRequest) {
             connection = new XMLHttpRequest();
@@ -95,7 +99,15 @@ window.addEventListener("load",function(){
                             console.log('Asignatura insertada');
                             printNewAsignatura();
                         }else{
-                            console.log('Error al insertar asignatura, es posible que ya exista una con este nombre');
+                            var divMsg = document.createElement('DIV');
+                                divMsg.setAttribute('style','color:red;margin-top:20px');
+                                objeto.appendChild(divMsg);
+                            if(connection.responseText === 'vacio') {
+                                msg = 'Error al insertar asignatura, el nombre no puede estar vacio';
+                            }else{
+                                msg = 'Error al insertar asignatura, ya existe una con este nombre';
+                            }
+                            divMsg.innerHTML = msg;
                         }
                     }
                 }
