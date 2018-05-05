@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2018 a las 18:10:11
+-- Tiempo de generación: 02-05-2018 a las 18:59:05
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -61,7 +61,17 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`, `Asignaturas`) VALUES
-(5942, 1, '49268543X', 'Jacinto', 'perez Pacuito', '1 2 3 4 8 9 10 11 12');
+(5942, 1, '49268543X', 'Jacinto', 'Perez Pacuito', '1 2 3 4 8 9 10 11 12'),
+(5943, 1, '49268544X', 'Ramon', 'Casas Martinez', '1 2 3 4 8 9 10 11 12'),
+(5944, 1, '49268545X', 'Carlos', 'Ramon Sanchez', '1 2 3 4 8 9 10 11 12'),
+(5945, 1, '49268546X', 'Juan', 'Buenavida Pascual', '1 2 3 4 8 9 10 11 12'),
+(5946, 1, '49268547X', 'Raul', 'Martin Perez', '1 2 3 4 8 9 10 11 12'),
+(5947, 1, '49268548X', 'Ruben', 'Perez Santiago', '1 2 3 4 8 9 10 11 12'),
+(5948, 1, '49268549X', 'David', 'Carmelo Blanco', '1 2 3 4 8 9 10 11 12'),
+(5949, 1, '49268540X', 'Daniel', 'Carrero Humanes', '1 2 3 4 8 9 10 11 12'),
+(5950, 1, '49268550X', 'Fernando', 'Sol Luz', '1 2 3 4 8 9 10 11 12'),
+(5951, 1, '49268553X', 'Francisco', 'Felipe Santos', '1 2 3 4 8 9 10 11 12'),
+(5952, 1, '49268552X', 'Manuel', 'Carro Gomez', '1 2 3 4 8 9 10 11 12');
 
 -- --------------------------------------------------------
 
@@ -144,7 +154,7 @@ CREATE TABLE `horarios` (
   `Dia` int(1) NOT NULL,
   `Hora` int(1) NOT NULL,
   `Asignatura` int(11) NOT NULL,
-  `Profesor` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+  `Profesor` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -229,7 +239,18 @@ CREATE TABLE `padres` (
 --
 
 INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alumnos`) VALUES
-('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '5942');
+('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '5942'),
+('49268544X', '1234', 'padre2@gmail.com', 'Papa', 'papito papi', '5943'),
+('49268545X', '1234', 'padre3@gmail.com', 'Papa', 'papito papi', '5944'),
+('49268546X', '1234', 'padre4@gmail.com', 'Papa', 'papito papi', '5945'),
+('49268547X', '1234', 'padre5@gmail.com', 'Papa', 'papito papi', '5946'),
+('49268548X', '1234', 'padre6@gmail.com', 'Papa', 'papito papi', '5947'),
+('49268549X', '1234', 'padre7@gmail.com', 'Papa', 'papito papi', '5948'),
+('49268540X', '1234', 'padre8@gmail.com', 'Papa', 'papito papi', '5949'),
+('49268550X', '1234', 'padre9@gmail.com', 'Papa', 'papito papi', '5950'),
+('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '5951'),
+('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '5952')
+;
 
 -- --------------------------------------------------------
 
@@ -241,8 +262,7 @@ CREATE TABLE `profesores` (
   `Usuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Password` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `Mail` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
+  `Nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `Tutoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -250,13 +270,13 @@ CREATE TABLE `profesores` (
 -- Volcado de datos para la tabla `profesores`
 --
 
-INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Tutoria`) VALUES
-('23569874K', '1234', 'pro@gmail.com', 'Agustin', 'Hidalgo Ramirez', NULL),
-('41203587T', '1234', 'profesora@gmail.com', 'Elena', 'Vazquez Bernal', NULL),
-('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1),
-('85246781D', '1234', 'teacher@hotmail.com', 'Tomas', 'Linda Soriano', NULL),
-('96321548S', '1234', 'profess@gmail.com', 'Paloma', 'Estaban Garrido', NULL),
-('96325481D', '1234', 'profe2@gmail.com', 'Manuela', 'Velasco Zorrilla', 2);
+INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Tutoria`) VALUES
+('23569874K', '1234', 'pro@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
+('41203587T', '1234', 'profesora@gmail.com', 'Elena Vazquez Bernal', NULL),
+('74125968H', '1234', 'profe@gmail.com', 'Profee Maestro teacher', 1),
+('85246781D', '1234', 'teacher@hotmail.com', 'Tomas Linda Soriano', NULL),
+('96321548S', '1234', 'profess@gmail.com', 'Paloma Estaban Garrido', NULL),
+('96325481D', '1234', 'profe2@gmail.com', 'Manuela Velasco Zorrilla', 2);
 
 --
 -- Índices para tablas volcadas
