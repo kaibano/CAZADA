@@ -11,7 +11,7 @@
     if(empty($resultado)){
         $conexion = $bbdd->conectar();
         $resultado = $conexion->query("UPDATE asignaturas SET Nombre = '$nombre' WHERE ID_Asig = $id");
-        echo "1";
+        echo "true";
     }else{
-        echo "error";
+        echo "false";
     }

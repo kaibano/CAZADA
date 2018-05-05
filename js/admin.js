@@ -1,7 +1,7 @@
 window.addEventListener("load",function(){
 
     /***** FUNCION PARA OPTENER UN ARRAY CON LAS CLASES *****/
-    function getArrayClases(){
+    function getArrayClasesForPrintNewProfesor(){
         var connection = null;
 
         if (window.XMLHttpRequest) {
@@ -15,6 +15,36 @@ window.addEventListener("load",function(){
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
                         printNewProfesor(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayClasesSinTutor.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
+    /***** FUNCTION PARA OBTENER UN ARRAY CON LAS CLASES QUE NO TIENEN TUTORIA *****/
+    function getArrayClasesSinTutoriaForModificarProfesores(objeto){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        for(var x = 0; x < JSON.parse(connection.responseText)[0].length ; x++){
+                            var option = document.createElement('OPTION');
+                            option.setAttribute('name','tutoria');
+                            option.setAttribute('value',JSON.parse(connection.responseText)[0][x]['ID_Clase']);
+                            option.innerHTML = JSON.parse(connection.responseText)[0][x]['Clase'];
+                            objeto.appendChild(option);
+                        }
                     }
                 }
             };
@@ -38,13 +68,11 @@ window.addEventListener("load",function(){
     }
 
     function printNewProfesor(arrayClases){
-        console.log(arrayClases);
         $('#content #freeContent').empty();
         $('#freeContent').append('<div id="divNewProfesor">' +
             '<div>Nuevo Profesor/Profesora</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Nombre*</div><input id="newNombreProfe" class="newProfeInput" type="text" value=""></div>'+
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Apellidos*</div><input id="newApellidosProfe" class="newProfeInput" type="text" value=""></div>'+
+            '<div class="divEachNewProfe"><div class="newProfeLabel">Nombre completo*</div><input id="newNombreProfe" class="newProfeInput" type="text" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">DNI*</div><input id="newDniProfe" class="newProfeInput" type="text" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Email*</div><input id="newEmailProfe" class="newProfeInput" type="text" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Contraseña*</div><input id="newPassProfe" class="newProfeInput" type="password" value=""></div>'+
@@ -64,7 +92,6 @@ window.addEventListener("load",function(){
             addProfesor(
                 this.parentNode,
                 document.getElementById('newNombreProfe').value,
-                document.getElementById('newApellidosProfe').value,
                 document.getElementById('newDniProfe').value,
                 document.getElementById('newEmailProfe').value,
                 document.getElementById('newPassProfe').value,
@@ -95,20 +122,21 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
+                        var divMsg = document.createElement('DIV');
+                        objeto.appendChild(divMsg);
                         if(connection.responseText === "true"){
-                            console.log('Asignatura insertada');
-                            printNewAsignatura();
+                            divMsg.setAttribute('style','color:green;margin-top:20px');
+                            msg = 'Asignatura insertada con éxito';
+                            document.getElementById('newAsignaturaInput').value = "";
                         }else{
-                            var divMsg = document.createElement('DIV');
-                                divMsg.setAttribute('style','color:red;margin-top:20px');
-                                objeto.appendChild(divMsg);
+                            divMsg.setAttribute('style','color:red;margin-top:20px');
                             if(connection.responseText === 'vacio') {
                                 msg = 'Error al insertar asignatura, el nombre no puede estar vacio';
                             }else{
                                 msg = 'Error al insertar asignatura, ya existe una con este nombre';
                             }
-                            divMsg.innerHTML = msg;
                         }
+                        divMsg.innerHTML = msg;
                     }
                 }
             };
@@ -122,11 +150,11 @@ window.addEventListener("load",function(){
 
     }
 
-    function addProfesor(objeto,nombre,apellidos,dni,email,password,tutor) {
+    function addProfesor(objeto,nombre,dni,email,password,tutor) {
         var connection = null;
         var msg = null;
-        if(objeto.childNodes[11]) {
-            objeto.childNodes[11].remove();
+        if(objeto.childNodes[8]) {
+            objeto.childNodes[8].remove();
         }
 
         if (window.XMLHttpRequest) {
@@ -139,11 +167,9 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
-                        console.log(connection.responseText);
                         var divMsg = document.createElement('DIV');
                         divMsg.setAttribute('class','msgProfe');
                         objeto.appendChild(divMsg);
-
                         if(connection.responseText === "true") {
                             $('.newProfeInput').val('');
                             divMsg.setAttribute('style','color:green !important');
@@ -159,7 +185,7 @@ window.addEventListener("load",function(){
             };
             connection.open("POST", "../administrador/addProfesor.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("nombre=" + nombre + '&apellidos=' + apellidos + '&dni=' + dni + '&email=' + email + '&pass=' + password+'&tutor='+tutor);
+            connection.send("nombre=" + nombre + '&dni=' + dni + '&email=' + email + '&pass=' + password+'&tutor='+tutor);
         }
     }
 
@@ -170,7 +196,7 @@ window.addEventListener("load",function(){
     /***** FUNCION ONCLICK PARA LOS BOTONES DE AÑADIR *****/
     document.getElementById('addAsignatura').onclick = printNewAsignatura;
     document.getElementById('addAlumno').onclick = printNewAlumno;
-    document.getElementById('addProfesor').onclick = getArrayClases;
+    document.getElementById('addProfesor').onclick = getArrayClasesForPrintNewProfesor;
     document.getElementById('addClase').onclick = printNewClase;
 
     /***** FUNCION QUE OBTIENE UN ARRAY DE CLASES,PROFESORES O ASIGNATURAS SEGUN EL STRING DE LISTA QUE SE LE PASA *****/
@@ -213,7 +239,7 @@ window.addEventListener("load",function(){
             $('#content #freeContent #claseContent').append('<div class="divClase">' +
                 '<div class="divIdClase">'+arrayLista[x]['ID_Clase']+'</div>' +
                 '<div class="divNombreClase">'+arrayLista[x]['Clase']+'</div>' +
-                '<div class="divTutorClase">'+arrayLista[x]['Tutor'][0]['Nombre']+' '+arrayLista[x]['Tutor'][0]['Apellidos']+'</div>' +
+                '<div class="divTutorClase">'+arrayLista[x]['Tutor']['Nombre']+'</div>' +
                 '<div class="divOpcionesClase"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></div></div>');
         }
     }
@@ -224,15 +250,44 @@ window.addEventListener("load",function(){
         for (var x = 0; x < arrayLista.length; x++) {
             $('#content #freeContent #profesContent').append('<tr class="divProfe">' +
                 '<td class="divUsuProfe">' + arrayLista[x]['Usuario'] + '</td>' +
-                '<td class="divNombreProfe">' + arrayLista[x]['Nombre'] + ' ' + arrayLista[x]['Apellidos'] + '</td>' +
+                '<td class="divNombreProfe">' + arrayLista[x]['Nombre']+'</td>' +
                 '<td class="divMailProfe">' + arrayLista[x]['Mail'] + '</td>' +
                 '<td class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</td>' +
-                '<td class="divOpcionesProfe"><img src="../../img/modificar.png"><img class="deleteProfesor" src="../../img/eliminar.png"></td></tr>');
+                '<td class="divOpcionesProfe"><img class="editProfesor" src="../../img/modificar.png"><img class="deleteProfesor" src="../../img/eliminar.png"></td></tr>');
         }
 
+        $('.editProfesor').click(function(){
+           var usu = this.parentNode.parentNode.firstChild.innerHTML;
+           var nombre = this.parentNode.parentNode.childNodes[1].innerHTML;
+           var email = this.parentNode.parentNode.childNodes[2].innerHTML;
+           var tutor = this.parentNode.parentNode.childNodes[3].innerHTML;
+            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreProfe" value="' + nombre + '"></input>');
+            $(this.parentNode.parentNode.childNodes[2]).replaceWith('<input type="text" class="divNombreProfe" value="' + email + '"></input>');
+            $(this.parentNode.parentNode.childNodes[3]).replaceWith('<select id="selectModificarTutoriaProfesor" class="divNombreProfe"><option name="tutoria" value="0"></option></select>');
+            getArrayClasesSinTutoriaForModificarProfesores(this.parentNode.parentNode.childNodes[3]);
+            $(this).removeClass('editAsig').addClass('aceptarCambios').attr('src', '../../img/tick.png').off().click(function () {
+                var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
+                var emailAsignado = this.parentNode.parentNode.childNodes[2].value;
+                var tutorAsignado = this.parentNode.parentNode.childNodes[3].value;
+                modificarProfesor(usu,nombreAsignado,emailAsignado,tutorAsignado,tutor,this.parentNode.parentNode);
+            });
+            $(this.nextSibling).removeClass('deleteAsig').addClass('cancelEdit').attr('src', '../../img/cross.png').off().click(function () {
+                getArrayLista('profesores');
+            });
+        });
+
         $('.deleteProfesor').click(function(){
+            var tutor = this.parentNode.parentNode.childNodes[3].innerHTML;
             var id = this.parentNode.parentNode.firstChild.innerHTML;
-            deleteProfesor(this.parentNode.parentNode,id);
+            if(tutor !== "-") {
+                if (window.confirm("Este profesor tiene asociada una tutoría así como podría tener asociadas clases en las que imparte, si lo elimina la clase se quedará sin tutor asociado ¿Desea continuar?")) {
+                    deleteProfesor(this.parentNode.parentNode, id);
+                }
+            }else{
+                if (window.confirm("Este profesor podría tener asociadas clases en las que imparte ¿Desea continuar?")) {
+                    deleteProfesor(this.parentNode.parentNode, id);
+                }
+            }
         });
     }
 
@@ -246,15 +301,12 @@ window.addEventListener("load",function(){
         }
 
         $('.editAsig').click(function () {
-            if(this.parentNode.parentNode.childNodes[3]){
-                this.parentNode.parentNode.childNodes[3].remove();
-            }
             var id = this.parentNode.parentNode.firstChild.innerHTML;
             var asigNombre = this.parentNode.parentNode.childNodes[1].innerHTML;
-            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreAsignatura" value="' + asigNombre + '"></input>').select();
+            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreAsignatura" value="' + asigNombre + '"></input>');
             $(this).removeClass('editAsig').addClass('aceptarCambios').attr('src', '../../img/tick.png').off().click(function () {
                 var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
-                modificarAsignatura(nombreAsignado,id);
+                modificarAsignatura(this.parentNode.parentNode,nombreAsignado,id);
             });
             $(this.nextSibling).removeClass('deleteAsig').addClass('cancelEdit').attr('src', '../../img/cross.png').off().click(function () {
                 getArrayLista('asignaturas');
@@ -262,8 +314,10 @@ window.addEventListener("load",function(){
         });
 
         $('.deleteAsig').click(function(){
-           var id = this.parentNode.parentNode.firstChild.innerHTML;
-           deleteAsignatura(this.parentNode.parentNode,id);
+            if(window.confirm("Si la asignatura esta en conflicto con otras tablas no se podrá borrar ¿Desea continuar?")) {
+                var id = this.parentNode.parentNode.firstChild.innerHTML;
+                deleteAsignatura(this.parentNode.parentNode, id);
+            }
         });
     }
 
@@ -289,7 +343,6 @@ window.addEventListener("load",function(){
                                     objeto.appendChild(divMsg);
                                 }
                         }else{
-                            console.log('Asignatura eliminada');
                             getArrayLista('asignaturas');
                         }
                     }
@@ -315,10 +368,7 @@ window.addEventListener("load",function(){
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
                         if(connection.responseText === "true"){
-                            console.log('Profesor eliminado');
                             getArrayLista('profesores');
-                        }else{
-                            console.log('Ha ocurrido un error');
                         }
                     }
                 }
@@ -330,8 +380,12 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCION PARA MODIFICAR ASIGNATURA, LLAMA AL PHP QUE LAS MODIFICA *****/
-    function modificarAsignatura(nombre,id){
+    function modificarAsignatura(objeto,nombre,id){
         var connection = null;
+        var msg = null;
+        if(objeto.childNodes[3]){
+            objeto.childNodes[3].remove();
+        }
 
         if (window.XMLHttpRequest) {
             connection = new XMLHttpRequest();
@@ -342,12 +396,54 @@ window.addEventListener("load",function(){
         if (connection) {
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4 && connection.status === 200) {
-                    getArrayLista('asignaturas');
+                    var divMsg = document.createElement('DIV');
+                    objeto.appendChild(divMsg);
+                    if(connection.responseText === "false"){
+                        divMsg.setAttribute('style','color:red;margin-top:20px');
+                        msg = 'El nombre seleccionado ya existe para otra asignatura';
+                        divMsg.innerHTML = msg;
+                    }else{
+                        getArrayLista('asignaturas');
+                    }
                 }
             };
             connection.open("POST", "../administrador/modificarAsignatura.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send("asig="+nombre+"&id="+id);
+        }
+    }
+
+    /***** FUNCION PARA MODIFICAR PROFESOR, LLAMA AL PHP QUE LO MODIFICA *****/
+    function modificarProfesor(usu,nombre,email,tutoria,tutor,objeto){
+        var connection = null;
+        var msg = null;
+        if(objeto.childNodes[6]){
+            objeto.childNodes[6].remove();
+        }
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4 && connection.status === 200) {
+                    var divMsg = document.createElement('DIV');
+                    objeto.appendChild(divMsg);
+                    if(connection.responseText === "false"){
+                        divMsg.setAttribute('style','color:red;margin-top:20px');
+                        msg = 'El nombre seleccionado ya existe para otra asignatura';
+                        divMsg.innerHTML = msg;
+                    }else{
+                        getArrayLista('profesores');
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/modificarProfesor.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("usu="+usu+"&nombre="+nombre+"&email="+email+"&tutoria="+tutoria+"&tutor="+tutor);
         }
     }
 

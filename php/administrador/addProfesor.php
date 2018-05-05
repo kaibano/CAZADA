@@ -2,18 +2,17 @@
     include '../class/conexiones.php';
 
     $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
     $dni = $_POST['dni'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $tutor = $_POST['tutor'];
     $sql = '';
     if($tutor === '0'){
-        $sql = "INSERT INTO profesores (Usuario, Password, Mail, Nombre, Apellidos, Tutoria) VALUES ('$dni','$pass','$email','$nombre','$apellidos',NULL)";
+        $sql = "INSERT INTO profesores (Usuario, Password, Mail, Nombre, Tutoria) VALUES ('$dni','$pass','$email','$nombre',NULL)";
     }else{
-        $sql = "INSERT INTO profesores (Usuario, Password, Mail, Nombre, Apellidos, Tutoria) VALUES ('$dni','$pass','$email','$nombre','$apellidos','$tutor')";
+        $sql = "INSERT INTO profesores (Usuario, Password, Mail, Nombre, Tutoria) VALUES ('$dni','$pass','$email','$nombre','$tutor')";
     }
-    if($nombre !== "" && $apellidos !== "" && $dni !== "" && $email !== "" && $pass !== ""){
+    if($nombre !== "" && $dni !== "" && $email !== "" && $pass !== ""){
 
         $bbdd = new Conexion();
         $resultado = $bbdd->consulta("SELECT * FROM profesores WHERE Usuario = '$dni'");
