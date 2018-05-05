@@ -11,15 +11,15 @@
     if($tabla === "clases") {
         foreach ($res as $clase) {
             $tutor = $clase['Tutor'];
-            $nombreCompleto = array();
-            $ans = $con->query("SELECT Nombre,Apellidos FROM profesores WHERE Usuario = '$tutor'");
-            foreach ($ans as $parte) {
-                array_push($nombreCompleto, $parte);
+            $nombre = null;
+            $ans = $con->query("SELECT Nombre FROM profesores WHERE Usuario = '$tutor'");
+            foreach ($ans as $profe) {
+                $nombre = $profe;
             }
             if(!empty($clase['Tutor'])) {
-                $clase['Tutor'] = $nombreCompleto;
+                $clase['Tutor'] = $nombre;
             }else{
-                $clase['Tutor'] = array(array("Nombre"=>"-","Apellidos"=>"-"));
+                $clase['Tutor'] = array('Nombre' => '- -');
             }
             array_push($array, $clase);
         }

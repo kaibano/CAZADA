@@ -262,8 +262,7 @@ CREATE TABLE `profesores` (
   `Usuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Password` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `Mail` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
+  `Nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `Tutoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -271,13 +270,13 @@ CREATE TABLE `profesores` (
 -- Volcado de datos para la tabla `profesores`
 --
 
-INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Tutoria`) VALUES
-('23569874K', '1234', 'pro@gmail.com', 'Agustin', 'Hidalgo Ramirez', NULL),
-('41203587T', '1234', 'profesora@gmail.com', 'Elena', 'Vazquez Bernal', NULL),
-('74125968H', '1234', 'profe@gmail.com', 'Profee', 'Maestro teacher', 1),
-('85246781D', '1234', 'teacher@hotmail.com', 'Tomas', 'Linda Soriano', NULL),
-('96321548S', '1234', 'profess@gmail.com', 'Paloma', 'Estaban Garrido', NULL),
-('96325481D', '1234', 'profe2@gmail.com', 'Manuela', 'Velasco Zorrilla', 2);
+INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Tutoria`) VALUES
+('23569874K', '1234', 'pro@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
+('41203587T', '1234', 'profesora@gmail.com', 'Elena Vazquez Bernal', NULL),
+('74125968H', '1234', 'profe@gmail.com', 'Profee Maestro teacher', 1),
+('85246781D', '1234', 'teacher@hotmail.com', 'Tomas Linda Soriano', NULL),
+('96321548S', '1234', 'profess@gmail.com', 'Paloma Estaban Garrido', NULL),
+('96325481D', '1234', 'profe2@gmail.com', 'Manuela Velasco Zorrilla', 2);
 
 --
 -- Índices para tablas volcadas
