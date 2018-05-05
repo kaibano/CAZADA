@@ -144,10 +144,9 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP_7.1" />
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
