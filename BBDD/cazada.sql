@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2018 a las 18:59:05
+-- Tiempo de generación: 10-05-2018 a las 21:51:54
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -119,8 +119,10 @@ CREATE TABLE `clases` (
 --
 
 INSERT INTO `clases` (`ID_Clase`, `Tutor`, `Clase`) VALUES
-(1, '74125968H', '1A - ESO'),
-(2, '96325481D', '2A - ESO');
+(1, '00000003A', '1A - ESO'),
+(2, '00000006A', '2A - ESO'),
+(3, '00000009A', '3A - ESO'),
+(4, '00000012A', '4A - ESO');
 
 -- --------------------------------------------------------
 
@@ -162,12 +164,126 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`Clase`, `Dia`, `Hora`, `Asignatura`, `Profesor`) VALUES
-(1, 1, 1, 1, '23569874K'),
-(1, 1, 2, 2, '41203587T'),
-(1, 1, 3, 3, '74125968H'),
-(1, 1, 4, 4, '85246781D'),
-(1, 1, 5, 5, '96321548S'),
-(1, 1, 6, 8, '96325481D');
+(1, 1, 1, 1, '00000001A'),
+(1, 1, 2, 2, '00000002A'),
+(1, 1, 3, 3, '00000009A'),
+(1, 1, 4, 4, '00000004A'),
+(1, 1, 5, 5, '00000011A'),
+(1, 1, 6, 6, '00000006A'),
+(1, 2, 1, 1, '00000001A'),
+(1, 2, 2, 3, '00000009A'),
+(1, 2, 3, 4, '00000004A'),
+(1, 2, 4, 5, '00000011A'),
+(1, 2, 5, 6, '00000006A'),
+(1, 2, 6, 2, '00000002A'),
+(1, 3, 1, 1, '00000001A'),
+(1, 3, 2, 4, '00000004A'),
+(1, 3, 3, 5, '00000011A'),
+(1, 3, 4, 6, '00000006A'),
+(1, 3, 5, 2, '00000002A'),
+(1, 3, 6, 3, '00000009A'),
+(1, 4, 1, 1, '00000001A'),
+(1, 4, 2, 5, '00000011A'),
+(1, 4, 3, 6, '00000006A'),
+(1, 4, 4, 2, '00000002A'),
+(1, 4, 5, 3, '00000009A'),
+(1, 4, 6, 4, '00000004A'),
+(1, 5, 1, 1, '00000001A'),
+(1, 5, 2, 6, '00000006A'),
+(1, 5, 3, 2, '00000002A'),
+(1, 5, 4, 3, '00000009A'),
+(1, 5, 5, 4, '00000004A'),
+(1, 5, 6, 5, '00000011A'),
+(2, 1, 1, 1, '00000007A'),
+(2, 1, 2, 2, '00000002A'),
+(2, 1, 3, 3, '00000003A'),
+(2, 1, 4, 4, '00000010A'),
+(2, 1, 5, 5, '00000005A'),
+(2, 1, 6, 6, '00000006A'),
+(2, 2, 1, 2, '00000002A'),
+(2, 2, 2, 3, '00000003A'),
+(2, 2, 3, 4, '00000010A'),
+(2, 2, 4, 5, '00000005A'),
+(2, 2, 5, 6, '00000006A'),
+(2, 2, 6, 1, '00000007A'),
+(2, 3, 1, 3, '00000003A'),
+(2, 3, 2, 4, '00000010A'),
+(2, 3, 3, 5, '00000005A'),
+(2, 3, 4, 6, '00000006A'),
+(2, 3, 5, 1, '00000007A'),
+(2, 3, 6, 2, '00000002A'),
+(2, 4, 1, 4, '00000010A'),
+(2, 4, 2, 5, '00000005A'),
+(2, 4, 3, 6, '00000006A'),
+(2, 4, 4, 1, '00000007A'),
+(2, 4, 5, 2, '00000002A'),
+(2, 4, 6, 3, '00000003A'),
+(2, 5, 1, 5, '00000005A'),
+(2, 5, 2, 6, '00000006A'),
+(2, 5, 3, 1, '00000007A'),
+(2, 5, 4, 2, '00000002A'),
+(2, 5, 5, 3, '00000003A'),
+(2, 5, 6, 4, '00000010A'),
+(3, 1, 1, 2, '00000008A'),
+(3, 1, 2, 3, '00000009A'),
+(3, 1, 3, 4, '00000004A'),
+(3, 1, 4, 5, '00000011A'),
+(3, 1, 5, 6, '00000012A'),
+(3, 1, 6, 1, '00000001A'),
+(3, 2, 1, 3, '00000009A'),
+(3, 2, 2, 4, '00000004A'),
+(3, 2, 3, 5, '00000011A'),
+(3, 2, 4, 6, '00000012A'),
+(3, 2, 5, 1, '00000001A'),
+(3, 2, 6, 2, '00000008A'),
+(3, 3, 1, 4, '00000004A'),
+(3, 3, 2, 5, '00000011A'),
+(3, 3, 3, 6, '00000012A'),
+(3, 3, 4, 1, '00000001A'),
+(3, 3, 5, 2, '00000008A'),
+(3, 3, 6, 3, '00000009A'),
+(3, 4, 1, 5, '00000011A'),
+(3, 4, 2, 6, '00000012A'),
+(3, 4, 3, 1, '00000001A'),
+(3, 4, 4, 2, '00000008A'),
+(3, 4, 5, 3, '00000009A'),
+(3, 4, 6, 4, '00000004A'),
+(3, 5, 1, 6, '00000012A'),
+(3, 5, 2, 1, '00000001A'),
+(3, 5, 3, 2, '00000008A'),
+(3, 5, 4, 3, '00000009A'),
+(3, 5, 5, 4, '00000004A'),
+(3, 5, 6, 5, '00000011A'),
+(4, 1, 1, 3, '00000003A'),
+(4, 1, 2, 4, '00000010A'),
+(4, 1, 3, 5, '00000005A'),
+(4, 1, 4, 6, '00000012A'),
+(4, 1, 5, 1, '00000007A'),
+(4, 1, 6, 2, '00000008A'),
+(4, 2, 1, 4, '00000010A'),
+(4, 2, 2, 5, '00000005A'),
+(4, 2, 3, 6, '00000012A'),
+(4, 2, 4, 1, '00000007A'),
+(4, 2, 5, 2, '00000008A'),
+(4, 2, 6, 3, '00000003A'),
+(4, 3, 1, 5, '00000005A'),
+(4, 3, 2, 6, '00000012A'),
+(4, 3, 3, 1, '00000007A'),
+(4, 3, 4, 2, '00000008A'),
+(4, 3, 5, 3, '00000003A'),
+(4, 3, 6, 4, '000000010A'),
+(4, 4, 1, 6, '00000012A'),
+(4, 4, 2, 1, '00000007A'),
+(4, 4, 3, 2, '00000008A'),
+(4, 4, 4, 3, '00000003A'),
+(4, 4, 5, 4, '00000010A'),
+(4, 4, 6, 5, '00000005A'),
+(4, 5, 1, 1, '00000007A'),
+(4, 5, 2, 2, '00000008A'),
+(4, 5, 3, 3, '00000003A'),
+(4, 5, 4, 4, '00000010A'),
+(4, 5, 5, 5, '00000005A'),
+(4, 5, 6, 6, '00000012A');
 
 -- --------------------------------------------------------
 
@@ -239,6 +355,7 @@ CREATE TABLE `padres` (
 --
 
 INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alumnos`) VALUES
+('49268540X', '1234', 'padre8@gmail.com', 'Papa', 'papito papi', '5949'),
 ('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '5942'),
 ('49268544X', '1234', 'padre2@gmail.com', 'Papa', 'papito papi', '5943'),
 ('49268545X', '1234', 'padre3@gmail.com', 'Papa', 'papito papi', '5944'),
@@ -246,11 +363,9 @@ INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alu
 ('49268547X', '1234', 'padre5@gmail.com', 'Papa', 'papito papi', '5946'),
 ('49268548X', '1234', 'padre6@gmail.com', 'Papa', 'papito papi', '5947'),
 ('49268549X', '1234', 'padre7@gmail.com', 'Papa', 'papito papi', '5948'),
-('49268540X', '1234', 'padre8@gmail.com', 'Papa', 'papito papi', '5949'),
 ('49268550X', '1234', 'padre9@gmail.com', 'Papa', 'papito papi', '5950'),
-('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '5951'),
-('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '5952')
-;
+('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '5952'),
+('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '5951');
 
 -- --------------------------------------------------------
 
@@ -271,6 +386,18 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Tutoria`) VALUES
+('00000001A', '1234', 'profe1@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
+('00000002A', '1234', 'profe2@gmail.com', 'Elena Vazquez Bernal', NULL),
+('00000003A', '1234', 'profe3@gmail.com', 'Manuel Elias Perez', 1),
+('00000004A', '1234', 'profe4@hotmail.com', 'Tomas Linda Soriano', NULL),
+('00000005A', '1234', 'profe5@gmail.com', 'Paloma Estaban Garrido', NULL),
+('00000006A', '1234', 'profe6@gmail.com', 'Manuela Velasco Zorrilla', 2),
+('00000007A', '1234', 'profe7@gmail.com', 'Claudio Romero De Torres', NULL),
+('00000008A', '1234', 'profe8@gmail.com', 'Ilenia Gonzalez Martinez', NULL),
+('00000009A', '1234', 'profe9@gmail.com', 'Jose Ponze De Leon', 3),
+('00000010A', '1234', 'profe10@hotmail.com', 'Mari Toldo Ramirez', NULL),
+('00000011A', '1234', 'profe11@gmail.com', 'Juan Perez De Dios', NULL),
+('00000012A', '1234', 'profe12@gmail.com', 'Aitor Ortega Perez', 4),
 ('23569874K', '1234', 'pro@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
 ('41203587T', '1234', 'profesora@gmail.com', 'Elena Vazquez Bernal', NULL),
 ('74125968H', '1234', 'profe@gmail.com', 'Profee Maestro teacher', 1),
@@ -320,7 +447,7 @@ ALTER TABLE `faltas`
 -- Indices de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  ADD PRIMARY KEY (`Clase`,`Hora`),
+  ADD PRIMARY KEY (`Clase`,`Dia`,`Hora`),
   ADD KEY `Hora` (`Hora`),
   ADD KEY `Profesor` (`Profesor`),
   ADD KEY `Asignatura` (`Asignatura`);
@@ -365,53 +492,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `alumnos`
---
-ALTER TABLE `alumnos`
-  ADD CONSTRAINT `alumnos_ibfk_1` FOREIGN KEY (`ID_Clase`) REFERENCES `clases` (`ID_Clase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `alumnos_ibfk_2` FOREIGN KEY (`Padre`) REFERENCES `padres` (`Usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `clases`
---
-ALTER TABLE `clases`
-  ADD CONSTRAINT `clases_ibfk_1` FOREIGN KEY (`Tutor`) REFERENCES `profesores` (`Usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `faltas`
---
-ALTER TABLE `faltas`
-  ADD CONSTRAINT `faltas_ibfk_1` FOREIGN KEY (`ID_Alumno`) REFERENCES `alumnos` (`ID_Alumno`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `faltas_ibfk_2` FOREIGN KEY (`ID_Asig`) REFERENCES `asignaturas` (`ID_Asig`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `horarios`
---
-ALTER TABLE `horarios`
-  ADD CONSTRAINT `horarios_ibfk_1` FOREIGN KEY (`Clase`) REFERENCES `clases` (`ID_Clase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `horarios_ibfk_2` FOREIGN KEY (`Hora`) REFERENCES `horas` (`Hora`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `horarios_ibfk_3` FOREIGN KEY (`Profesor`) REFERENCES `profesores` (`Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `horarios_ibfk_4` FOREIGN KEY (`Asignatura`) REFERENCES `asignaturas` (`ID_Asig`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `notas`
---
-ALTER TABLE `notas`
-  ADD CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`ID_Alumno`,`ID_Clase`) REFERENCES `alumnos` (`ID_Alumno`, `ID_Clase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `notas_ibfk_2` FOREIGN KEY (`ID_Asig`) REFERENCES `asignaturas` (`ID_Asig`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `profesores`
---
-ALTER TABLE `profesores`
-  ADD CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`Tutoria`) REFERENCES `clases` (`ID_Clase`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
