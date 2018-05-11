@@ -397,13 +397,7 @@ INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Tutoria`) VA
 ('00000009A', '1234', 'profe9@gmail.com', 'Jose Ponze De Leon', 3),
 ('00000010A', '1234', 'profe10@hotmail.com', 'Mari Toldo Ramirez', NULL),
 ('00000011A', '1234', 'profe11@gmail.com', 'Juan Perez De Dios', NULL),
-('00000012A', '1234', 'profe12@gmail.com', 'Aitor Ortega Perez', 4),
-('23569874K', '1234', 'pro@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
-('41203587T', '1234', 'profesora@gmail.com', 'Elena Vazquez Bernal', NULL),
-('74125968H', '1234', 'profe@gmail.com', 'Profee Maestro teacher', 1),
-('85246781D', '1234', 'teacher@hotmail.com', 'Tomas Linda Soriano', NULL),
-('96321548S', '1234', 'profess@gmail.com', 'Paloma Estaban Garrido', NULL),
-('96325481D', '1234', 'profe2@gmail.com', 'Manuela Velasco Zorrilla', 2);
+('00000012A', '1234', 'profe12@gmail.com', 'Aitor Ortega Perez', 4);
 
 --
 -- Índices para tablas volcadas
