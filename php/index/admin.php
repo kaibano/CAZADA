@@ -31,20 +31,20 @@
             <div class="typepanel">
                 <p><span>Panel</span><span>ADMINISTRADOR</span></p>
             </div>
-            <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión<span class="glyphicon glyphicon-log-out"></span></a>
+            <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión <span class="glyphicon glyphicon-off"></span></a>
         </div>
         <div id="content">
             <div id="addButtonsBar">
                 <div>
-                    <div id="listaClases" class="listButton"><img src="../../img/lista.png">Clases</div>
-                    <div id="listaProfesores" class="listButton"><img src="../../img/lista.png">Profesores</div>
-                    <div id="listaAsignaturas" class="listButton"><img src="../../img/lista.png">Asignaturas</div>
+                    <div id="listaClases" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Clases</div>
+                    <div id="listaProfesores" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Profesores</div>
+                    <div id="listaAsignaturas" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Asignaturas</div>
                 </div>
                 <div>
-                    <div id="addClase" class="addButton"><img src="../../img/plus.png">Clase</div>
-                    <div id="addProfesor" class="addButton"><img src="../../img/plus.png">Profesor</div>
-                    <div id="addAlumno" class="addButton"><img src="../../img/plus.png">Alumno</div>
-                    <div id="addAsignatura" class="addButton"><img src="../../img/plus.png">Asignatura</div>
+                    <div id="addClase" class="addButton"><span class="glyphicon glyphicon-plus"></span>Clase</div>
+                    <div id="addProfesor" class="addButton"><span class="glyphicon glyphicon-plus"></span>Profesor</div>
+                    <div id="addAlumno" class="addButton"><span class="glyphicon glyphicon-plus"></span>Alumno</div>
+                    <div id="addAsignatura" class="addButton"><span class="glyphicon glyphicon-plus"></span>Asignatura</div>
                 </div>
             </div>
             <div id="freeContent">

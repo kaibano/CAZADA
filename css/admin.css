@@ -4,12 +4,11 @@ table{margin:0 auto;}
 /*BOTONES LISTAR Y AÑADIR*/
 #content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid; margin: 0 auto;}
 #content #addButtonsBar > div{width: 100%;margin: 10px 0;}
+#content #addButtonsBar span{margin-right: 5px;}
 #content #addButtonsBar .addButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #419944;border-radius: 10px;cursor:pointer;transition: 0.5s;}
 #content #addButtonsBar .addButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
-#content #addButtonsBar .addButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
 #content #addButtonsBar .listButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #92e064;border-radius: 10px;cursor: pointer;transition: 0.5s;}
 #content #addButtonsBar .listButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
-#content #addButtonsBar .listButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
 
 /*FORMULARIO NUEVA ASIGNATURA*/
 #content #freeContent{width: 100%; text-align: center;}
@@ -66,7 +65,7 @@ table{margin:0 auto;}
 #content #freeContent #profesContent .divProfe .divMailProfe{width: 170px;}
 #content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 110px;}
 #content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
-.editProfesor, .deleteProfesor,.cancelEdit,.aceptarCambios,.editAsig,.deleteAsig{cursor:pointer;margin:5px;}
+.editProfesor, .deleteProfesor,.cancelEdit,.aceptarCambios,.editAsig,.deleteAsig,.editClase,.deleteClase{cursor:pointer;margin:5px;}
 
 /*TABLA DE ASIGNATURAS LISTADA*/
 .divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
