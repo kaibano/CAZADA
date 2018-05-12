@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-body{max-width: 1000px;margin:0 auto;}
+body{max-width: 1000px;margin:0 auto !important;}
 body #main{font-family: "Roboto", sans-serif;}
 
 body #header{

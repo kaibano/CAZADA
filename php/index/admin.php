@@ -31,7 +31,7 @@
             <div class="typepanel">
                 <p><span>Panel</span><span>ADMINISTRADOR</span></p>
             </div>
-            <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión</a>
+            <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión<span class="glyphicon glyphicon-log-out"></span></a>
         </div>
         <div id="content">
             <div id="addButtonsBar">

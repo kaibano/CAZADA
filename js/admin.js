@@ -57,7 +57,7 @@ window.addEventListener("load",function(){
     /***** FUNCIONES DE PINTAR LOS FORMULARIOS PARA AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
     function printNewAsignatura(){
         $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewAsignatura"><div>Nueva asignatura</div><div class="condiciones">*Introduzca un nombre de asignatura que no exista.</div><input type="text" id="newAsignaturaInput"><div id="addNewAsiganturaButton" class="botonAnnadir">Añadir</div></div>');
+        $('#freeContent').append('<div id="divNewAsignatura"><div>Nueva asignatura</div><div class="condiciones">*Introduzca un nombre de asignatura que no exista.</div><input type="text" id="newAsignaturaInput"><div id="addNewAsiganturaButton" class="btn btn-primary">Añadir</div></div>');
         document.getElementById('addNewAsiganturaButton').onclick = function(){
             addAsignatura(this.parentNode,document.getElementById('newAsignaturaInput').value);
         }
@@ -77,7 +77,7 @@ window.addEventListener("load",function(){
             '<div class="divEachNewProfe"><div class="newProfeLabel">Email*</div><input id="newEmailProfe" class="newProfeInput" type="text" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Contraseña*</div><input id="newPassProfe" class="newProfeInput" type="password" value=""></div>'+
             '<div class="divEachNewProfe"><div class="newProfeLabel">Tutor/a</div><select id="newProfeSelect" class="newProfeInput"><option name="tutor" value="0"></option></select></div>'+
-            '<div id="addNewProfesorButton" class="botonAnnadir">Añadir</div>' +
+            '<div id="addNewProfesorButton" class="btn btn-primary">Añadir</div>' +
             '</div>');
 
         for(var x = 0 ; x < arrayClases[0].length ; x++){
@@ -101,7 +101,25 @@ window.addEventListener("load",function(){
     }
 
     function printNewClase(){
+        $('#content #freeContent').empty();
+        $('#freeContent').append('<div id="divNewClase" xmlns="http://www.w3.org/1999/html">' +
+            '<div>Nuevo Profesor/Profesora</div>' +
+            '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
+            '<div class="divEachNewClase"><div class="newClaseLabel">Año (1,2,3...)*</div><input id="newAnnoClase" class="newClaseInput" type="number" min="1" max="4" value=""></div>'+
+            '<div class="divEachNewClase"><div class="newClaseLabel">Letra (A,B,C...)*</div><select id="newLetraClase" class="newClaseInput">' +
+            '<option name="letraClase" value="0"></option><option name="letraClase" value="A">A</option><option name="letraClase" value="B">B</option><option name="letraClase" value="C">C</option><option name="letraClase" value="D">D</option></select></div>'+
+            '<div class="divEachNewClase"><div class="newClaseLabel">Modalidad*</div><select id="newModalClase" class="newClaseInput"><option name="modal" value="-"></option><option name="modal" value="ESO">ESO</option><option name="modal" value="BACH">BACHILLERATO</option></select></div>'+
+            '<div id="addNewClaseButton" class="btn btn-primary">Añadir</div>' +
+            '</s>');
 
+        document.getElementById('addNewClaseButton').onclick = function(){
+            addClase(
+                this.parentNode,
+                document.getElementById('newAnnoClase').value,
+                document.getElementById('newLetraClase').value,
+                document.getElementById('newModalClase').value
+            );
+        }
     }
 
     /***** FUNCTIONES DE AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
@@ -189,8 +207,44 @@ window.addEventListener("load",function(){
         }
     }
 
-    function addClase(){
+    function addClase(objeto,numero,letra,modal){
+        console.log(numero+letra+modal);
+        var connection = null;
+        var msg = null;
+        if(objeto.childNodes[6]) {
+            objeto.childNodes[6].remove();
+        }
 
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        var divMsg = document.createElement('DIV');
+                        divMsg.setAttribute('class','msgClase');
+                        objeto.appendChild(divMsg);
+                        if(connection.responseText === "true") {
+                            $('.newProfeInput').val('');
+                            divMsg.setAttribute('style','color:green !important');
+                            msg = 'Nueva clase insertada';
+                        }else if(connection.responseText === 'existe'){
+                            msg = 'Este nombre de clase ya existe en la base de datos';
+                        }else if(connection.responseText === 'vacio'){
+                            msg = 'Algún campo obligatorio está vacio';
+                        }
+                        divMsg.innerHTML = msg;
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/addClase.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("numero=" + numero + '&letra=' + letra + '&modal=' + modal);
+        }
     }
 
     /***** FUNCION ONCLICK PARA LOS BOTONES DE AÑADIR *****/
@@ -240,8 +294,35 @@ window.addEventListener("load",function(){
                 '<div class="divIdClase">'+arrayLista[x]['ID_Clase']+'</div>' +
                 '<div class="divNombreClase">'+arrayLista[x]['Clase']+'</div>' +
                 '<div class="divTutorClase">'+arrayLista[x]['Tutor']['Nombre']+'</div>' +
-                '<div class="divOpcionesClase"><img src="../../img/modificar.png"><img src="../../img/eliminar.png"></div></div>');
+                '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span></div>');
         }
+
+        /*$('.editClase').click(function(){
+            var usu = this.parentNode.parentNode.firstChild.innerHTML;
+            var nombre = this.parentNode.parentNode.childNodes[1].innerHTML;
+            var email = this.parentNode.parentNode.childNodes[2].innerHTML;
+            var tutor = this.parentNode.parentNode.childNodes[3].innerHTML;
+            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreProfe" value="' + nombre + '"></input>');
+            $(this.parentNode.parentNode.childNodes[2]).replaceWith('<input type="text" class="divNombreProfe" value="' + email + '"></input>');
+            $(this.parentNode.parentNode.childNodes[3]).replaceWith('<select id="selectModificarTutoriaProfesor" class="divNombreProfe"><option name="tutoria" value="0"></option></select>');
+            getArrayClasesSinTutoriaForModificarProfesores(this.parentNode.parentNode.childNodes[3]);
+            $(this).removeClass('glyphicon-pencil editProfesor').addClass('glyphicon-ok aceptarCambios').off().click(function () {
+                var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
+                var emailAsignado = this.parentNode.parentNode.childNodes[2].value;
+                var tutorAsignado = this.parentNode.parentNode.childNodes[3].value;
+                modificarProfesor(usu,nombreAsignado,emailAsignado,tutorAsignado,tutor,this.parentNode.parentNode);
+            });
+            $(this.nextSibling).removeClass('glyphicon-trash deleteProfesor').addClass('glyphicon-remove cancelEdit').off().click(function () {
+                getArrayLista('profesores');
+            });
+        });*/
+
+        $('.deleteClase').click(function(){
+            var id = this.parentNode.parentNode.firstChild.innerHTML;
+            if (window.confirm("Si elimina la clase, los datos como alumnos, profesores, horarios, faltas o notas en los que se hace referencia a la misma se verán afectados quedando así sin ninguna clase asociada ¿Está seguro de que desea continuar?")) {
+                deleteClase(id);
+            }
+        });
     }
 
     function pintarListaProfesores(arrayLista) {
@@ -253,7 +334,7 @@ window.addEventListener("load",function(){
                 '<td class="divNombreProfe">' + arrayLista[x]['Nombre']+'</td>' +
                 '<td class="divMailProfe">' + arrayLista[x]['Mail'] + '</td>' +
                 '<td class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</td>' +
-                '<td class="divOpcionesProfe"><img class="editProfesor" src="../../img/modificar.png"><img class="deleteProfesor" src="../../img/eliminar.png"></td></tr>');
+                '<td class="divOpcionesProfe"><span class="glyphicon glyphicon-pencil editProfesor" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteProfesor" aria-hidden="true"></span></td></tr>');
         }
 
         $('.editProfesor').click(function(){
@@ -265,13 +346,13 @@ window.addEventListener("load",function(){
             $(this.parentNode.parentNode.childNodes[2]).replaceWith('<input type="text" class="divNombreProfe" value="' + email + '"></input>');
             $(this.parentNode.parentNode.childNodes[3]).replaceWith('<select id="selectModificarTutoriaProfesor" class="divNombreProfe"><option name="tutoria" value="0"></option></select>');
             getArrayClasesSinTutoriaForModificarProfesores(this.parentNode.parentNode.childNodes[3]);
-            $(this).removeClass('editAsig').addClass('aceptarCambios').attr('src', '../../img/tick.png').off().click(function () {
+            $(this).removeClass('glyphicon-pencil editProfesor').addClass('glyphicon-ok aceptarCambios').off().click(function () {
                 var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
                 var emailAsignado = this.parentNode.parentNode.childNodes[2].value;
                 var tutorAsignado = this.parentNode.parentNode.childNodes[3].value;
                 modificarProfesor(usu,nombreAsignado,emailAsignado,tutorAsignado,tutor,this.parentNode.parentNode);
             });
-            $(this.nextSibling).removeClass('deleteAsig').addClass('cancelEdit').attr('src', '../../img/cross.png').off().click(function () {
+            $(this.nextSibling).removeClass('glyphicon-trash deleteProfesor').addClass('glyphicon-remove cancelEdit').off().click(function () {
                 getArrayLista('profesores');
             });
         });
@@ -281,11 +362,11 @@ window.addEventListener("load",function(){
             var id = this.parentNode.parentNode.firstChild.innerHTML;
             if(tutor !== "-") {
                 if (window.confirm("Este profesor tiene asociada una tutoría así como podría tener asociadas clases en las que imparte, si lo elimina la clase se quedará sin tutor asociado ¿Desea continuar?")) {
-                    deleteProfesor(this.parentNode.parentNode, id);
+                    deleteProfesor(id);
                 }
             }else{
                 if (window.confirm("Este profesor podría tener asociadas clases en las que imparte ¿Desea continuar?")) {
-                    deleteProfesor(this.parentNode.parentNode, id);
+                    deleteProfesor(id);
                 }
             }
         });
@@ -297,18 +378,18 @@ window.addEventListener("load",function(){
             $('#content #freeContent #asignaturasContent').append('<tr class="divAsignaturas">' +
                 '<td class="divIdAsignatura">'+arrayLista[x]['ID_Asig']+'</td>' +
                 '<td class="divNombreAsignatura">'+arrayLista[x]['Nombre']+'</td>' +
-                '<td class="divOpcionesAsignatura"><img class="editAsig" src="../../img/modificar.png"><img class="deleteAsig" src="../../img/eliminar.png"></td></tr>');
+                '<td class="divOpcionesAsignatura"><span class="glyphicon glyphicon-pencil editAsig" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteAsig" aria-hidden="true"></span></td></tr>');
         }
 
         $('.editAsig').click(function () {
             var id = this.parentNode.parentNode.firstChild.innerHTML;
             var asigNombre = this.parentNode.parentNode.childNodes[1].innerHTML;
             $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreAsignatura" value="' + asigNombre + '"></input>');
-            $(this).removeClass('editAsig').addClass('aceptarCambios').attr('src', '../../img/tick.png').off().click(function () {
+            $(this).removeClass('glyphicon-pencil editAsig').addClass('glyphicon-ok aceptarCambios').off().click(function () {
                 var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
                 modificarAsignatura(this.parentNode.parentNode,nombreAsignado,id);
             });
-            $(this.nextSibling).removeClass('deleteAsig').addClass('cancelEdit').attr('src', '../../img/cross.png').off().click(function () {
+            $(this.nextSibling).removeClass('glyphicon-trash deleteAsig').addClass('glyphicon-remove cancelEdit').off().click(function () {
                 getArrayLista('asignaturas');
             });
         });
@@ -354,7 +435,7 @@ window.addEventListener("load",function(){
         }
     }
 
-    function deleteProfesor(objeto,id){
+    function deleteProfesor(id){
         var connection = null;
 
         if (window.XMLHttpRequest) {
@@ -374,6 +455,31 @@ window.addEventListener("load",function(){
                 }
             };
             connection.open("POST", "../administrador/deleteProfesor.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+id);
+        }
+    }
+
+    function deleteClase(id){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        if(connection.responseText === "true"){
+                            getArrayLista('clases');
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/deleteClase.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send("id="+id);
         }
