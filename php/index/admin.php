@@ -12,8 +12,10 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../../css/header-index.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap-3.3.7-dist/css/bootstrap.css">
     <script type="application/javascript" src="../../js/admin.js"></script>
     <script type="application/javascript" src="../../js/jquery-min.js"></script>
+    <script type="application/javascript" src="../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </head>
 <body>
     <div id="main">
