@@ -87,7 +87,6 @@ window.addEventListener("load",function(){
     }
 
     function printNewAlumno(arrayClases){
-        console.log(arrayClases);
         $('#content #freeContent').empty();
         $('#freeContent').append('<div id="divNewAlumno">' +
             '<div>Nuevo/a Alumno/a</div>' +
@@ -305,7 +304,6 @@ window.addEventListener("load",function(){
     }
 
     function addClase(objeto,numero,letra,modal){
-        console.log(numero+letra+modal);
         var connection = null;
         var msg = null;
         if(objeto.childNodes[6]) {
