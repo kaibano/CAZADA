@@ -24,6 +24,29 @@ window.addEventListener("load",function(){
         }
     }
 
+    function getArrayClasesForPrintNewAlumno(){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        printNewAlumno(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayClasesSinTutor.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
     /***** FUNCTION PARA OBTENER UN ARRAY CON LAS CLASES QUE NO TIENEN TUTORIA *****/
     function getArrayClasesSinTutoriaForModificarProfesores(objeto){
         var connection = null;
@@ -64,13 +87,23 @@ window.addEventListener("load",function(){
     }
 
     function printNewAlumno(arrayClases){
+        console.log(arrayClases);
         $('#content #freeContent').empty();
         $('#freeContent').append('<div id="divNewAlumno">' +
             '<div>Nuevo/a Alumno/a</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombreAlumno" class="newAlumnoInput" type="text" value=""></div>'+
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoAlumno" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Clase</div><select id="newAlumnoSelect" class="newAlumnoInput"><option name="clase" value="0"></option></select></div>'+
             '</div>');
+
+        for(var x = 0 ; x < arrayClases[1].length ; x++){
+            var option = document.createElement('OPTION');
+            option.setAttribute('name','clase');
+            option.setAttribute('value',arrayClases[1][x]['ID_Clase']);
+            option.innerHTML = arrayClases[1][x]['Clase'];
+            document.getElementById('newAlumnoSelect').appendChild(option);
+        }
 
         $('#freeContent').append('<div id="divNewAlumno">' +
             '<div>Datos Padre/Madre/Tutor</div>' +
@@ -87,6 +120,7 @@ window.addEventListener("load",function(){
                 this.parentNode,
                 document.getElementById('newNombreAlumno').value,
                 document.getElementById('newApellidoAlumno').value,
+                document.getElementById('newAlumnoSelect').value,
                 document.getElementById('newDNIPadre').value,
                 document.getElementById('newNombrePadre').value,
                 document.getElementById('newApellidoPadre').value,
@@ -192,7 +226,7 @@ window.addEventListener("load",function(){
         }
     }
 
-    function addAlumno(objeto,nombreAlumno,apellidosAlumno,DNIpadre,nombrePadre,apellidosPadre,email){
+    function addAlumno(objeto,nombreAlumno,apellidosAlumno,clase,DNIpadre,nombrePadre,apellidosPadre,email){
         var connection = null;
         var msg = null;
         if(objeto.childNodes[7]) {
@@ -227,7 +261,7 @@ window.addEventListener("load",function(){
             };
             connection.open("POST", "../administrador/addAlumno.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("nombreA="+nombreAlumno+'&apellidosA='+apellidosAlumno+'&dni='+DNIpadre+'&nombreP='+nombrePadre+'&apellidosP='+apellidosPadre+'&email='+email);
+            connection.send("nombreA="+nombreAlumno+'&apellidosA='+apellidosAlumno+'&clase='+clase+'&dni='+DNIpadre+'&nombreP='+nombrePadre+'&apellidosP='+apellidosPadre+'&email='+email);
         }
     }
 
@@ -312,7 +346,7 @@ window.addEventListener("load",function(){
 
     /***** FUNCION ONCLICK PARA LOS BOTONES DE AÑADIR *****/
     document.getElementById('addAsignatura').onclick = printNewAsignatura;
-    document.getElementById('addAlumno').onclick = printNewAlumno;
+    document.getElementById('addAlumno').onclick = getArrayClasesForPrintNewAlumno;
     document.getElementById('addProfesor').onclick = getArrayClasesForPrintNewProfesor;
     document.getElementById('addClase').onclick = printNewClase;
 

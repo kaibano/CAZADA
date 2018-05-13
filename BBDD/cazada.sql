@@ -49,7 +49,7 @@ INSERT INTO `administradores` (`Usuario`, `Password`, `Mail`) VALUES
 
 CREATE TABLE `alumnos` (
   `ID_Alumno` int(5) NOT NULL,
-  `ID_Clase` int(11) NULL,
+  `ID_Clase` int(11) DEFAULT NULL,
   `Padre` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL
@@ -412,7 +412,7 @@ ALTER TABLE `administradores`
 -- Indices de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  ADD PRIMARY KEY (`ID_Alumno`,`ID_Clase`),
+  ADD PRIMARY KEY (`ID_Alumno`),
   ADD KEY `ID_Clase` (`ID_Clase`),
   ADD KEY `Padre` (`Padre`);
 
