@@ -49,7 +49,7 @@ INSERT INTO `administradores` (`Usuario`, `Password`, `Mail`) VALUES
 
 CREATE TABLE `alumnos` (
   `ID_Alumno` int(5) NOT NULL,
-  `ID_Clase` int(11) NOT NULL,
+  `ID_Clase` int(11) NULL,
   `Padre` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL
@@ -346,7 +346,7 @@ CREATE TABLE `padres` (
   `Mail` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
-  `Alumnos` varchar(400) COLLATE utf8_spanish_ci NOT NULL
+  `Alumnos` varchar(8) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -462,7 +462,7 @@ ALTER TABLE `notas`
 -- Indices de la tabla `padres`
 --
 ALTER TABLE `padres`
-  ADD PRIMARY KEY (`Usuario`);
+  ADD PRIMARY KEY (`Alumnos`);
 
 --
 -- Indices de la tabla `profesores`

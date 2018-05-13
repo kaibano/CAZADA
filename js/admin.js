@@ -65,33 +65,32 @@ window.addEventListener("load",function(){
 
     function printNewAlumno(arrayClases){
         $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewProfesor">' +
+        $('#freeContent').append('<div id="divNewAlumno">' +
             '<div>Nuevo/a Alumno/a</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombreAlumno" class="newAlumnoInput" type="text" value=""></div>'+
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoAlumno" class="newAlumnoInput" type="text" value=""></div>'+
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Email*</div><input id="newEmailProfe" class="newProfeInput" type="text" value=""></div>'+
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Contraseña*</div><input id="newPassProfe" class="newProfeInput" type="password" value=""></div>'+
-            '<div class="divEachNewProfe"><div class="newProfeLabel">Tutor/a</div><select id="newProfeSelect" class="newProfeInput"><option name="tutor" value="0"></option></select></div>'+
-            '<div id="addNewProfesorButton" class="btn btn-primary">Añadir</div>' +
             '</div>');
 
-        for(var x = 0 ; x < arrayClases[0].length ; x++){
-            var option = document.createElement('OPTION');
-            option.setAttribute('name','tutor');
-            option.setAttribute('value',arrayClases[0][x]['ID_Clase']);
-            option.innerHTML = arrayClases[0][x]['Clase'];
-            document.getElementById('newProfeSelect').appendChild(option);
-        }
+        $('#freeContent').append('<div id="divNewAlumno">' +
+            '<div>Datos Padre/Madre/Tutor</div>' +
+            '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">DNI*</div><input id="newDNIPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombrePadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Email*</div><input id="newEmailPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div id="addNewAlumnoButton" class="btn btn-primary">Añadir</div>' +
+            '</div>');
 
-        document.getElementById('addNewProfesorButton').onclick = function(){
-            addProfesor(
+        document.getElementById('addNewAlumnoButton').onclick = function(){
+            addAlumno(
                 this.parentNode,
-                document.getElementById('newNombreProfe').value,
-                document.getElementById('newDniProfe').value,
-                document.getElementById('newEmailProfe').value,
-                document.getElementById('newPassProfe').value,
-                document.getElementById('newProfeSelect').value
+                document.getElementById('newNombreAlumno').value,
+                document.getElementById('newApellidoAlumno').value,
+                document.getElementById('newDNIPadre').value,
+                document.getElementById('newNombrePadre').value,
+                document.getElementById('newApellidoPadre').value,
+                document.getElementById('newEmailPadre').value
             );
         }
     }
@@ -193,8 +192,43 @@ window.addEventListener("load",function(){
         }
     }
 
-    function addAlumno(){
+    function addAlumno(objeto,nombreAlumno,apellidosAlumno,DNIpadre,nombrePadre,apellidosPadre,email){
+        var connection = null;
+        var msg = null;
+        if(objeto.childNodes[7]) {
+            objeto.childNodes[7].remove();
+        }
 
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        var divMsg = document.createElement('DIV');
+                        divMsg.setAttribute('class','msgAlumno');
+                        objeto.appendChild(divMsg);
+                        if(connection.responseText === "true") {
+                            $('.newAlumnoInput').val('');
+                            divMsg.setAttribute('style','color:green !important');
+                            msg = 'Nuevo alumno/a insertado/a';
+                        }else if(connection.responseText === 'existe'){
+                            msg = 'El alumno/a ya existe en la base de datos';
+                        }else if(connection.responseText === 'vacio'){
+                            msg = 'Algún campo obligatorio está vacio, revíselo y vuelva a intentarlo';
+                        }
+                        divMsg.innerHTML = msg;
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/addAlumno.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("nombreA="+nombreAlumno+'&apellidosA='+apellidosAlumno+'&dni='+DNIpadre+'&nombreP='+nombrePadre+'&apellidosP='+apellidosPadre+'&email='+email);
+        }
     }
 
     function addProfesor(objeto,nombre,dni,email,password,tutor) {
@@ -224,7 +258,7 @@ window.addEventListener("load",function(){
                         }else if(connection.responseText === 'existe'){
                             msg = 'El usuario ya existe en la base de datos';
                         }else if(connection.responseText === 'vacio'){
-                            msg = 'Algún campo obligatorio está vacio';
+                            msg = 'Algún campo obligatorio está vacio, revíselo y vuelva a intentarlo';
                         }
                         divMsg.innerHTML = msg;
                     }
@@ -264,7 +298,7 @@ window.addEventListener("load",function(){
                         }else if(connection.responseText === 'existe'){
                             msg = 'Este nombre de clase ya existe en la base de datos';
                         }else if(connection.responseText === 'vacio'){
-                            msg = 'Algún campo obligatorio está vacio';
+                            msg = 'Algún campo obligatorio está vacio, revíselo y vuelva a intentarlo';
                         }
                         divMsg.innerHTML = msg;
                     }

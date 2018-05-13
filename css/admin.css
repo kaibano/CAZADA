@@ -45,7 +45,15 @@ table{margin:0 auto;}
 .divEachNewProfe:nth-child(9) .newProfeLabel{vertical-align: top;}
 
 /*FORMULARIO NUEVO ALUMNO*/
-
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewAlumno{width: 100%; margin-top: 20px;}
+#content #freeContent #divNewAlumno .divEachNewAlumno{margin:10px;}
+#content #freeContent #divNewAlumno div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewAlumno .condiciones{font-size: 13px;}
+#content #freeContent #divNewAlumno .newAlumnoLabel{height:30px;width: 200px;display: inline-block;padding-right: 20px;text-align: right;margin: 0 auto 0 -115px;font-size: 18px !important;}
+#content #freeContent #divNewAlumno .newAlumnoInput{height:30px;width: 200px;display:inline-block;text-align: center;font-size: 16px;text-transform: uppercase;}
+#content #freeContent #divNewAlumno #addNewAlumnoButton{width: 120px;}
+#content #freeContent #divNewAlumno .msgAlumno{margin-top: 10px;color:red;}
 
 /*TABLA DE CLASES LISTADA*/
 .divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
