@@ -52,26 +52,25 @@ CREATE TABLE `alumnos` (
   `ID_Clase` int(11) NOT NULL,
   `Padre` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
-  `Asignaturas` varchar(400) COLLATE utf8_spanish_ci NOT NULL
+  `Apellidos` varchar(80) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `alumnos`
 --
 
-INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`, `Asignaturas`) VALUES
-(5942, 1, '49268543X', 'Jacinto', 'Perez Pacuito', '1 2 3 4 8 9 10 11 12'),
-(5943, 1, '49268544X', 'Ramon', 'Casas Martinez', '1 2 3 4 8 9 10 11 12'),
-(5944, 1, '49268545X', 'Carlos', 'Ramon Sanchez', '1 2 3 4 8 9 10 11 12'),
-(5945, 1, '49268546X', 'Juan', 'Buenavida Pascual', '1 2 3 4 8 9 10 11 12'),
-(5946, 1, '49268547X', 'Raul', 'Martin Perez', '1 2 3 4 8 9 10 11 12'),
-(5947, 1, '49268548X', 'Ruben', 'Perez Santiago', '1 2 3 4 8 9 10 11 12'),
-(5948, 1, '49268549X', 'David', 'Carmelo Blanco', '1 2 3 4 8 9 10 11 12'),
-(5949, 1, '49268540X', 'Daniel', 'Carrero Humanes', '1 2 3 4 8 9 10 11 12'),
-(5950, 1, '49268550X', 'Fernando', 'Sol Luz', '1 2 3 4 8 9 10 11 12'),
-(5951, 1, '49268553X', 'Francisco', 'Felipe Santos', '1 2 3 4 8 9 10 11 12'),
-(5952, 1, '49268552X', 'Manuel', 'Carro Gomez', '1 2 3 4 8 9 10 11 12');
+INSERT INTO `alumnos` (`ID_Alumno`, `ID_Clase`, `Padre`, `Nombre`, `Apellidos`) VALUES
+(5942, 1, '49268543X', 'Jacinto', 'Perez Pacuito'),
+(5943, 1, '49268544X', 'Ramon', 'Casas Martinez'),
+(5944, 1, '49268545X', 'Carlos', 'Ramon Sanchez'),
+(5945, 1, '49268546X', 'Juan', 'Buenavida Pascual'),
+(5946, 1, '49268547X', 'Raul', 'Martin Perez'),
+(5947, 1, '49268548X', 'Ruben', 'Perez Santiago'),
+(5948, 1, '49268549X', 'David', 'Carmelo Blanco'),
+(5949, 1, '49268540X', 'Daniel', 'Carrero Humanes'),
+(5950, 1, '49268550X', 'Fernando', 'Sol Luz'),
+(5951, 1, '49268553X', 'Francisco', 'Felipe Santos'),
+(5952, 1, '49268552X', 'Manuel', 'Carro Gomez');
 
 -- --------------------------------------------------------
 
@@ -271,7 +270,7 @@ INSERT INTO `horarios` (`Clase`, `Dia`, `Hora`, `Asignatura`, `Profesor`) VALUES
 (4, 3, 3, 1, '00000007A'),
 (4, 3, 4, 2, '00000008A'),
 (4, 3, 5, 3, '00000003A'),
-(4, 3, 6, 4, '000000010A'),
+(4, 3, 6, 4, '00000010A'),
 (4, 4, 1, 6, '00000012A'),
 (4, 4, 2, 1, '00000007A'),
 (4, 4, 3, 2, '00000008A'),

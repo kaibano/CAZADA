@@ -63,8 +63,37 @@ window.addEventListener("load",function(){
         }
     }
 
-    function printNewAlumno(){
+    function printNewAlumno(arrayClases){
+        $('#content #freeContent').empty();
+        $('#freeContent').append('<div id="divNewProfesor">' +
+            '<div>Nuevo/a Alumno/a</div>' +
+            '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombreAlumno" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoAlumno" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewProfe"><div class="newProfeLabel">Email*</div><input id="newEmailProfe" class="newProfeInput" type="text" value=""></div>'+
+            '<div class="divEachNewProfe"><div class="newProfeLabel">Contraseña*</div><input id="newPassProfe" class="newProfeInput" type="password" value=""></div>'+
+            '<div class="divEachNewProfe"><div class="newProfeLabel">Tutor/a</div><select id="newProfeSelect" class="newProfeInput"><option name="tutor" value="0"></option></select></div>'+
+            '<div id="addNewProfesorButton" class="btn btn-primary">Añadir</div>' +
+            '</div>');
 
+        for(var x = 0 ; x < arrayClases[0].length ; x++){
+            var option = document.createElement('OPTION');
+            option.setAttribute('name','tutor');
+            option.setAttribute('value',arrayClases[0][x]['ID_Clase']);
+            option.innerHTML = arrayClases[0][x]['Clase'];
+            document.getElementById('newProfeSelect').appendChild(option);
+        }
+
+        document.getElementById('addNewProfesorButton').onclick = function(){
+            addProfesor(
+                this.parentNode,
+                document.getElementById('newNombreProfe').value,
+                document.getElementById('newDniProfe').value,
+                document.getElementById('newEmailProfe').value,
+                document.getElementById('newPassProfe').value,
+                document.getElementById('newProfeSelect').value
+            );
+        }
     }
 
     function printNewProfesor(arrayClases){
@@ -103,7 +132,7 @@ window.addEventListener("load",function(){
     function printNewClase(){
         $('#content #freeContent').empty();
         $('#freeContent').append('<div id="divNewClase" xmlns="http://www.w3.org/1999/html">' +
-            '<div>Nuevo Profesor/Profesora</div>' +
+            '<div>Nueva Clase</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewClase"><div class="newClaseLabel">Año (1,2,3...)*</div><input id="newAnnoClase" class="newClaseInput" type="number" min="1" max="4" value=""></div>'+
             '<div class="divEachNewClase"><div class="newClaseLabel">Letra (A,B,C...)*</div><select id="newLetraClase" class="newClaseInput">' +
