@@ -1,6 +1,6 @@
 window.addEventListener("load",function(){
 
-    /***** FUNCION PARA OPTENER UN ARRAY CON LAS CLASES *****/
+    /***** FUNCION PARA OPTENER UN ARRAY CON LAS CLASES Y APLICARLAS *****/
     function getArrayClasesForPrintNewProfesor(){
         var connection = null;
 
@@ -72,6 +72,36 @@ window.addEventListener("load",function(){
                 }
             };
             connection.open("POST", "../administrador/getArrayClasesSinTutor.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
+    /***** FUNCTION PARA OBTENER UN ARRAY CON LOS PROFESORES QUE NO TIENEN TUTORIA *****/
+    function getArrayProfesoresSinTutoriaForModificarClases(objeto){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        for(var x = 0; x < JSON.parse(connection.responseText).length ; x++){
+                            var option = document.createElement('OPTION');
+                            option.setAttribute('name','tutoria');
+                            option.setAttribute('value',JSON.parse(connection.responseText)[x]['Usuario']);
+                            option.innerHTML = JSON.parse(connection.responseText)[x]['Nombre'];
+                            objeto.appendChild(option);
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayProfesoresSinTutoria.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send();
         }
@@ -392,25 +422,22 @@ window.addEventListener("load",function(){
                 '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span></div>');
         }
 
-        /*$('.editClase').click(function(){
-            var usu = this.parentNode.parentNode.firstChild.innerHTML;
-            var nombre = this.parentNode.parentNode.childNodes[1].innerHTML;
-            var email = this.parentNode.parentNode.childNodes[2].innerHTML;
-            var tutor = this.parentNode.parentNode.childNodes[3].innerHTML;
-            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreProfe" value="' + nombre + '"></input>');
-            $(this.parentNode.parentNode.childNodes[2]).replaceWith('<input type="text" class="divNombreProfe" value="' + email + '"></input>');
-            $(this.parentNode.parentNode.childNodes[3]).replaceWith('<select id="selectModificarTutoriaProfesor" class="divNombreProfe"><option name="tutoria" value="0"></option></select>');
-            getArrayClasesSinTutoriaForModificarProfesores(this.parentNode.parentNode.childNodes[3]);
-            $(this).removeClass('glyphicon-pencil editProfesor').addClass('glyphicon-ok aceptarCambios').off().click(function () {
-                var nombreAsignado = this.parentNode.parentNode.childNodes[1].value;
-                var emailAsignado = this.parentNode.parentNode.childNodes[2].value;
-                var tutorAsignado = this.parentNode.parentNode.childNodes[3].value;
-                modificarProfesor(usu,nombreAsignado,emailAsignado,tutorAsignado,tutor,this.parentNode.parentNode);
+        $('.editClase').click(function(){
+            var id = this.parentNode.parentNode.firstChild.innerHTML;
+            var clase = this.parentNode.parentNode.childNodes[1].innerHTML;
+            var tutor = this.parentNode.parentNode.childNodes[2].innerHTML;
+            $(this.parentNode.parentNode.childNodes[1]).replaceWith('<input type="text" class="divNombreClase" value="' + clase + '"></input>');
+            $(this.parentNode.parentNode.childNodes[2]).replaceWith('<select id="selectModificarTutoriaClase" class="divTutorClase"><option name="tutoria" value="0"></option></select>');
+            getArrayProfesoresSinTutoriaForModificarClases(this.parentNode.parentNode.childNodes[2]);
+            $(this).removeClass('glyphicon-pencil editClase').addClass('glyphicon-ok aceptarCambios').off().click(function () {
+                var claseAsignada = this.parentNode.parentNode.childNodes[1].value;
+                var tutorAsignado = this.parentNode.parentNode.childNodes[2].value;
+                modificarClase(id,claseAsignada,tutorAsignado,tutor,this.parentNode.parentNode);
             });
-            $(this.nextSibling).removeClass('glyphicon-trash deleteProfesor').addClass('glyphicon-remove cancelEdit').off().click(function () {
-                getArrayLista('profesores');
+            $(this.nextSibling).removeClass('glyphicon-trash deleteClase').addClass('glyphicon-remove cancelEdit').off().click(function () {
+                getArrayLista('clases');
             });
-        });*/
+        });
 
         $('.deleteClase').click(function(){
             var id = this.parentNode.parentNode.firstChild.innerHTML;
@@ -580,6 +607,32 @@ window.addEventListener("load",function(){
         }
     }
 
+    /***** FUNCION PARA MODIFICAR PROFESOR, LLAMA AL PHP QUE LO MODIFICA *****/
+    function modificarClase(id,clase,tutorAsig,tutor,objeto){
+        var connection = null;
+        var msg = null;
+        if(objeto.childNodes[6]){
+            objeto.childNodes[6].remove();
+        }
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4 && connection.status === 200) {
+                    getArrayLista('clases');
+                }
+            };
+            connection.open("POST", "../administrador/modificarClase.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+id+"&clase="+clase+"&tutorAsig="+tutorAsig+'&tutor='+tutor);
+        }
+    }
+
     /***** FUNCION PARA MODIFICAR ASIGNATURA, LLAMA AL PHP QUE LAS MODIFICA *****/
     function modificarAsignatura(objeto,nombre,id){
         var connection = null;
@@ -631,15 +684,7 @@ window.addEventListener("load",function(){
         if (connection) {
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4 && connection.status === 200) {
-                    var divMsg = document.createElement('DIV');
-                    objeto.appendChild(divMsg);
-                    if(connection.responseText === "false"){
-                        divMsg.setAttribute('style','color:red;margin-top:20px');
-                        msg = 'El nombre seleccionado ya existe para otra asignatura';
-                        divMsg.innerHTML = msg;
-                    }else{
-                        getArrayLista('profesores');
-                    }
+                    getArrayLista('profesores');
                 }
             };
             connection.open("POST", "../administrador/modificarProfesor.php");

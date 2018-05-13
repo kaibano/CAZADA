@@ -57,7 +57,6 @@ table{margin:0 auto;}
 
 /*TABLA DE CLASES LISTADA*/
 .divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
-#content #freeContent #claseContent{padding-top: 50px;}
 #content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
 #content #freeContent #claseContent .divClase .divIdClase{width: 40px;}
 #content #freeContent #claseContent .divClase .divNombreClase{width: 120px;}
@@ -65,7 +64,6 @@ table{margin:0 auto;}
 
 /*TABLA DE PROFESORES LISTADA*/
 .divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
-#content #freeContent #profesContent{padding-top: 50px;}
 #content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
 #content #freeContent #profesContent .divProfe .divUsuProfe{width: 100px;}
 #content #freeContent #profesContent .divProfe .divNombreProfe{width: 120px;}
@@ -77,7 +75,6 @@ table{margin:0 auto;}
 
 /*TABLA DE ASIGNATURAS LISTADA*/
 .divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
-#content #freeContent #asignaturasContent{padding-top: 50px;}
 #content #freeContent #asignaturasContent .divAsignaturas{position: relative;}
 #content #freeContent #asignaturasContent .divAsignaturas .msg{width: 600px;color: red;border: 1px solid;right: 0;}
 #content #freeContent #asignaturasContent .divAsignaturas:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 55%;margin: 0 auto;}
