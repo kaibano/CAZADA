@@ -1,4 +1,27 @@
 window.addEventListener("load",function(){
+    /***** FUNCION PARA OBTENER UN ARRAY DE LOS ALUMNOS DE UNA CLASE *****/
+    function getArrayAlumnos(objetoId){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        printAlumnosTable(JSON.parse(connection.responseText),objetoId);
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayAlumnos.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+objetoId.innerHTML);
+        }
+    }
 
     /***** FUNCION PARA OPTENER UN ARRAY CON LAS CLASES Y APLICARLAS *****/
     function getArrayClasesForPrintNewProfesor(){
@@ -410,7 +433,7 @@ window.addEventListener("load",function(){
         }
     }
 
-    /***** FUNCIONES PARA PINTAR LAS LISTAS DE CLASES, PROFESORES Y ASIGNATURAS *****/
+    /***** FUNCIONES PARA PINTAR LAS LISTAS DE CLASES, PROFESORES, ASIGNATURAS Y ALUMNOS *****/
     function pintarListaClase(arrayLista){
         $('#content #freeContent').empty().append('<div id="claseContent"><div class="divClase"><div class="divIdClase">ID</div><div class="divNombreClase">Nombre</div><div class="divTutorClase">Tutor</div><div class="divOpcionesClase">Opciones</div></div></div>');
 
@@ -419,8 +442,20 @@ window.addEventListener("load",function(){
                 '<div class="divIdClase">'+arrayLista[x]['ID_Clase']+'</div>' +
                 '<div class="divNombreClase">'+arrayLista[x]['Clase']+'</div>' +
                 '<div class="divTutorClase">'+arrayLista[x]['Tutor']['Nombre']+'</div>' +
-                '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span></div>');
+                '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span></div>' +
+                '</div>');
+            getArrayAlumnos(document.getElementsByClassName('divClase')[x+1].firstChild);
         }
+
+        $('.divIdClase').click(function(){
+            var open = this.parentNode.classList.contains('open');
+            if($('.open').hasClass('open')) {
+                $('.open').removeClass('open');
+            }
+            if(!open) {
+                this.parentNode.classList.toggle('open');
+            }
+        });
 
         $('.editClase').click(function(){
             var id = this.parentNode.parentNode.firstChild.innerHTML;
@@ -522,6 +557,73 @@ window.addEventListener("load",function(){
                 deleteAsignatura(this.parentNode.parentNode, id);
             }
         });
+    }
+
+    function printAlumnosTable(arrayAlumnos,objeto){
+        var divPadre = objeto.parentNode;
+        var divMainNewAlumno = document.createElement('DIV');
+        divMainNewAlumno.setAttribute('class','alumnoClase');
+        var idMainAlumno = document.createElement('DIV');
+        idMainAlumno.setAttribute('class','idAlumno');
+        idMainAlumno.innerHTML = 'ID';
+        divMainNewAlumno.appendChild(idMainAlumno);
+        var nombreMainAlumno = document.createElement('DIV');
+        nombreMainAlumno.setAttribute('class','nombreAlumno');
+        nombreMainAlumno.innerHTML = 'NOMBRE';
+        divMainNewAlumno.appendChild(nombreMainAlumno);
+        var apellidosMainAlumno = document.createElement('DIV');
+        apellidosMainAlumno.setAttribute('class','apellidosAlumno');
+        apellidosMainAlumno.innerHTML = 'APELLIDOS';
+        divMainNewAlumno.appendChild(apellidosMainAlumno);
+
+        divPadre.appendChild(divMainNewAlumno);
+
+        for (var x = 0 ; x < arrayAlumnos.length ; x++){
+            var divNewAlumno = document.createElement('DIV');
+                divNewAlumno.setAttribute('class','alumnoClase');
+                var idAlumno = document.createElement('DIV');
+                    idAlumno.setAttribute('class','idAlumno');
+                    idAlumno.innerHTML = arrayAlumnos[x]['ID_Alumno'];
+                    divNewAlumno.appendChild(idAlumno);
+                var nombreAlumno = document.createElement('DIV');
+                    nombreAlumno.setAttribute('class','nombreAlumno');
+                    nombreAlumno.innerHTML = arrayAlumnos[x]['Nombre'];
+                    divNewAlumno.appendChild(nombreAlumno);
+                var apellidosAlumno = document.createElement('DIV');
+                    apellidosAlumno.setAttribute('class','apellidosAlumno');
+                    apellidosAlumno.innerHTML = arrayAlumnos[x]['Apellidos'];
+                    divNewAlumno.appendChild(apellidosAlumno);
+
+                divPadre.appendChild(divNewAlumno);
+                divNewAlumno.onclick = function () {
+                    getAlumnoCompleteData(this.childNodes[0].innerHTML,this.childNodes[1].innerHTML,this.childNodes[2].innerHTML);
+                }
+        }
+    }
+
+    /***** FUNCION PARA PINTAR UN ALUMNOS CON SUS DATOS COMPLETOS *****/
+    function getAlumnoCompleteData(id,nombre,apellidos){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        console.log(JSON.parse(connection.responseText));
+                        printAlumnoData(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getAlumnoCompleteData.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+id+"&nombre="+nombre+"&apellidos="+apellidos);
+        }
     }
 
     /***** FUNCIONES PARA ELIMINAR ELEMENTO, LLAMA AL PHP QUE LO ELIMINA DE LA BBDD*****/

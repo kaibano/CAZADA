@@ -56,11 +56,22 @@ table{margin:0 auto;}
 #content #freeContent #divNewAlumno .msgAlumno{margin-top: 10px;color:red;}
 
 /*TABLA DE CLASES LISTADA*/
+#content #freeContent #claseContent .divClase {height: 58px; overflow: hidden;}
 .divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
 #content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
-#content #freeContent #claseContent .divClase .divIdClase{width: 40px;}
+#content #freeContent #claseContent .divClase:nth-child(1) div{text-decoration: none !important;}
+#content #freeContent #claseContent .divClase .divIdClase{width: 40px;cursor: pointer;text-decoration: underline;}
 #content #freeContent #claseContent .divClase .divNombreClase{width: 120px;}
 #content #freeContent #claseContent .divClase .divTutorClase{width: 300px;}
+
+/*ALUMNOS LISTADOS EN CLASES*/
+#content #freeContent #claseContent .divClase .alumnoClase {cursor: pointer;width: 40%;margin:0 auto;background-color: #e6e6e69c;padding: 10px 0;border-radius: 10px;}
+#content #freeContent #claseContent .divClase div:nth-child(5){background-color: #53a753 !important;cursor: initial !important;font-weight: bold;}
+#content #freeContent #claseContent .divClase .alumnoClase:hover{background-color: #6eb5386e;}
+#content #freeContent #claseContent .divClase .alumnoClase .idAlumno{display: inline-block;width: 10%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .alumnoClase .nombreAlumno{display: inline-block;width: 35%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .alumnoClase .apellidosAlumno{display: inline-block;width: 35%;margin: 0 auto;}
+.open {height: auto !important;}
 
 /*TABLA DE PROFESORES LISTADA*/
 .divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
