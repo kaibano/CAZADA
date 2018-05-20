@@ -1,4 +1,75 @@
 window.addEventListener("load",function(){
+
+    /***** FUNCION PARA OBTENER LAS ASIGNATURAS *****/
+    function getArrayAsignaturas(objeto,id) {
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        var array = JSON.parse(connection.responseText);
+                        var divSelect = document.createElement('SELECT');
+                            divSelect.setAttribute('id','selectAsigHorario');
+                        objeto.parentNode.prepend(divSelect);
+                        objeto.remove();
+                        for(var x = 0 ; x < array.length ; x++){
+                            var option = document.createElement('OPTION');
+                            option.setAttribute('value',array[x]['ID_Asig']);
+                            option.innerHTML = array[x]['Nombre'];
+                            divSelect.appendChild(option);
+                        }
+                        divSelect.onblur = function(){
+                            modificarAsignaturaHorario(id,this.value,this.parentNode.id.charAt(0),this.parentNode.id.charAt(1));
+                            var divAsig = document.createElement('DIV');
+                                divAsig.setAttribute('class','asig');
+                                divAsig.setAttribute('id',this.value);
+                                divAsig.innerHTML = this.options[this.selectedIndex].text;
+                                divAsig.onclick = function(){
+                                    getArrayAsignaturas(this,id);
+                                };
+                            this.parentNode.prepend(divAsig);
+                            this.remove();
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayAsignaturas.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
+    /***** FUNCION PARA OBTENER LOS PROFESORES QUE ESTAN LIBRES EN UNA HORA DETERMINADA *****/
+    function getArrayFreeTeachers(dia,hora){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        console.log(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayFreeTeachers.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("dia="+dia+'&hora='+hora);
+        }
+    }
+
     /***** FUNCION PARA OBTENER UN ARRAY CON EL HORARIO DE UNA CLASE *****/
     function getArrayHorario(id,nombre){
         var connection = null;
@@ -692,58 +763,70 @@ window.addEventListener("load",function(){
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>8:30</div><div>9:20</div></div>' +
-            '        <div id="11"></div>' +
-            '        <div id="21"></div>' +
-            '        <div id="31"></div>' +
-            '        <div id="41"></div>' +
-            '        <div id="51"></div>' +
+            '        <div id="11"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="21"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="31"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="41"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="51"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>9:25</div><div>10:15</div></div>' +
-            '        <div id="12"></div>' +
-            '        <div id="22"></div>' +
-            '        <div id="32"></div>' +
-            '        <div id="42"></div>' +
-            '        <div id="52"></div>' +
+            '        <div id="12"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="22"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="32"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="42"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="52"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>10:20</div><div>11:10</div></div>' +
-            '        <div id="13"></div>' +
-            '        <div id="23"></div>' +
-            '        <div id="33"></div>' +
-            '        <div id="43"></div>' +
-            '        <div id="53"></div>' +
+            '        <div id="13"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="23"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="33"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="43"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="53"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>11:35</div><div>12:25</div></div>' +
-            '        <div id="14"></div>' +
-            '        <div id="24"></div>' +
-            '        <div id="34"></div>' +
-            '        <div id="44"></div>' +
-            '        <div id="54"></div>' +
+            '        <div id="14"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="24"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="34"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="44"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="54"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>12:30</div><div>13:20</div></div>' +
-            '        <div id="15"></div>' +
-            '        <div id="25"></div>' +
-            '        <div id="35"></div>' +
-            '        <div id="45"></div>' +
-            '        <div id="55"></div>' +
+            '        <div id="15"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="25"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="35"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="45"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="55"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '    <div class="filas">' +
             '        <div class="horario"><div>13:25</div><div>14:15</div></div>' +
-            '        <div id="16"></div>' +
-            '        <div id="26"></div>' +
-            '        <div id="36"></div>' +
-            '        <div id="46"></div>' +
-            '        <div id="56"></div>' +
+            '        <div id="16"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="26"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="36"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="46"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
+            '        <div id="56"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '</div>');
 
         for(var x = 0 ; x < array.length ; x++){
-            $('#'+array[x][0]+array[x][1]).append('<div>' + array[x][3]['Nombre'] + '</div><div>' + array[x][2]['Nombre'] + '</div>');
+            if(array[x][3] !== null) {
+                $('#' + array[x][0] + array[x][1] + ' .asig').html(array[x][3]['Nombre']).attr('id', array[x][3]['ID_Asig']);
+            }
+            if(array[x][2] !== null) {
+                $('#' + array[x][0] + array[x][1] + ' .profe').html(array[x][2]['Nombre']);
+            }
         }
 
+        $('#horarioContent .filas .asig').click(function(){
+            getArrayAsignaturas(this,id);
+        });
+
+        $('#horarioContent .filas .profe').click(function(){
+            getArrayFreeTeachers(this.parentNode.id.charAt(0),this.parentNode.id.charAt(1));
+        });
     }
 
     /***** FUNCION PARA PINTAR UN ALUMNOS CON SUS DATOS COMPLETOS *****/
@@ -933,6 +1016,26 @@ window.addEventListener("load",function(){
             connection.open("POST", "../administrador/modificarAsignatura.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send("asig="+nombre+"&id="+id);
+        }
+    }
+
+    function modificarAsignaturaHorario(idClase,id,dia,horario){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4 && connection.status === 200) {
+                }
+            };
+            connection.open("POST", "../administrador/modificarAsignaturaHorario.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("idClase="+idClase+"&id="+id+"&dia="+dia+"&hora="+horario);
         }
     }
 
