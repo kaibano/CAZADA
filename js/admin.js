@@ -1,4 +1,28 @@
 window.addEventListener("load",function(){
+    /***** FUNCION PARA OBTENER UN ARRAY CON EL HORARIO DE UNA CLASE *****/
+    function getArrayHorario(id,nombre){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        printHorarioclase(JSON.parse(connection.responseText),id,nombre);
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayHorario.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("id="+id);
+        }
+    }
+
     /***** FUNCION PARA OBTENER UN ARRAY DE LOS ALUMNOS DE UNA CLASE *****/
     function getArrayAlumnos(objetoId){
         var connection = null;
@@ -433,7 +457,7 @@ window.addEventListener("load",function(){
         }
     }
 
-    /***** FUNCIONES PARA PINTAR LAS LISTAS DE CLASES, PROFESORES, ASIGNATURAS Y ALUMNOS *****/
+    /***** FUNCIONES PARA PINTAR LAS LISTAS DE CLASES, PROFESORES, ASIGNATURAS, ALUMNOS Y HORARIOS *****/
     function pintarListaClase(arrayLista){
         $('#content #freeContent').empty().append('<div id="claseContent"><div class="divClase"><div class="divIdClase">ID</div><div class="divNombreClase">Nombre</div><div class="divTutorClase">Tutor</div><div class="divOpcionesClase">Opciones</div></div></div>');
 
@@ -442,12 +466,12 @@ window.addEventListener("load",function(){
                 '<div class="divIdClase">'+arrayLista[x]['ID_Clase']+'</div>' +
                 '<div class="divNombreClase">'+arrayLista[x]['Clase']+'</div>' +
                 '<div class="divTutorClase">'+arrayLista[x]['Tutor']['Nombre']+'</div>' +
-                '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span></div>' +
+                '<div class="divOpcionesClase"><span class="glyphicon glyphicon-pencil editClase" aria-hidden="true"></span><span class="glyphicon glyphicon-trash deleteClase" aria-hidden="true"></span><a class="glyphicon glyphicon-calendar infoCalendar" aria-hidden="true"></a></div>' +
                 '</div>');
             getArrayAlumnos(document.getElementsByClassName('divClase')[x+1].firstChild);
         }
 
-        $('.divIdClase').click(function(){
+        $('.divIdClase,.divNombreClase,.divTutorClase').click(function(){
             var open = this.parentNode.classList.contains('open');
             if($('.open').hasClass('open')) {
                 $('.open').removeClass('open');
@@ -455,6 +479,10 @@ window.addEventListener("load",function(){
             if(!open) {
                 this.parentNode.classList.toggle('open');
             }
+        });
+
+        $('.infoCalendar').click(function () {
+            getArrayHorario(this.parentNode.parentNode.firstChild.innerHTML,this.parentNode.parentNode.childNodes[1].innerHTML);
         });
 
         $('.editClase').click(function(){
@@ -596,7 +624,7 @@ window.addEventListener("load",function(){
 
                 var divDeleteAlumno = document.createElement('SPAN');
                     divDeleteAlumno.setAttribute('id','delAlumnoButton');
-                    divDeleteAlumno.setAttribute('class','glyphicon glyphicon-remove');
+                    divDeleteAlumno.setAttribute('class','glyphicon glyphicon-trash');
                     divNewAlumno.appendChild(divDeleteAlumno);
 
                     divDeleteAlumno.onclick = function(){
@@ -648,6 +676,74 @@ window.addEventListener("load",function(){
                 array[2]['Alumnos']
             );
         }
+    }
+
+    function printHorarioclase(array,id,nombre) {
+        console.log(array);
+        $('#content #freeContent').empty().append('<div id="horarioContent">' +
+            '<div>'+nombre+'</div>' +
+            '    <div class="filas">' +
+            '        <div class="dia">Horario</div>' +
+            '        <div class="dia">Lunes</div>' +
+            '        <div class="dia">Martes</div>' +
+            '        <div class="dia">Miercoles</div>' +
+            '        <div class="dia">Jueves</div>' +
+            '        <div class="dia">Viernes</div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>8:30</div><div>9:20</div></div>' +
+            '        <div id="11"></div>' +
+            '        <div id="21"></div>' +
+            '        <div id="31"></div>' +
+            '        <div id="41"></div>' +
+            '        <div id="51"></div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>9:25</div><div>10:15</div></div>' +
+            '        <div id="12"></div>' +
+            '        <div id="22"></div>' +
+            '        <div id="32"></div>' +
+            '        <div id="42"></div>' +
+            '        <div id="52"></div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>10:20</div><div>11:10</div></div>' +
+            '        <div id="13"></div>' +
+            '        <div id="23"></div>' +
+            '        <div id="33"></div>' +
+            '        <div id="43"></div>' +
+            '        <div id="53"></div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>11:35</div><div>12:25</div></div>' +
+            '        <div id="14"></div>' +
+            '        <div id="24"></div>' +
+            '        <div id="34"></div>' +
+            '        <div id="44"></div>' +
+            '        <div id="54"></div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>12:30</div><div>13:20</div></div>' +
+            '        <div id="15"></div>' +
+            '        <div id="25"></div>' +
+            '        <div id="35"></div>' +
+            '        <div id="45"></div>' +
+            '        <div id="55"></div>' +
+            '    </div>' +
+            '    <div class="filas">' +
+            '        <div class="horario"><div>13:25</div><div>14:15</div></div>' +
+            '        <div id="16"></div>' +
+            '        <div id="26"></div>' +
+            '        <div id="36"></div>' +
+            '        <div id="46"></div>' +
+            '        <div id="56"></div>' +
+            '    </div>' +
+            '</div>');
+
+        for(var x = 0 ; x < array.length ; x++){
+            $('#'+array[x][0]+array[x][1]).append('<div>' + array[x][3]['Nombre'] + '</div><div>' + array[x][2]['Nombre'] + '</div>');
+        }
+
     }
 
     /***** FUNCION PARA PINTAR UN ALUMNOS CON SUS DATOS COMPLETOS *****/
@@ -888,7 +984,6 @@ window.addEventListener("load",function(){
                         divMsg.setAttribute('class','msgAlumno');
                         objeto.appendChild(divMsg);
                         if(connection.responseText === "true") {
-                            $('.newAlumnoInput').val('');
                             divMsg.setAttribute('style','color:green !important');
                             msg = 'Modificación realizada con éxito';
                         }else if(connection.responseText === 'vacio'){
