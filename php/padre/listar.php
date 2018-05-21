@@ -32,7 +32,7 @@
         for($i = 0; $i < count($array); $i++){
             for($x = 0; $x < count($asignaturas); $x++){
                 if($array[$i][1] == $asignaturas[$x][0]){
-                    $array[$x][1] =$asignaturas[$x][1];
+                    $array[$i][1] = $asignaturas[$x][1];
                 }
             }
         }
