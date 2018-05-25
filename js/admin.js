@@ -47,7 +47,7 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCION PARA OBTENER LOS PROFESORES QUE ESTAN LIBRES EN UNA HORA DETERMINADA *****/
-    function getArrayFreeTeachers(dia,hora){
+    function getArrayFreeTeachers(objeto,id,dia,hora){
         var connection = null;
 
         if (window.XMLHttpRequest) {
@@ -60,7 +60,30 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
-                        console.log(JSON.parse(connection.responseText));
+                        var array = JSON.parse(connection.responseText);
+                        var divSelect = document.createElement('SELECT');
+                        divSelect.setAttribute('id','selectTeacherHorario');
+                        objeto.parentNode.appendChild(divSelect);
+                        objeto.parentNode.setAttribute('class','selectActive');
+                        objeto.remove();
+                        for(var x = 0 ; x < array.length ; x++){
+                            var option = document.createElement('OPTION');
+                            option.setAttribute('value',array[x]['Usuario']);
+                            option.innerHTML = array[x]['Nombre'];
+                            divSelect.appendChild(option);
+                        }
+                        divSelect.onblur = function(){
+                            this.parentNode.classList.remove('selectActive');
+                            modificarProfesorHorario(id,this.value,dia,hora);
+                            var divAsig = document.createElement('DIV');
+                            divAsig.setAttribute('class','profe');
+                            divAsig.innerHTML = this.options[this.selectedIndex].text;
+                            divAsig.onclick = function(){
+                                getArrayFreeTeachers(this,id,dia,hora);
+                            };
+                            this.parentNode.appendChild(divAsig);
+                            this.remove();
+                        }
                     }
                 }
             };
@@ -227,21 +250,28 @@ window.addEventListener("load",function(){
 
     /***** FUNCIONES DE PINTAR LOS FORMULARIOS PARA AÑADIR CLASES,PROFESORES,ALUMNOS Y ASIGNATURAS *****/
     function printNewAsignatura(){
-        $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewAsignatura"><div>Nueva asignatura</div><div class="condiciones">*Introduzca un nombre de asignatura que no exista.</div><input type="text" id="newAsignaturaInput"><div id="addNewAsiganturaButton" class="btn btn-primary">Añadir</div></div>');
+        $('#freeContent').empty().append('<div id="divNewAsignatura"><div>Nueva asignatura</div><div class="condiciones">*Introduzca un nombre de asignatura que no exista.</div><input type="text" id="newAsignaturaInput"><div id="addNewAsiganturaButton" class="btn btn-primary">Añadir</div></div>');
         document.getElementById('addNewAsiganturaButton').onclick = function(){
             addAsignatura(this.parentNode,document.getElementById('newAsignaturaInput').value);
         }
     }
 
     function printNewAlumno(arrayClases){
-        $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewAlumno">' +
+        $('#freeContent').empty().append('<div id="divNewAlumno">' +
             '<div>Nuevo/a Alumno/a</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombreAlumno" class="newAlumnoInput" type="text" value=""></div>'+
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoAlumno" class="newAlumnoInput" type="text" value=""></div>'+
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Clase</div><select id="newAlumnoSelect" class="newAlumnoInput"><option name="clase" value="0"></option></select></div>'+
+            '</div>'+
+            '<div id="divNewAlumno">' +
+            '<div>Datos Padre/Madre/Tutor</div>' +
+            '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">DNI*</div><input id="newDNIPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombrePadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Email*</div><input id="newEmailPadre" class="newAlumnoInput" type="text" value=""></div>'+
+            '<div id="addNewAlumnoButton" class="btn btn-primary">Añadir</div>' +
             '</div>');
 
         for(var x = 0 ; x < arrayClases[1].length ; x++){
@@ -251,16 +281,6 @@ window.addEventListener("load",function(){
             option.innerHTML = arrayClases[1][x]['Clase'];
             document.getElementById('newAlumnoSelect').appendChild(option);
         }
-
-        $('#freeContent').append('<div id="divNewAlumno">' +
-            '<div>Datos Padre/Madre/Tutor</div>' +
-            '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
-            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">DNI*</div><input id="newDNIPadre" class="newAlumnoInput" type="text" value=""></div>'+
-            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombrePadre" class="newAlumnoInput" type="text" value=""></div>'+
-            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoPadre" class="newAlumnoInput" type="text" value=""></div>'+
-            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Email*</div><input id="newEmailPadre" class="newAlumnoInput" type="text" value=""></div>'+
-            '<div id="addNewAlumnoButton" class="btn btn-primary">Añadir</div>' +
-            '</div>');
 
         document.getElementById('addNewAlumnoButton').onclick = function(){
             addAlumno(
@@ -277,8 +297,7 @@ window.addEventListener("load",function(){
     }
 
     function printNewProfesor(arrayClases){
-        $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewProfesor">' +
+        $('#freeContent').empty().append('<div id="divNewProfesor">' +
             '<div>Nuevo Profesor/Profesora</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewProfe"><div class="newProfeLabel">Nombre completo*</div><input id="newNombreProfe" class="newProfeInput" type="text" value=""></div>'+
@@ -310,8 +329,7 @@ window.addEventListener("load",function(){
     }
 
     function printNewClase(){
-        $('#content #freeContent').empty();
-        $('#freeContent').append('<div id="divNewClase" xmlns="http://www.w3.org/1999/html">' +
+        $('#freeContent').empty().append('<div id="divNewClase" xmlns="http://www.w3.org/1999/html">' +
             '<div>Nueva Clase</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewClase"><div class="newClaseLabel">Año (1,2,3...)*</div><input id="newAnnoClase" class="newClaseInput" type="number" min="1" max="4" value=""></div>'+
@@ -544,10 +562,9 @@ window.addEventListener("load",function(){
 
         $('.divIdClase,.divNombreClase,.divTutorClase').click(function(){
             var open = this.parentNode.classList.contains('open');
-            if($('.open').hasClass('open')) {
+            if(open) {
                 $('.open').removeClass('open');
-            }
-            if(!open) {
+            }else{
                 this.parentNode.classList.toggle('open');
             }
         });
@@ -750,10 +767,9 @@ window.addEventListener("load",function(){
     }
 
     function printHorarioclase(array,id,nombre) {
-        console.log(array);
-        $('#content #freeContent').empty().append('<div id="horarioContent">' +
-            '<div>'+nombre+'</div>' +
-            '    <div class="filas">' +
+        $('#content #freeContent').empty().append('<div id="horarioContent" style="font-family: "Roboto", sans-serif;">' +
+            '<div class="claseName" style="font-size: 25px;font-weight: bold;text-align: center;width: 100%;">'+nombre+'</div><span id="pdfButton" class="glyphicon glyphicon-download-alt"></span>' +
+            '    <div class="filas dias">' +
             '        <div class="dia">Horario</div>' +
             '        <div class="dia">Lunes</div>' +
             '        <div class="dia">Martes</div>' +
@@ -811,6 +827,10 @@ window.addEventListener("load",function(){
             '    </div>' +
             '</div>');
 
+        $('#pdfButton').click(function(){
+            window.location = "../administrador/generateHorarioPdf.php?html="+$('#freeContent').html();
+        });
+
         for(var x = 0 ; x < array.length ; x++){
             if(array[x][3] !== null) {
                 $('#' + array[x][0] + array[x][1] + ' .asig').html(array[x][3]['Nombre']).attr('id', array[x][3]['ID_Asig']);
@@ -825,7 +845,7 @@ window.addEventListener("load",function(){
         });
 
         $('#horarioContent .filas .profe').click(function(){
-            getArrayFreeTeachers(this.parentNode.id.charAt(0),this.parentNode.id.charAt(1));
+            getArrayFreeTeachers(this,id,this.parentNode.id.charAt(0),this.parentNode.id.charAt(1));
         });
     }
 
@@ -1062,6 +1082,26 @@ window.addEventListener("load",function(){
             connection.open("POST", "../administrador/modificarProfesor.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             connection.send("usu="+usu+"&nombre="+nombre+"&email="+email+"&tutoria="+tutoria+"&tutor="+tutor);
+        }
+    }
+
+    function modificarProfesorHorario(idClase,dni,dia,hora){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4 && connection.status === 200) {
+                }
+            };
+            connection.open("POST", "../administrador/modificarProfesorHorario.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("idClase="+idClase+"&dni="+dni+"&dia="+dia+"&hora="+hora);
         }
     }
 

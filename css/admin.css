@@ -89,17 +89,23 @@ table{margin:0 auto;}
 .editProfesor:hover, .deleteProfesor:hover,.cancelEdit:hover,.aceptarCambios:hover,.editAsig:hover,.deleteAsig:hover,.editClase:hover,.deleteClase:hover,.infoCalendar:hover{color:#333;text-decoration: none;}
 
 /*TABLA DE HORARIOS*/
-#content #freeContent #horarioContent {margin-top: 20px;}
+#content #freeContent #horarioContent {margin-top: 20px;position: relative;}
 #content #freeContent #horarioContent .filas {height: 75px;}
-#content #freeContent #horarioContent > div:nth-child(1) {font-size: 25px;margin-bottom: 15px;font-weight: bold;color: #419944;}
-#content #freeContent #horarioContent > div:nth-child(2) {height: 35px;}
-#content #freeContent #horarioContent > div > div {display: inline-block;width: 150px;height: 75px;border-top:1px solid;border-right: 1px solid;margin-left: -5px;padding: 0 5px;}
-#content #freeContent #horarioContent .dia {border-top: 0 !important;font-size: 25px;height: 35px;}
+#content #freeContent #horarioContent .filas.dias {height: 35px;}
+#content #freeContent #horarioContent .claseName{display: inline-block;margin-right: 10px;}
+#content #freeContent #horarioContent > div:nth-child(1) {font-size: 25px;font-weight: bold;color: #419944;width: 100%;}
+#content #freeContent #horarioContent > div:nth-child(2) {height: 100%;}
+#content #freeContent #horarioContent > div > div {display: inline-block;width: 150px;height: 100%;border-top:1px solid black;border-right: 1px solid black;margin-left: -5px;padding: 0 5px;}
+#content #freeContent #horarioContent .dia {border-top: 0 !important;font-size: 25px;height: 100%;color:#337ab7;}
 #content #freeContent #horarioContent > div > div:nth-child(6) {border-right: 0 !important;}
 #content #freeContent #horarioContent > div > div > div {width: 100%;text-align: center;overflow: hidden;}
 #content #freeContent #horarioContent > div > div > div:nth-child(1){height: 24px;font-weight: bold;font-size: 15px;}
 #content #freeContent #horarioContent > div > div > div:nth-child(2){height: 50px;font-style: italic;}
 #content #freeContent #horarioContent #selectAsigHorario {margin-top: 3px;}
+#content #freeContent #horarioContent .horario div{font-style: italic;font-weight: initial !important;position: relative;top:15px;}
+#content #freeContent #horarioContent #pdfButton {font-size: 20px;cursor: pointer;margin-bottom: 20px;}
+.selectActive{position: relative;top:-35px;}
+#content #freeContent #horarioContent select {width: 100%;}
 
 /*TABLA DE ASIGNATURAS LISTADA*/
 .divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
