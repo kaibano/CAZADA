@@ -1,21 +1,13 @@
 <?php
     include "../class/conexiones.php";
 
-    $nombreAsignatura = $_POST['asig'];
+    $nombreAsignatura = $_POST['asignatura'];
 
     $bbdd = new Conexion();
-    $respuesta = $bbdd->consulta("SELECT * FROM asignaturas WHERE Nombre = '$nombreAsignatura'");
-
-    if($nombreAsignatura === ''){
-        echo 'vacio';
-    }else if(empty($respuesta)) {
-        $conexion = $bbdd->conectar();
-        $resultado = $conexion->query("INSERT INTO asignaturas (Nombre) VALUE ('$nombreAsignatura')");
-        if ($resultado) {
-            echo "true";
-        } else {
-            echo "false";
-        }
+    $conexion = $bbdd->conectar();
+    $resultado = $conexion->query("INSERT INTO asignaturas (Nombre) VALUE ('$nombreAsignatura')");
+    if($resultado){
+        echo "true";
     }else{
         echo "false";
     }
