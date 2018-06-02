@@ -141,7 +141,59 @@ window.addEventListener("load",function(){
         }
     }
 
+    function getArrayAlumnosSinClase(){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        printAlumnosSinClase(JSON.parse(connection.responseText));
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getArrayAlumnosSinClase.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
     /***** FUNCION PARA OPTENER UN ARRAY CON LAS CLASES Y APLICARLAS *****/
+    function getArrayClases(objeto){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        var array = JSON.parse(connection.responseText);
+                        for (var x = 0 ; x < array.length ; x++){
+                            var option = document.createElement('OPTION');
+                            option.setAttribute('value',array[x]['ID_Clase']);
+                            option.innerHTML = array[x]['Clase'];
+                            objeto.appendChild(option);
+                        }
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/getClasesArray.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
+
     function getArrayClasesForPrintNewProfesor(){
         var connection = null;
 
@@ -508,11 +560,74 @@ window.addEventListener("load",function(){
         }
     }
 
-    /***** FUNCION ONCLICK PARA LOS BOTONES DE AÑADIR *****/
-    document.getElementById('addAsignatura').onclick = printNewAsignatura;
-    document.getElementById('addAlumno').onclick = getArrayClasesForPrintNewAlumno;
-    document.getElementById('addProfesor').onclick = getArrayClasesForPrintNewProfesor;
-    document.getElementById('addClase').onclick = printNewClase;
+    function addAlumnosToClass(array,objeto){
+        var connection = null;
+        var msg = null;
+        if(objeto.parentNode.lastChild.innerHTML !== 'Continuar'){
+            objeto.parentNode.lastChild.remove();
+        }
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        var divMsg = document.createElement('DIV');
+                        objeto.parentNode.appendChild(divMsg);
+                        if (connection.responseText !== "vacio") {
+                            if (connection.responseText === "true") {
+                                divMsg.setAttribute('style', 'color:green;margin-top:20px');
+                                msg = 'Modificación realizada con éxito';
+                            } else {
+                                divMsg.setAttribute('style', 'color:red;margin-top:20px');
+                                msg = 'Error al modificar los datos. Inténtelo de nuevo.';
+                            }
+                        }else{
+                            divMsg.setAttribute('style', 'color:red;margin-top:20px');
+                            msg = 'Ninguna modificación que realizar';
+                        }
+                        divMsg.innerHTML = msg;
+                        reloadResolverErrores();
+                        document.getElementsByClassName('numError')[0].click();
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/addAlumnoToClass.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send("alum=" + JSON.stringify(array));
+        }
+    }
+
+    /***** FUNCION QUE RECARGAR EL NUMERO DE ERRORES *****/
+    function reloadResolverErrores(){
+        var connection = null;
+
+        if (window.XMLHttpRequest) {
+            connection = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            connection = ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (connection) {
+            connection.onreadystatechange = function () {
+                if (connection.readyState === 4) {
+                    if (connection.status === 200) {
+                        console.log(JSON.parse(connection.responseText)[0]['num']);
+                        document.getElementsByClassName('numError')[0].innerHTML = '('+JSON.parse(connection.responseText)[0]['num']+')';
+
+                    }
+                }
+            };
+            connection.open("POST", "../administrador/reloadResolverErrores.php");
+            connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            connection.send();
+        }
+    }
 
     /***** FUNCION QUE OBTIENE UN ARRAY DE CLASES,PROFESORES O ASIGNATURAS SEGUN EL STRING DE LISTA QUE SE LE PASA *****/
     /***** LLAMA A LA FUNCION PINTAR SEGUN LA LISTA PASANDO EL ARRAY OBTENIDO *****/
@@ -596,6 +711,8 @@ window.addEventListener("load",function(){
                 deleteClase(id);
             }
         });
+
+        reloadResolverErrores();
     }
 
     function pintarListaProfesores(arrayLista) {
@@ -724,23 +841,25 @@ window.addEventListener("load",function(){
 
             divPadre.appendChild(divNewAlumno);
             idAlumno.onclick = function () {
-                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML);
+                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML,objeto);
             };
             nombreAlumno.onclick = function () {
-                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML);
+                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML,objeto);
             };
             apellidosAlumno.onclick = function () {
-                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML);
+                getAlumnoCompleteData(this.parentNode.childNodes[0].innerHTML,this.parentNode.childNodes[1].innerHTML,this.parentNode.childNodes[2].innerHTML,objeto);
             };
         }
     }
 
-    function printAlumnoData(array){
+    function printAlumnoData(array,objeto){
+        console.log(array);
         $('#freeContent').empty().append('<div id="divNewAlumno">' +
             '<div>Datos del alumno COD ' + array[2]['Alumnos'] + '</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Nombre*</div><input id="newNombreAlumno" class="newAlumnoInput" type="text" value="'+array[0]+'"></div>'+
             '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Apellidos*</div><input id="newApellidoAlumno" class="newAlumnoInput" type="text" value="'+array[1]+'"></div>'+
+            '<div class="divEachNewAlumno"><div class="newAlumnoLabel">Clase</div><select id="newClaseAlumno" class="newAlumnoInput"></select></div>'+
             '</div>' +
             '<div id="divNewAlumno">' +
             '<div>Datos del Padre/Madre/Tutor</div>' +
@@ -752,6 +871,8 @@ window.addEventListener("load",function(){
             '<div id="addNewAlumnoButton" class="btn btn-primary">Modificar</div>' +
             '</div>');
 
+        getArrayClases(document.getElementById('newClaseAlumno'),objeto);
+
         document.getElementById('addNewAlumnoButton').onclick = function(){
             modificarDatosAlumno(
                 this.parentNode,
@@ -761,6 +882,7 @@ window.addEventListener("load",function(){
                 document.getElementById('newNombrePadre').value,
                 document.getElementById('newApellidoPadre').value,
                 document.getElementById('newEmailPadre').value,
+                document.getElementById('newClaseAlumno').value,
                 array[2]['Alumnos']
             );
         }
@@ -849,8 +971,39 @@ window.addEventListener("load",function(){
         });
     }
 
+    function printAlumnosSinClase(array){
+        if(document.getElementsByClassName('numError')[0].innerHTML !== '(0)') {
+            $('#content #freeContent').empty().append('<div id="alumnosContent"><div class="divAlumno"><div class="divIdAlumno">ID</div><div class="divNombreAlumno">Nombre</div><div class="divApellidosAlumno">Apellidos</div><div class="divClasesAlumno">Clases</div></div></div>');
+            for (var x = 0; x < array.length; x++) {
+                $('#content #freeContent #alumnosContent').append('<div class="divAlumno">' +
+                    '<div class="divIdAlumno">' + array[x]['ID_Alumno'] + '</div>' +
+                    '<div class="divNombreAlumno">' + array[x]['Nombre'] + '</div>' +
+                    '<div class="divApellidosAlumno">' + array[x]['Apellidos'] + '</div>' +
+                    '<select id="divClasesAlumno" class="divClasesAlumno"><option value=""></option></select>' +
+                    '</div>');
+                getArrayClases(document.getElementsByClassName('divClasesAlumno')[x + 1]);
+            }
+            $('#content #freeContent #alumnosContent').append('<div id="changeClaseAlumnosSinClase" class="btn btn-primary">Continuar</div>');
+
+            document.getElementById('changeClaseAlumnosSinClase').onclick = function () {
+                var arraySelec = [];
+                var arrayData = document.getElementsByClassName('divClasesAlumno');
+                var arrayIdAlumnos = document.getElementsByClassName('divIdAlumno');
+                for (var y = 1; y < arrayData.length; y++) {
+                    if (arrayData[y].value !== "") {
+                        var miniArray = [arrayIdAlumnos[y].innerHTML, arrayData[y].value];
+                        arraySelec.push(miniArray);
+                    }
+                }
+                addAlumnosToClass(arraySelec, this);
+            }
+        }else{
+            $('#content #freeContent').empty().append('<div id="alumnosContent">NINGUN ERROR</div>');
+        }
+    }
+
     /***** FUNCION PARA PINTAR UN ALUMNOS CON SUS DATOS COMPLETOS *****/
-    function getAlumnoCompleteData(id,nombre,apellidos){
+    function getAlumnoCompleteData(id,nombre,apellidos,objeto){
         var connection = null;
 
         if (window.XMLHttpRequest) {
@@ -863,13 +1016,13 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
-                        printAlumnoData(JSON.parse(connection.responseText));
+                        printAlumnoData(JSON.parse(connection.responseText),objeto);
                     }
                 }
             };
             connection.open("POST", "../administrador/getAlumnoCompleteData.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("id="+id+"&nombre="+nombre+"&apellidos="+apellidos);
+            connection.send("id="+id+"&nombre="+nombre+"&apellidos="+apellidos+"&clase="+objeto.innerHTML);
         }
     }
 
@@ -1152,6 +1305,15 @@ window.addEventListener("load",function(){
     document.getElementById('listaAsignaturas').onclick = function(){
         getArrayLista("asignaturas");
     };
+    document.getElementById('listaConflictos').onclick = function(){
+        getArrayAlumnosSinClase();
+    };
+
+    /***** FUNCION ONCLICK PARA LOS BOTONES DE AÑADIR *****/
+    document.getElementById('addAsignatura').onclick = printNewAsignatura;
+    document.getElementById('addAlumno').onclick = getArrayClasesForPrintNewAlumno;
+    document.getElementById('addProfesor').onclick = getArrayClasesForPrintNewProfesor;
+    document.getElementById('addClase').onclick = printNewClase;
 
     /***** FUNCTION QUE SE EJECUTA AL INICIO TRAS EL LOGIN PARA QUE EN EL ADMINISTRADOR LO PRIMEROS QUE SE VEAN SON LAS CLASES PINTADAS *****/
     getArrayLista("clases");
