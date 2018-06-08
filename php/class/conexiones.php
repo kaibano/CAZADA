@@ -215,5 +215,20 @@
             $this->desconectar();
             return $clases;
         }
+        
+        function getAsigProfeClase($clase){
+            $this->conectar();
+            $asigs = array();
+            $this->resultado = $this->conexion->query("SELECT DISTINCT Asignatura FROM horarios"
+                    . " where Profesor= '".$_SESSION['usuario']->usuario."'"
+                    . " AND Clase = $clase");
+            if ($this->resultado->num_rows > 0){
+                while($fila = $this->resultado->fetch_array()){
+                    array_push($asigs, $fila[0]);
+                }  
+            }
+            $this->desconectar();
+            return $asigs;
+        }
     }
 
