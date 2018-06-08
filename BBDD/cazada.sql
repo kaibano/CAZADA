@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2018 a las 13:11:52
+-- Tiempo de generación: 08-06-2018 a las 17:11:34
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -348,20 +348,18 @@ CREATE TABLE `notas` (
   `ID_Alumno` int(5) NOT NULL,
   `ID_Clase` int(11) NOT NULL,
   `ID_Asig` int(11) NOT NULL,
-  `Nota` double DEFAULT NULL,
-  `Evaluacion` int(1) NOT NULL
+  `Evaluacion` int(1) NOT NULL,
+  `Nota` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `notas`
 --
 
-INSERT INTO `notas` (`ID_Alumno`, `ID_Clase`, `ID_Asig`, `Nota`, `Evaluacion`) VALUES
-(5942, 1, 1, 7, 1),
-(5942, 1, 2, 3.7, 1),
-(5942, 1, 3, 4.8, 1),
-(5942, 1, 4, 5.4, 1),
-(5942, 1, 10, 9.8, 1);
+INSERT INTO `notas` (`ID_Alumno`, `ID_Clase`, `ID_Asig`, `Evaluacion`, `Nota`) VALUES
+(1, 1, 5, 1, 5.8),
+(1, 1, 5, 2, 8.3),
+(1, 1, 5, 3, 7.4);
 
 -- --------------------------------------------------------
 
@@ -513,7 +511,7 @@ ALTER TABLE `horas`
 -- Indices de la tabla `notas`
 --
 ALTER TABLE `notas`
-  ADD PRIMARY KEY (`ID_Alumno`,`ID_Clase`,`ID_Asig`),
+  ADD PRIMARY KEY (`ID_Alumno`,`ID_Clase`,`ID_Asig`,`Evaluacion`),
   ADD KEY `ID_Asig` (`ID_Asig`);
 
 --

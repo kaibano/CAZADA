@@ -165,29 +165,48 @@ window.addEventListener("load", function () {
 
     /***** FUNCIONES CLASE *****/
     function gestionNotas() {
-        $('#freeContent #listaClase').css('visibility','hidden');
-        var x = $(this).position();
-        var top = x.top - 25;
-        var left = x.left - 360;
         var alumno = $(this).attr('data-alumno');
         var clase = $(this).attr('data-clase');
-        $('#freeContent').append("<div id='cajaNotas' style='top:" + top + "px;left:"
-                + left + "px'><span id='close' class='glyphicon glyphicon-remove-sign'></span>"
+
+        $('#freeContent #listaClase').hide();
+        $('#freeContent').append('<div id="aux"></div>');
+        var ventana_ancho = $(window).width();
+        var h3Pos = $('#freeContent h3').position()
+        var reference = h3Pos.top + 100;
+        $('#freeContent').append("<div id='cajaNotas' style='top:" + reference + "px;left:"
+                + ventana_ancho / 3 + "px'><span id='close' class='glyphicon glyphicon-remove-sign'></span>"
                 + "<table id='tablaNotas'><tr><th>Asignatura</th><th>1ª Evaluación</th>"
                 + "<th>2ª Evaluación</th><th>3ª Evaluación</th></tr></table></div>");
-        $('#close').click(function(){
-            $(this).parent().remove()
-            $('#freeContent #listaClase').css('visibility','visible');
+        $('#close').click(function () {
+            $('#cajaNotas').remove()
+            $('#aux').remove()
+            $('#freeContent #listaClase').show();
         })
         var req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
                 var lista = JSON.parse(req.responseText);
-                console.log(lista)
-                for (var i = 0; i < lista.length;i++){
-                    $('<tr data-alumno="'+alumno+'" data-asig="'+lista[i][0]+'"><td>'+lista[i][1]+'</td>'
-                            + '<td><input type="text"/></td><td><input type="text"/></td><td><input type="text"/></td></tr>')
+                var req2 = new XMLHttpRequest();
+                req2.onreadystatechange = function () {
+                    if (req2.readyState == 4 && req2.status == 200) {
+                        var lista2 = JSON.parse(req2.responseText);
+                        console.log(lista2)
+                        for (var i = 0; i < lista.length; i++) {
+                            $('<tr data-alumno="' + alumno + '" data-asig="' + lista[i][0] + '"><td><b>' + lista[i][1] + '</b></td>'
+                                    + '<td><input type="text" size="3" value="' + lista2[i][0]['Nota'] + '"/></td>'
+                                    + '<td><input type="text" size="3" value="' + lista2[i][1]['Nota'] + '"/>'
+                                    + '</td><td><input type="text" size="3" value="' + lista2[i][2]['Nota'] + '"/></td></tr>')
+                                    .appendTo('#tablaNotas');
+                        }
+                        $("<div id='botonGuardar' class='btn btn-primary'>Guardar</div>").appendTo('#cajaNotas')
+                        /*.click(function(){
+                         
+                         })*/
+                    }
                 }
+                req2.open("POST", "../profe/getNotasAlum.php");
+                req2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                req2.send("alum=" + alumno + "&asig="+JSON.stringify(lista));
             }
         }
         req.open("POST", "../profe/getAsignaturasProfeClase.php");

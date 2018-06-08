@@ -27,6 +27,7 @@
 #content #freeContent #tablaHorario td.noBorde{border:none; background: none;}
 #content #freeContent #tablaHorario td:hover span{color:white; text-shadow:10px 5px 5px black;cursor:pointer;transition:0.25s;}
 
+
 #content #freeContent #misClases h3{margin-bottom: 4%}
 #content #freeContent .clasesProfe {margin:0 auto;width:300px;font-size: 20px;padding: 5px 10px;border-radius: 10px;cursor:pointer;margin-bottom: 1.5%;box-shadow:5px 5px 5px black}
 #content #freeContent .clasesProfe:hover {transform: scaleY(1.1) scaleX(1.1);background-color: #F5FB3A;box-shadow:10px 10px 10px black;font-weight: bold;transition: 0.5s;color:black;}
@@ -37,8 +38,14 @@
 #content #freeContent #listaClase img{width: 35px;height: auto;vertical-align: middle;cursor: pointer}
 #content #freeContent #listaClase img:hover{transform: scaleY(1.2) scaleX(1.2);opacity: 0.9;transition: 0.5s}
 
-#content #freeContent #cajaNotas {width: 500px;border:black 1px solid;position:absolute;background-color: #92E064;}
+#content #freeContent #cajaNotas {width: 500px;border:black 1px solid;position:absolute;background-color: #9EFF98;}
 #content #freeContent #cajaNotas span {float:right; margin:5px;}
 #content #freeContent #cajaNotas #close {cursor:pointer;font-size:1.2em;}
 #content #freeContent #cajaNotas #close:hover {transform: scaleY(1.2) scaleX(1.2);}
-#content #freeContent #cajaNotas #tablaNotas{width: 400px;margin:0 auto;margin-top:25px;}
+#content #freeContent #cajaNotas #tablaNotas{width: 400px;margin:25px auto;border:5px inset black; border-collapse: collapse;}
+#content #freeContent #cajaNotas #tablaNotas td, #tablaNotas th{;border:1px solid black; padding: 2.5px;}
+#content #freeContent #cajaNotas #tablaNotas th {background-color: #FEF37F}
+#content #freeContent #cajaNotas #tablaNotas td {background-color: #F7FDB3;}
+#content #freeContent #cajaNotas #tablaNotas td input{text-align:center}
+#content #freeContent #cajaNotas #botonGuardar {font-size: 12pt; width:120px;margin-bottom: 3%}
+#content #freeContent #aux {height: 300px;}
