@@ -20,24 +20,6 @@ table{margin:0 auto;}
 #content #freeContent #divNewAsignatura .botonAnnadir{transition: 0.5s;display: block;margin: 10px auto 0;padding: 5px 25px;font-size: 16px;background-color: #F06565;width: 70px;cursor: pointer;font-weight: bold;text-transform: uppercase;border-radius:5px;border:1px solid black;}
 #content #freeContent #divNewAsignatura .botonAnnadir:hover{background-color: white;transition: 0.5s;}
 
-
-/*FORMULARIO NUEVO PROFESOR*/
-#content #freeContent{width: 100%; text-align: center;}
-#content #freeContent #divNewProfesor{width: 100%; margin-top: 20px;}
-#content #freeContent #divNewProfesor .divEachNewProfe{margin:10px;}
-#content #freeContent #divNewProfesor div:nth-child(1){font-size: 25px;}
-#content #freeContent #divNewProfesor .condiciones{font-size: 13px;}
-#content #freeContent #divNewProfesor .newProfeLabel{height:30px;width: 200px;display: inline-block;padding-right: 20px;text-align: right;margin: 0 auto 0 -115px;font-size: 18px !important;}
-#content #freeContent #divNewProfesor .newProfeInput{height:30px;width: 200px;display:inline-block;text-align: center;font-size: 16px;}
-#content #freeContent #divNewProfesor .botonAnnadir{transition: 0.5s;display: block;margin: 20px auto 0;padding: 5px 25px;font-size: 16px;background-color: #F06565;width: 70px;cursor: pointer;font-weight: bold;text-transform: uppercase;border-radius:5px;border:1px solid black;}
-#content #freeContent #divNewProfesor .botonAnnadir:hover{background-color: white;transition: 0.5s;}
-#content #freeContent #divNewProfesor .msgProfe{margin-top: 10px;color:red;}
-#newProfeClases{text-align: left;font-size: 18px;}
-#newProfeClases div{font-size: 18px !important;margin: 5px;}
-#newProfeClases div input{vertical-align: middle;cursor: pointer;}
-.divEachNewProfe:nth-child(9) .newProfeLabel{vertical-align: top;}
-
-
 /*TABLA DE LISTAR FALTAS*/
 .divClase .divId,.divClase .divAsignatura,.divClase .divFecha,.divClase .divHora{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
 #content #freeContent #claseContent{padding-top: 50px;}
@@ -47,29 +29,19 @@ table{margin:0 auto;}
 #content #freeContent #claseContent .divClase .divFecha{width: 300px;}
 #content #freeContent #claseContent .divClase .divHora {width: 25px; margin-right: 5px;cursor: pointer;}
 
-/*TABLA DE PROFESORES LISTADA*/
-.divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
-#content #freeContent #profesContent{padding-top: 50px;}
-#content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
-#content #freeContent #profesContent .divProfe .divUsuProfe{width: 100px;}
-#content #freeContent #profesContent .divProfe .divNombreProfe{width: 120px;}
-#content #freeContent #profesContent .divProfe .divApellidosProfe{width: 170px;}
-#content #freeContent #profesContent .divProfe .divMailProfe{width: 170px;}
-#content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 80px;}
-#content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
-#content #freeContent #profesContent .divProfe .divOpcionesProfe img{width: 25px; margin-right: 5px;cursor: pointer;}
+.divAsignaturas{
+    float: left;
+    padding-right: 5%;
+}
 
-/*TABLA DE ASIGNATURAS LISTADA*/
-.divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
-#content #freeContent #asignaturasContent{padding-top: 50px;}
-#content #freeContent #asignaturasContent .divAsignaturas{position: relative;}
-#content #freeContent #asignaturasContent .divAsignaturas .msg{width: 600px;color: red;border: 1px solid;right: 0;}
-#content #freeContent #asignaturasContent .divAsignaturas:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 55%;margin: 0 auto;}
-#content #freeContent #asignaturasContent .divAsignaturas .divIdAsignatura{width: 100px;}
-#content #freeContent #asignaturasContent .divAsignaturas .divNombreAsignatura{width: 250px;}
-#content #freeContent #asignaturasContent .divAsignaturas .divOpcionesAsignatura img{width: 25px; margin-right: 5px;cursor: pointer;}
-
-
+.divPrimerTrimestre{
+    float: left;
+    padding-right: 5%;
+}
+.divSegundoTrimestre{
+    float: left;
+    padding-right: 5%;
+}
 .header {
     color: #36A0FF;
     font-size: 27px;

@@ -45,17 +45,15 @@ window.addEventListener("load",function(){
     }
 
     function pintarListaNota(arrayLista) {
-        $('#content #freeContent').empty().append('<table id="profesContent"><tr class="divProfe"><td class="divUsuProfe">Usuario</td><td class="divNombreProfe">Nombre</td><td class="divMailProfe">Email</td><td class="divTutoriaProfe">Tutoria</td><td class="divOpcionesProfe">Opciones</td></tr></table>');
+        $('#content #freeContent').empty().append('<div id="claseContent"><div class="divClase"><div class="divAsignaturas">Asignaturas</div><div class="divPrimerTrimestre">Primer Trimestre</div><div class="divSegundoTrimestre">Segundo Trimestre</div><div class="divTercerTrimestre">Tercero Trimestre</div></div></div>');
 
-        for (var x = 0; x < arrayLista.length; x++) {
-            $('#content #freeContent #profesContent').append('<tr class="divProfe">' +
-                '<td class="divUsuProfe">' + arrayLista[x]['Usuario'] + '</td>' +
-                '<td class="divNombreProfe">' + arrayLista[x]['Nombre']+'</td>' +
-                '<td class="divMailProfe">' + arrayLista[x]['Mail'] + '</td>' +
-                '<td class="divTutoriaProfe">' + arrayLista[x]['Tutoria'] + '</td>' +
-                '<td class="divOpcionesProfe"><img class="editProfesor" src="../../img/modificar.png"><img class="deleteProfesor" src="../../img/eliminar.png"></td></tr>');
+        for(var x = 0 ; x < arrayLista.length ; x++){
+            $('#content #freeContent #claseContent').append('<div class="divClase">' +
+                '<div class="divId">'+arrayLista[x][2]+'</div>' +
+                '<div class="divAsignatura">'+arrayLista[x][1]+'</div>' +
+                '<div class="divFecha">'+arrayLista[x][2]+'</div>' +
+                '<div class="divHora">'+arrayLista[x][3]+'</div>');
         }
-
     }
 
 
