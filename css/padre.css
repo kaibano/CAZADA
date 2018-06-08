@@ -1,0 +1,54 @@
+/*TABLA*/
+table{margin:0 auto;}
+
+/*BOTONES LISTAR Y AÑADIR*/
+#content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid; margin: 0 auto;}
+#content #addButtonsBar > div{width: 100%;margin: 10px 0;}
+#content #addButtonsBar .addButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #419944;border-radius: 10px;cursor:pointer;transition: 0.5s;}
+#content #addButtonsBar .addButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
+#content #addButtonsBar .addButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
+#content #addButtonsBar .listButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #92e064;border-radius: 10px;cursor: pointer;transition: 0.5s;}
+#content #addButtonsBar .listButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
+#content #addButtonsBar .listButton img{width: 25px;vertical-align: middle;margin-right: 5px;}
+
+/*FORMULARIO NUEVA ASIGNATURA*/
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewAsignatura{width:100%;margin-top: 20px;}
+#content #freeContent #divNewAsignatura div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewAsignatura .condiciones{font-size: 12px;}
+#content #freeContent #divNewAsignatura input{display: block;margin: 0 auto;width: 300px;padding: 5px;font-size: 18px;text-align: center;}
+#content #freeContent #divNewAsignatura .botonAnnadir{transition: 0.5s;display: block;margin: 10px auto 0;padding: 5px 25px;font-size: 16px;background-color: #F06565;width: 70px;cursor: pointer;font-weight: bold;text-transform: uppercase;border-radius:5px;border:1px solid black;}
+#content #freeContent #divNewAsignatura .botonAnnadir:hover{background-color: white;transition: 0.5s;}
+
+/*TABLA DE LISTAR FALTAS*/
+.divClase .divId,.divClase .divAsignatura,.divClase .divFecha,.divClase .divHora{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #claseContent{padding-top: 50px;}
+#content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .divId{width: 40px;}
+#content #freeContent #claseContent .divClase .divAsignatura{width: 120px;}
+#content #freeContent #claseContent .divClase .divFecha{width: 300px;}
+#content #freeContent #claseContent .divClase .divHora {width: 25px; margin-right: 5px;cursor: pointer;}
+
+.divAsignaturas{
+    float: left;
+    padding-right: 5%;
+}
+
+.divPrimerTrimestre{
+    float: left;
+    padding-right: 5%;
+}
+.divSegundoTrimestre{
+    float: left;
+    padding-right: 5%;
+}
+.header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
