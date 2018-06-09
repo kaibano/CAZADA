@@ -49,7 +49,6 @@ body #header{
     #header .typepanel span:nth-child(1){font-size:20px;}
     #header .typepanel span:nth-child(2){font-size:24px;}
 }
-<<<<<<< HEAD
 
 @media (max-width: 768px){
     #header .divlogo img{width: 70px;}
@@ -59,12 +58,10 @@ body #header{
     #header .typepanel span:nth-child(1){font-size:17px;}
     #header .typepanel span:nth-child(2){font-size:21px;}
     #header .typepanel{text-align: right;right: 40px;top: -85px;width: 100%;}
-    #content #addButtonsBar{position: relative;top:-50px;}
+    #content {position: relative; top:-50px;}
 }
 
 @media (max-width: 450px){
     #header .typepanel span:nth-child(1){font-size:15px;}
     #header .typepanel span:nth-child(2){font-size:18px;}
 }
-=======
->>>>>>> 3fd7699d298faa5347fbddd0034c8cb3db38b040

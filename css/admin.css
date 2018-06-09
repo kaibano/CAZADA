@@ -139,7 +139,6 @@ table{margin:0 auto;}
 @media (max-width: 768px){
     /*CLASES*/
     #content #freeContent #claseContent .divClase{width: 100% !important;}
-    #content #freeContent{position: relative;top:-50px;}
     #content #freeContent #claseContent .divClase:nth-child(1){height: auto !important;}
 
     /*PROFESORES*/
