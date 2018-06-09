@@ -59,13 +59,14 @@ table{margin:0 auto;}
 #content #freeContent #divNewAlumno .msgAlumno{margin-top: 10px;color:red;}
 
 /*TABLA DE CLASES LISTADA*/
-#content #freeContent #claseContent .divClase {height: 58px; overflow: hidden;cursor: pointer;}
-.divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #claseContent .divClase {height: 58px; overflow: hidden;cursor: pointer;width: 70%;margin:0 auto;}
+.divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px 0;text-align: center;margin: 5px; font-size: 18px;}
 #content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
 #content #freeContent #claseContent .divClase:nth-child(1) div{text-decoration: none !important;}
-#content #freeContent #claseContent .divClase .divIdClase{width: 40px;}
-#content #freeContent #claseContent .divClase .divNombreClase{width: 120px;}
-#content #freeContent #claseContent .divClase .divTutorClase{width: 300px;}
+#content #freeContent #claseContent .divClase .divIdClase{width: 8%;}
+#content #freeContent #claseContent .divClase .divNombreClase{width: 18%;}
+#content #freeContent #claseContent .divClase .divTutorClase{width: 45%;}
+#content #freeContent #claseContent .divClase .divOpcionesClase{width: 16%;vertical-align: middle;}
 
 /*ALUMNOS LISTADOS EN CLASES*/
 #content #freeContent #claseContent .divClase .alumnoClase {position:relative;cursor: pointer;width: 40%;margin:0 auto;background-color: #e6e6e69c;padding: 10px 0;border-radius: 10px;}
@@ -78,13 +79,12 @@ table{margin:0 auto;}
 .open {height: auto !important;}
 
 /*TABLA DE PROFESORES LISTADA*/
-.divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
+.divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px 0;text-align: center;margin: 5px;font-size: 18px;}
 #content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
-#content #freeContent #profesContent .divProfe .divUsuProfe{width: 100px;}
-#content #freeContent #profesContent .divProfe .divNombreProfe{width: 120px;}
-#content #freeContent #profesContent .divProfe .divApellidosProfe{width: 170px;}
-#content #freeContent #profesContent .divProfe .divMailProfe{width: 170px;}
-#content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 110px;}
+#content #freeContent #profesContent .divProfe .divUsuProfe{width: 15%;}
+#content #freeContent #profesContent .divProfe .divNombreProfe{width: 20%;}
+#content #freeContent #profesContent .divProfe .divMailProfe{width: 25%;}
+#content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 15%;}
 #content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
 .editProfesor, .deleteProfesor,.cancelEdit,.aceptarCambios,.editAsig,.deleteAsig,.editClase,.deleteClase,.infoCalendar{cursor:pointer;margin:5px;}
 .editAsig,.editClase,.editProfesor,.aceptarCambios {color:#419944;}
@@ -128,3 +128,50 @@ table{margin:0 auto;}
 #content #freeContent #alumnosContent .divAlumno .divNombreAlumno{width: 120px;}
 #content #freeContent #alumnosContent .divAlumno .divApellidosAlumno{width: 300px;}
 #content #freeContent #alumnosContent .divAlumno .divClasesAlumno{width: 150px;}
+
+/*MEDIA QUERYS*/
+@media (max-width: 782px){
+    #content #freeContent #claseContent .divClase{height: 55px;}
+    .divClase .divIdClase, .divClase .divNombreClase, .divClase .divTutorClase, .divClase .divOpcionesClase{font-size: 17px;}
+}
+
+@media (max-width: 768px){
+    /*CLASES*/
+    #content #freeContent #claseContent .divClase{width: 100% !important;}
+    #content #freeContent{position: relative;top:-50px;}
+    #content #freeContent #claseContent .divClase:nth-child(1){height: auto !important;}
+
+    /*PROFESORES*/
+    #content #profesContent{width: 100%; margin:0;}
+
+}
+
+@media (max-width: 720px){
+    .divProfe .divNombreProfe, .divProfe .divUsuProfe, .divProfe .divApellidosProfe, .divProfe .divMailProfe, .divProfe .divTutoriaProfe, .divProfe .divClasesProfe, .divProfe .divOpcionesProfe{font-size: 16px;}
+}
+
+@media (max-width: 629px){
+    .conflictButton{margin-top:5px;margin-bottom: -5px;}
+}
+
+@media (max-width: 550px){
+    #content #addButtonsBar .listButton, #content #addButtonsBar .conflictButton, #content #addButtonsBar .addButton{font-size: 16px;}
+    .divProfe .divNombreProfe, .divProfe .divUsuProfe, .divProfe .divApellidosProfe, .divProfe .divMailProfe, .divProfe .divTutoriaProfe, .divProfe .divClasesProfe, .divProfe .divOpcionesProfe{font-size: 14px;}
+}
+
+@media (max-width: 510px) {
+    .divClase .divIdClase, .divClase .divNombreClase, .divClase .divTutorClase, .divClase .divOpcionesClase {font-size: 15px;}
+}
+
+@media (max-width: 470px) {
+    .divClase .divIdClase, .divClase .divNombreClase, .divClase .divTutorClase, .divClase .divOpcionesClase {font-size: 14px;}
+    #content #freeContent #claseContent .divClase{height: 54px;}
+}
+
+@media (max-width: 450px) {
+    #content #freeContent #claseContent .divClase {height: 75px;}
+}
+
+@media (max-width: 412px){
+    #addAsignatura.addButton{margin-top: 5px;}
+}

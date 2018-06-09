@@ -15,11 +15,11 @@ body #header{
 
 #header a{text-decoration: none;color:black;}
 
-#header .divlogo{width: 130px; display: inline-block;}
+#header .divlogo{display: inline-block;}
 #header .divlogo img{width: 100px;margin:20px;vertical-align: middle;}
 #header .divlogoname{display: inline-block;text-align: center;vertical-align: middle;}
 #header .divlogoname span{display: block;font-size: 20px;}
-#header .divlogoname span:nth-child(1){font-weight: bold;font-size: 28px !important;}
+#header .divlogoname span:nth-child(1){font-weight: bold;font-size: 28px;}
 
 #header .typepanel{display: inline-block;text-align: center;float:right;right: 15px;top:40px;position: relative;}
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
@@ -43,4 +43,25 @@ body #header{
 @media (max-width: 1000px){
     #header .typepanel span:nth-child(1){font-size:24px;}
     #header .typepanel span:nth-child(2){font-size:28px;}
+}
+
+@media (max-width: 900px){
+    #header .typepanel span:nth-child(1){font-size:20px;}
+    #header .typepanel span:nth-child(2){font-size:24px;}
+}
+
+@media (max-width: 768px){
+    #header .divlogo img{width: 70px;}
+    #header .divlogoname span:nth-child(1){font-size: 20px;}
+    #header .divlogoname span{font-size: 16px;}
+    #header #ahora{display: none;}
+    #header .typepanel span:nth-child(1){font-size:17px;}
+    #header .typepanel span:nth-child(2){font-size:21px;}
+    #header .typepanel{text-align: right;right: 40px;top: -85px;width: 100%;}
+    #content #addButtonsBar{position: relative;top:-50px;}
+}
+
+@media (max-width: 450px){
+    #header .typepanel span:nth-child(1){font-size:15px;}
+    #header .typepanel span:nth-child(2){font-size:18px;}
 }
