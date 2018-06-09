@@ -3,6 +3,7 @@
     include  '../class/padre.php';
 
     $id = $_POST['id'];
+    $clase = $_POST['clase'];
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $arrayAlumno = array();
@@ -16,5 +17,6 @@
     array_push($arrayAlumno,$nombre);
     array_push($arrayAlumno,$apellidos);
     array_push($arrayAlumno,$dataPadre);
+    array_push($arrayAlumno,$clase);
 
     echo json_encode($arrayAlumno);
