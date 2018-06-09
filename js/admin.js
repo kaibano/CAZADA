@@ -1253,7 +1253,7 @@ window.addEventListener("load",function(){
     }
 
     /***** FUNCION PARA MODIFICAR DATOS DE ALUMNO-PADRE, LLAMA AL PHP QUE LO MODIFICA *****/
-    function modificarDatosAlumno(objeto,nombreAlumno,apellidosAlumno,dniPadre,nombrePadre,apellidosPadre,emailPadre,id){
+    function modificarDatosAlumno(objeto,nombreAlumno,apellidosAlumno,dniPadre,nombrePadre,apellidosPadre,emailPadre,id_clase,id_alumno){
         var connection = null;
         var msg = null;
         if(objeto.childNodes[7]) {
@@ -1285,7 +1285,7 @@ window.addEventListener("load",function(){
             };
             connection.open("POST", "../administrador/modificarDatosAlumno.php");
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("nombreA="+nombreAlumno+'&apellidosA='+apellidosAlumno+'&dni='+dniPadre+'&nombreP='+nombrePadre+'&apellidosP='+apellidosPadre+'&email='+emailPadre+'&id='+id);
+            connection.send("nombreA="+nombreAlumno+'&apellidosA='+apellidosAlumno+'&dni='+dniPadre+'&nombreP='+nombrePadre+'&apellidosP='+apellidosPadre+'&email='+emailPadre+'&id='+id_alumno+'&id_clase='+id_clase);
         }
     }
 
