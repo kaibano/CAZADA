@@ -1,0 +1,130 @@
+/*TABLA*/
+table{margin:0 auto;}
+
+/*BOTONES LISTAR Y AÑADIR*/
+#content #addButtonsBar{width: 100%;padding: 5px;text-align: center;border-bottom: 1px solid; margin: 0 auto;}
+#content #addButtonsBar > div{width: 100%;margin: 10px 0;}
+#content #addButtonsBar span{margin-right: 5px;}
+#content #addButtonsBar .addButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #419944;border-radius: 10px;cursor:pointer;transition: 0.5s;}
+#content #addButtonsBar .addButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
+#content #addButtonsBar .listButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #92e064;border-radius: 10px;cursor: pointer;transition: 0.5s;}
+#content #addButtonsBar .listButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
+#content #addButtonsBar .conflictButton{display: inline-block;font-size: 20px;padding: 5px 10px;background-color: #ff00009c;border-radius: 10px;cursor: pointer;transition: 0.5s;}
+#content #addButtonsBar .conflictButton:hover{font-weight: bold;opacity: 0.7;transition: 0.5s;}
+#content #addButtonsBar .conflictButton .numError {font-size: 16px;}
+
+/*FORMULARIO NUEVA ASIGNATURA*/
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewAsignatura{width:100%;margin-top: 20px;}
+#content #freeContent #divNewAsignatura div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewAsignatura .condiciones{font-size: 12px;}
+#content #freeContent #divNewAsignatura input{display: block;margin: 0 auto;width: 300px;padding: 5px;font-size: 18px;text-align: center;}
+#content #freeContent #divNewAsignatura #addNewAsiganturaButton{width: 120px;margin-top:15px;}
+
+/*FORMULARIO NUEVA CLASE*/
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewClase{width: 100%; margin-top: 20px;}
+#content #freeContent #divNewClase .divEachNewClase{margin:10px;}
+#content #freeContent #divNewClase div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewClase .condiciones{font-size: 13px;}
+#content #freeContent #divNewClase .newClaseLabel{height:30px;width: 200px;display: inline-block;padding-right: 20px;text-align: right;margin: 0 auto 0 -115px;font-size: 18px !important;}
+#content #freeContent #divNewClase .newClaseInput{height:30px;width: 200px;display:inline-block;text-align: center;font-size: 16px;text-transform: uppercase;}
+#content #freeContent #divNewClase #addNewClaseButton{width: 120px;}
+#content #freeContent #divNewClase .msgClase{margin-top: 10px;color:red;}
+
+/*FORMULARIO NUEVO PROFESOR*/
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewProfesor{width: 100%; margin-top: 20px;}
+#content #freeContent #divNewProfesor .divEachNewProfe{margin:10px;}
+#content #freeContent #divNewProfesor div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewProfesor .condiciones{font-size: 13px;}
+#content #freeContent #divNewProfesor .newProfeLabel{height:30px;width: 200px;display: inline-block;padding-right: 20px;text-align: right;margin: 0 auto 0 -115px;font-size: 18px !important;}
+#content #freeContent #divNewProfesor .newProfeInput{height:30px;width: 200px;display:inline-block;text-align: center;font-size: 16px;}
+#content #freeContent #divNewProfesor #addNewProfesorButton{width: 120px;}
+#content #freeContent #divNewProfesor .msgProfe{margin-top: 10px;color:red;}
+#newProfeClases{text-align: left;font-size: 18px;}
+#newProfeClases div{font-size: 18px !important;margin: 5px;}
+#newProfeClases div input{vertical-align: middle;cursor: pointer;}
+.divEachNewProfe:nth-child(9) .newProfeLabel{vertical-align: top;}
+
+/*FORMULARIO NUEVO ALUMNO*/
+#content #freeContent{width: 100%; text-align: center;}
+#content #freeContent #divNewAlumno{width: 100%; margin-top: 20px;}
+#content #freeContent #divNewAlumno .divEachNewAlumno{margin:10px;}
+#content #freeContent #divNewAlumno div:nth-child(1){font-size: 25px;}
+#content #freeContent #divNewAlumno .condiciones{font-size: 13px;}
+#content #freeContent #divNewAlumno .newAlumnoLabel{height:30px;width: 200px;display: inline-block;padding-right: 20px;text-align: right;margin: 0 auto 0 -115px;font-size: 18px !important;}
+#content #freeContent #divNewAlumno .newAlumnoInput{height:30px;width: 200px;display:inline-block;text-align: center;font-size: 16px;}
+#content #freeContent #divNewAlumno #addNewAlumnoButton{width: 120px;}
+#content #freeContent #divNewAlumno .msgAlumno{margin-top: 10px;color:red;}
+
+/*TABLA DE CLASES LISTADA*/
+#content #freeContent #claseContent .divClase {height: 58px; overflow: hidden;cursor: pointer;}
+.divClase .divIdClase,.divClase .divNombreClase,.divClase .divTutorClase,.divClase .divOpcionesClase{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase:nth-child(1) div{text-decoration: none !important;}
+#content #freeContent #claseContent .divClase .divIdClase{width: 40px;}
+#content #freeContent #claseContent .divClase .divNombreClase{width: 120px;}
+#content #freeContent #claseContent .divClase .divTutorClase{width: 300px;}
+
+/*ALUMNOS LISTADOS EN CLASES*/
+#content #freeContent #claseContent .divClase .alumnoClase {position:relative;cursor: pointer;width: 40%;margin:0 auto;background-color: #e6e6e69c;padding: 10px 0;border-radius: 10px;}
+#content #freeContent #claseContent .divClase div:nth-child(5){background-color: #53a753 !important;cursor: initial !important;font-weight: bold;}
+#content #freeContent #claseContent .divClase .alumnoClase:hover{background-color: #6eb5386e;}
+#content #freeContent #claseContent .divClase .alumnoClase .idAlumno{display: inline-block;width: 10%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .alumnoClase .nombreAlumno{display: inline-block;width: 35%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .alumnoClase .apellidosAlumno{display: inline-block;width: 35%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .alumnoClase #delAlumnoButton {position: absolute;top:0;right: -45px;font-size: 18px;padding: 9px;border-radius: 10px;background-color: #ff00009c;}
+.open {height: auto !important;}
+
+/*TABLA DE PROFESORES LISTADA*/
+.divProfe .divNombreProfe,.divProfe .divUsuProfe,.divProfe .divApellidosProfe,.divProfe .divMailProfe,.divProfe .divTutoriaProfe,.divProfe .divClasesProfe,.divProfe .divOpcionesProfe{display: inline-block;padding:10px;text-align: center;margin: 5px;font-size: 18px;}
+#content #freeContent #profesContent .divProfe:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 100%;margin: 0 auto;}
+#content #freeContent #profesContent .divProfe .divUsuProfe{width: 100px;}
+#content #freeContent #profesContent .divProfe .divNombreProfe{width: 120px;}
+#content #freeContent #profesContent .divProfe .divApellidosProfe{width: 170px;}
+#content #freeContent #profesContent .divProfe .divMailProfe{width: 170px;}
+#content #freeContent #profesContent .divProfe .divTutoriaProfe{width: 110px;}
+#content #freeContent #profesContent .divProfe .divClasesProfe{width: 80px;}
+.editProfesor, .deleteProfesor,.cancelEdit,.aceptarCambios,.editAsig,.deleteAsig,.editClase,.deleteClase,.infoCalendar{cursor:pointer;margin:5px;}
+.editAsig,.editClase,.editProfesor,.aceptarCambios {color:#419944;}
+.deleteAsig,.deleteClase,.deleteProfesor,.cancelEdit{color:#ff00009c;}
+.editProfesor:hover, .deleteProfesor:hover,.cancelEdit:hover,.aceptarCambios:hover,.editAsig:hover,.deleteAsig:hover,.editClase:hover,.deleteClase:hover,.infoCalendar:hover{color:#333;text-decoration: none;}
+
+/*TABLA DE HORARIOS*/
+#content #freeContent #horarioContent {margin-top: 20px;position: relative;}
+#content #freeContent #horarioContent .filas {height: 75px;}
+#content #freeContent #horarioContent .filas.dias {height: 35px;}
+#content #freeContent #horarioContent .claseName{display: inline-block;margin-right: 10px;}
+#content #freeContent #horarioContent > div:nth-child(1) {font-size: 25px;font-weight: bold;color: #419944;width: 100%;}
+#content #freeContent #horarioContent > div:nth-child(2) {height: 100%;}
+#content #freeContent #horarioContent > div > div {display: inline-block;width: 150px;height: 100%;border-top:1px solid black;border-right: 1px solid black;margin-left: -5px;padding: 0 5px;}
+#content #freeContent #horarioContent .dia {border-top: 0 !important;font-size: 25px;height: 100%;color:#337ab7;}
+#content #freeContent #horarioContent > div > div:nth-child(6) {border-right: 0 !important;}
+#content #freeContent #horarioContent > div > div > div {width: 100%;text-align: center;overflow: hidden;}
+#content #freeContent #horarioContent > div > div > div:nth-child(1){height: 24px;font-weight: bold;font-size: 15px;}
+#content #freeContent #horarioContent > div > div > div:nth-child(2){height: 50px;font-style: italic;}
+#content #freeContent #horarioContent #selectAsigHorario {margin-top: 3px;}
+#content #freeContent #horarioContent .horario div{font-style: italic;font-weight: initial !important;position: relative;top:15px;}
+#content #freeContent #horarioContent #pdfButton {font-size: 20px;cursor: pointer;margin-bottom: 20px;}
+.selectActive{position: relative;top:-35px;}
+#content #freeContent #horarioContent select {width: 100%;}
+
+/*TABLA DE ASIGNATURAS LISTADA*/
+.divAsignaturas .divIdAsignatura,.divAsignaturas .divNombreAsignatura,.divAsignaturas .divOpcionesAsignatura{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #asignaturasContent .divAsignaturas{position: relative;}
+#content #freeContent #asignaturasContent .divAsignaturas .msg{width: 600px;color: red;border: 1px solid;right: 0;}
+#content #freeContent #asignaturasContent .divAsignaturas:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 55%;margin: 0 auto;}
+#content #freeContent #asignaturasContent .divAsignaturas .divIdAsignatura{width: 100px;}
+#content #freeContent #asignaturasContent .divAsignaturas .divNombreAsignatura{width: 250px;}
+#content #freeContent #asignaturasContent .divAsignaturas .divOpcionesAsignatura img{width: 25px; margin-right: 5px;cursor: pointer;}
+
+/*TABLA DE ALUMNOS SIN CLASE LISTADA*/
+#content #freeContent #alumnosContent .divAlumno {height: 58px; overflow: hidden;cursor: pointer;}
+.divAlumno .divIdAlumno,.divAlumno .divNombreAlumno,.divAlumno .divApellidosAlumno,.divAlumno .divClasesAlumno{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #alumnosContent .divAlumno:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
+#content #freeContent #alumnosContent .divAlumno:nth-child(1) div{text-decoration: none !important;}
+#content #freeContent #alumnosContent .divAlumno .divIdAlumno{width: 40px;}
+#content #freeContent #alumnosContent .divAlumno .divNombreAlumno{width: 120px;}
+#content #freeContent #alumnosContent .divAlumno .divApellidosAlumno{width: 300px;}
+#content #freeContent #alumnosContent .divAlumno .divClasesAlumno{width: 150px;}
