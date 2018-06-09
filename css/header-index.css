@@ -39,3 +39,8 @@ body #header{
     background: -o-linear-gradient(right, #76b852, #8DC26F);
     background: linear-gradient(to left, #76b852, #8DC26F);
 }
+
+@media (max-width: 1000px){
+    #header .typepanel span:nth-child(1){font-size:24px;}
+    #header .typepanel span:nth-child(2){font-size:28px;}
+}
