@@ -617,7 +617,6 @@ window.addEventListener("load",function(){
             connection.onreadystatechange = function () {
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
-                        console.log(JSON.parse(connection.responseText)[0]['num']);
                         document.getElementsByClassName('numError')[0].innerHTML = '('+JSON.parse(connection.responseText)[0]['num']+')';
 
                     }
@@ -853,7 +852,6 @@ window.addEventListener("load",function(){
     }
 
     function printAlumnoData(array,objeto){
-        console.log(array);
         $('#freeContent').empty().append('<div id="divNewAlumno">' +
             '<div>Datos del alumno COD ' + array[2]['Alumnos'] + '</div>' +
             '<div class="condiciones">Los campos con "*" son obligatorios</div>' +
