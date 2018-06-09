@@ -4,15 +4,15 @@ session_start();
 if (!isset($_SESSION{'usuario'})) {
     header("Location: ../../index.php");
 }
-$dias = array('Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado');
-$meses = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-        
+$dias = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
+$meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+
 $hoy = getdate();
 $diaSem = $hoy['wday'];
 $diaSem = $dias[$diaSem];
 $dia = $hoy['mday'];
 $mes = $hoy['mon'];
-$mes = $meses[$mes-1];
+$mes = $meses[$mes - 1];
 $anno = $hoy['year'];
 $fecha = "$diaSem,<br> $dia de $mes de $anno";
 ?>
@@ -39,29 +39,29 @@ $fecha = "$diaSem,<br> $dia de $mes de $anno";
                         <span>CAZADA</span><span>Gestor escolar</span>
                     </div>
                 </a>
+                <div id="ahora">
+                    <div id="hoy">
+                        <?php echo $fecha ?>
+                    </div>
+                    <div id="hora">
+                        <span id="pHoras"></span>
+                        <span class="puntos"></span>
+                        <span id="pMinutos"></span>
+                        <span class="puntos"></span>
+                        <span id="pSegundos"></span>
+                    </div>
+                </div>
                 <div class="typepanel">
                     <p><span>Panel profesor:</span><span><?php echo $_SESSION['usuario']->nombre; ?></span></p>
                 </div>
                 <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión <span class="glyphicon glyphicon-off"></span></a>
-            </div>
-            <div id="ahora">
-                <div id="hoy">
-                    <?php echo $fecha?>
-                </div>
-                <div id="hora">
-                    <span id="pHoras"></span>
-                    <span class="puntos"></span>
-                    <span id="pMinutos"></span>
-                    <span class="puntos"></span>
-                    <span id="pSegundos"></span>
-                </div>
-            </div>
+            </div>            
             <div id="content">
                 <div id="addButtonsBar">
                     <div>
-                        <div id="pasarLista" class="listButton"><img src="../../img/check.png">Pasar lista</div>
-                        <div id="listaClases" class="listButton"><img src="../../img/lista.png">Mis clases</div>
-                        <div id="horario" class="listButton"><img src="../../img/calendar.png">Mi horario</div>                      
+                        <div id="pasarLista" class="listButton"><span class="glyphicon glyphicon-ok"></span> Pasar lista</div>
+                        <div id="listaClases" class="listButton"><span class="glyphicon glyphicon-list"></span> Mis clases</div>
+                        <div id="horario" class="listButton"><span class="glyphicon glyphicon-time"></span> Mi horario</div>                      
                     </div>
                 </div>
                 <div id="freeContent">
