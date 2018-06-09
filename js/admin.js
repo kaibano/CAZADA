@@ -890,7 +890,7 @@ window.addEventListener("load",function(){
 
     function printHorarioclase(array,id,nombre) {
         $('#content #freeContent').empty().append('<div id="horarioContent" style="font-family: "Roboto", sans-serif;">' +
-            '<div class="claseName" style="font-size: 25px;font-weight: bold;text-align: center;width: 100%;">'+nombre+'</div><span id="pdfButton" class="glyphicon glyphicon-download-alt"></span>' +
+            '<div class="claseName" style="font-size: 25px;font-weight: bold;text-align: center;width: 100%;">'+nombre+'</div>' +
             '    <div class="filas dias">' +
             '        <div class="dia">Horario</div>' +
             '        <div class="dia">Lunes</div>' +
@@ -948,10 +948,6 @@ window.addEventListener("load",function(){
             '        <div id="56"><div class="asig">Click para añadir</div><div class="profe"></div></div>' +
             '    </div>' +
             '</div>');
-
-        $('#pdfButton').click(function(){
-            window.location = "../administrador/generateHorarioPdf.php?html="+$('#freeContent').html();
-        });
 
         for(var x = 0 ; x < array.length ; x++){
             if(array[x][3] !== null) {

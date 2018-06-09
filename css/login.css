@@ -2,8 +2,7 @@
 
 .login-page {
     width: 360px;
-    padding: 8% 0 0;
-    margin: -50px auto 0 auto;
+    margin: 4% auto;
 }
 .form {
     position: relative;
@@ -119,3 +118,15 @@ body {
 .developed > div:nth-child(1){font-weight: bold;text-transform: uppercase;}
 .developed > div:nth-child(2){width: 50%;margin: 0 auto;text-align: left;padding-left: 15px;}
 .developed div img{width: 25%;vertical-align: middle;margin-right: 5px;}
+
+@media (max-width: 768px){
+    .login-page{width: auto;}
+    .form{max-width: 100%;padding: 0;background: none;box-shadow: none;}
+    .divlogo img{width: 35%;}
+    .form input,.form button{width: 60%;}
+    .developed > div:nth-child(2){width: 30%;}
+}
+
+@media (max-width: 585px){
+    .form input,.form button{width: 95%;}
+}
