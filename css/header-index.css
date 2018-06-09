@@ -25,6 +25,9 @@ body #header{
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
 #header .typepanel span:nth-child(2){font-size: 32px;font-weight: bold;}
 
+#ahora {width: 175px;text-align: center; font-weight: bold; position:absolute; top:25%;left:40%}
+#hora {font-size: 20pt;}
+
 #header .cerrarSesion{position: absolute;right: 0;vertical-align: top;margin-right: 10px;}
 
 #footer{
