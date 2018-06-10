@@ -25,7 +25,7 @@ body #header{
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
 #header .typepanel span:nth-child(2){font-size: 32px;font-weight: bold;}
 
-#ahora {width: 100%;text-align: center; font-weight: bold; position:absolute; top:25%;}
+#ahora {width: 50%;text-align: left; font-weight: bold; position:absolute; top:25%;left:45%;}
 #hora {font-size: 20pt;}
 
 #header .cerrarSesion{position: absolute;right: 0;vertical-align: top;margin-right: 10px;}
@@ -57,8 +57,11 @@ body #header{
     #header #ahora{display: none;}
     #header .typepanel span:nth-child(1){font-size:17px;}
     #header .typepanel span:nth-child(2){font-size:21px;}
-    #header .typepanel{text-align: right;right: 40px;top: -85px;width: 100%;}
-    #content {position: relative; top:-50px;}
+    #header .typepanel{text-align: right;right: 40px;}
+}
+
+@media (max-width: 500px){
+    #header .typepanel{display: none;}
 }
 
 @media (max-width: 450px){
