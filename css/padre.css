@@ -29,19 +29,10 @@ table{margin:0 auto;}
 #content #freeContent #claseContent .divClase .divFecha{width: 300px;}
 #content #freeContent #claseContent .divClase .divHora {width: 25px; margin-right: 5px;cursor: pointer;}
 
-.divAsignaturas{
-    float: left;
-    padding-right: 5%;
-}
+.divAsignaturas{float: left;padding-right: 5%;}
+.divPrimerTrimestre{float: left;padding-right: 5%;}
+.divSegundoTrimestre{float: left;padding-right: 5%;}
 
-.divPrimerTrimestre{
-    float: left;
-    padding-right: 5%;
-}
-.divSegundoTrimestre{
-    float: left;
-    padding-right: 5%;
-}
 .header {
     color: #36A0FF;
     font-size: 27px;

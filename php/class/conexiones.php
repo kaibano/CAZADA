@@ -59,6 +59,7 @@ class Conexion {
                     $usuario->mail = $fila['Mail'];
                     $usuario->nombre = $fila['Nombre'];
                     $usuario->apellidos = $fila['Apellidos'];
+                    $usuario->alumnos = $fila['Alumnos'];
                     $_SESSION['usuario'] = $usuario;
                     $resul = 'padre';
                 } else {

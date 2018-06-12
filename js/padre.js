@@ -49,10 +49,8 @@ window.addEventListener("load",function(){
 
         for(var x = 0 ; x < arrayLista.length ; x++){
             $('#content #freeContent #claseContent').append('<div class="divClase">' +
-                '<div class="divId">'+arrayLista[x][2]+'</div>' +
-                '<div class="divAsignatura">'+arrayLista[x][1]+'</div>' +
-                '<div class="divFecha">'+arrayLista[x][2]+'</div>' +
-                '<div class="divHora">'+arrayLista[x][3]+'</div>');
+                '<div class="divAsignaturas">'+arrayLista[x][2]+'</div>' +
+                '<div class="divPrimerTrimestre">'+arrayLista[x][4]+'</div>');
         }
     }
 

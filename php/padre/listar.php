@@ -40,6 +40,7 @@
 
     if($tabla === "notas") {
         $asignaturas = array();
+        $numero = array();
         $final = array();
         $todo = array();
         $resultado = $con->query("SELECT * FROM $tabla WHERE ID_Alumno = ".(int)$_SESSION['usuario']->alumnos);
@@ -63,4 +64,4 @@
     }
 
 
-    echo json_encode($array);
+     echo json_encode($array);

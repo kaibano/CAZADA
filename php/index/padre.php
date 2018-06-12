@@ -6,7 +6,9 @@
     }
     print_r($_SESSION['usuario']);
 
-    echo $_SESSION['usuario']->alumnos;
+    echo $_SESSION['usuario']->mail;
+
+    
 
 ?>
 <!DOCTYPE html>
