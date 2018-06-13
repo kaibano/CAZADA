@@ -43,7 +43,6 @@
         $numero = array();
         $final = array();
         $todo = array();
-        $resultado = $con->query("SELECT * FROM $tabla WHERE ID_Alumno = ".(int)$_SESSION['usuario']->alumnos);
         $resultado = $con->query("SELECT * FROM $tabla WHERE ID_Alumno = ".(int)$_SESSION['usuario']->alumnos." order by ID_Asig,Evaluacion");
         while ($fila = $resultado->fetch_array()) {
             array_push($array, $fila);
