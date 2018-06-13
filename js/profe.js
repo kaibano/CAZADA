@@ -104,10 +104,6 @@ window.addEventListener("load", function () {
         req.send();
     }
 
-    function listarNotas() {
-
-    }
-
     function listarClases() {
         var req = new XMLHttpRequest();
         req.onreadystatechange = function () {
@@ -273,12 +269,10 @@ window.addEventListener("load", function () {
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
                 var lista = JSON.parse(req.responseText);
-                console.log(lista)
                 var req2 = new XMLHttpRequest();
                 req2.onreadystatechange = function () {
                     if (req2.readyState == 4 && req2.status == 200) {
                         var lista2 = JSON.parse(req2.responseText);
-                        console.log(lista2);
                         var meses = [[], [], [], [], [], [], [], [], [], []];
                         var mes = ["SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE",
                             "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO"];
@@ -392,11 +386,47 @@ window.addEventListener("load", function () {
             req.send("alum=" + alum + "&asig=" + asig + "&fecha=" +fecha + "&hora=" + hora);
         }
     }
+    
+    function gestionMail() {
+        var alumno = $(this).attr('data-alumno');
+        var nombreAlum = $(this).attr('data-nombre');
+
+        $('#freeContent #listaClase').hide();
+        $('#freeContent').append('<div id="aux"></div>');
+        var ventana_ancho = $(window).width();
+        var h3Pos = $('#freeContent h3').position()
+        var reference = h3Pos.top + 100;
+        $('#freeContent').append("<div id='cajaMail' style='top:" + reference + "px;left:"
+                + ventana_ancho / 3.5 + "px'><span id='close' class='glyphicon glyphicon-remove-sign'>"
+                + "</span><h4>Contacto padre/madre/tutor de " + nombreAlum + "</h4></div>");
+        $('#close').click(function () {
+            $('#cajaMail').remove()
+            $('#aux').remove()
+            $('#freeContent #listaClase').show();
+        })
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                var datosPadre = JSON.parse(req.responseText);
+                $('<div id=cuerpoMail><p>Nombre: '+datosPadre['Nombre']+' '+datosPadre['Apellidos']+'</p>'
+                    + '<p>Correo: '+datosPadre['Mail']+'</p>'
+                    + '<form method="POST" action="../profe/sendMail.php">' 
+                    + '<input type="hidden" name="mailTo" value="'+datosPadre['Mail']+'"/>'
+                    + ' <input type="text" name="asunto" placeholder="Asunto"/><br>' 
+                    + ' <textarea name="mensaje" cols="40" rows="5" placeholder="Mensaje"></textarea><br>' 
+                    + ' <input type="submit" value="Enviar"/>' 
+                    + ' </form></div>').appendTo($('#cajaMail'));
+            }
+        }
+        req.open("POST", "../profe/getDatosPadre.php");
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send("alum=" + alumno);
+    }
 
     function claseConcreta() {
         var claseNum = $(this).attr('id');
         var claseNom = $(this).attr('data-classNom');
-        $('#freeContent').empty().append("<h3>" + claseNom + "</h3><br><table id='listaClase'><tr><th>Apellidos</th><th>Nombre</th><th>Notas</th><th>Faltas</th></tr></table></div>");
+        $('#freeContent').empty().append("<h3>" + claseNom + "</h3><br><table id='listaClase'><tr><th>Apellidos</th><th>Nombre</th><th>Notas</th><th>Faltas</th><th>Contacto</th></tr></table></div>");
 
         var req = new XMLHttpRequest();
         req.onreadystatechange = function () {
@@ -406,10 +436,12 @@ window.addEventListener("load", function () {
                     $('#listaClase').append("<tr class='alumnos' data-alumno='" + lista[i]['ID_Alumno'] + "'><td>"
                             + lista[i]['Apellidos'] + "</td><td>" + lista[i]['Nombre']
                             + "</td><td><img class='btnNotas' data-clase='" + claseNum + "' data-alumno='" + lista[i]['ID_Alumno'] + "' data-nombre='" + lista[i]['Nombre'] + " " + lista[i]['Apellidos'] + "' src='../../img/grade.png'/></td>"
-                            + "<td><img class='btnFaltas' data-clase='" + claseNum + "' data-alumno='" + lista[i]['ID_Alumno'] + "' data-nombre='" + lista[i]['Nombre'] + " " + lista[i]['Apellidos'] + "' src='../../img/falta.png'/></td></tr>");
+                            + "<td><img class='btnFaltas' data-clase='" + claseNum + "' data-alumno='" + lista[i]['ID_Alumno'] + "' data-nombre='" + lista[i]['Nombre'] + " " + lista[i]['Apellidos'] + "' src='../../img/falta.png'/></td>"
+                            + "<td><img class='btnMail' data-alumno='" + lista[i]['ID_Alumno'] + "' data-nombre='" + lista[i]['Nombre'] + " " + lista[i]['Apellidos'] + "' src='../../img/email.png'/></td></tr>");
                 }
                 $(".btnNotas").click(gestionNotas);
                 $(".btnFaltas").click(gestionFaltas);
+                $(".btnMail").click(gestionMail);
             }
         }
         req.open("POST", "../profe/getClase.php");
@@ -419,7 +451,6 @@ window.addEventListener("load", function () {
 
     /***** FUNCTION ONLCICK PARA LOS BOTONES *****/
     $('#pasarLista').click(listaAhora);
-    $('#listaNotas').click(listarNotas);
     $('#listaClases').click(listarClases);
     $('#horario').click(listarHorario);
 
