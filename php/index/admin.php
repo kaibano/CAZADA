@@ -1,12 +1,8 @@
 <?php
     session_start();
-    include "../class/conexiones.php";
-    $res = 0;
+
     if(!isset($_SESSION['usuario'])){
         header("Location: ../../index.php");
-    }else{
-        $bbdd = new Conexion();
-        $res = $bbdd->consulta("SELECT COUNT(ID_Alumno) as num FROM alumnos WHERE ID_Clase is NULL")[0]['num'];
     }
 ?>
 <!DOCTYPE html>
@@ -43,7 +39,6 @@
                     <div id="listaClases" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Clases</div>
                     <div id="listaProfesores" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Profesores</div>
                     <div id="listaAsignaturas" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Asignaturas</div>
-                    <div id="listaConflictos" class="conflictButton"><span class="glyphicon glyphicon-alert"></span>Resolver errores <span class="numError"><?php echo '('.$res.')' ?></span></span></div>
                 </div>
                 <div>
                     <div id="addClase" class="addButton"><span class="glyphicon glyphicon-plus"></span>Clase</div>

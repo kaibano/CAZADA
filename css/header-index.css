@@ -15,17 +15,17 @@ body #header{
 
 #header a{text-decoration: none;color:black;}
 
-#header .divlogo{display: inline-block;}
+#header .divlogo{width: 130px; display: inline-block;}
 #header .divlogo img{width: 100px;margin:20px;vertical-align: middle;}
 #header .divlogoname{display: inline-block;text-align: center;vertical-align: middle;}
 #header .divlogoname span{display: block;font-size: 20px;}
-#header .divlogoname span:nth-child(1){font-weight: bold;font-size: 28px;}
+#header .divlogoname span:nth-child(1){font-weight: bold;font-size: 28px !important;}
 
 #header .typepanel{display: inline-block;text-align: center;float:right;right: 15px;top:40px;position: relative;}
 #header .typepanel span:nth-child(1){font-size: 28px;display: block;}
 #header .typepanel span:nth-child(2){font-size: 32px;font-weight: bold;}
 
-#ahora {width: 50%;text-align: left; font-weight: bold; position:absolute; top:25%;left:45%;}
+#ahora {width: 175px;text-align: center; font-weight: bold; position:absolute; top:25%;left:40%}
 #hora {font-size: 20pt;}
 
 #header .cerrarSesion{position: absolute;right: 0;vertical-align: top;margin-right: 10px;}
@@ -38,33 +38,4 @@ body #header{
     background: -moz-linear-gradient(right, #76b852, #8DC26F);
     background: -o-linear-gradient(right, #76b852, #8DC26F);
     background: linear-gradient(to left, #76b852, #8DC26F);
-}
-
-@media (max-width: 1000px){
-    #header .typepanel span:nth-child(1){font-size:24px;}
-    #header .typepanel span:nth-child(2){font-size:28px;}
-}
-
-@media (max-width: 900px){
-    #header .typepanel span:nth-child(1){font-size:20px;}
-    #header .typepanel span:nth-child(2){font-size:24px;}
-}
-
-@media (max-width: 768px){
-    #header .divlogo img{width: 70px;}
-    #header .divlogoname span:nth-child(1){font-size: 20px;}
-    #header .divlogoname span{font-size: 16px;}
-    #header #ahora{display: none;}
-    #header .typepanel span:nth-child(1){font-size:17px;}
-    #header .typepanel span:nth-child(2){font-size:21px;}
-    #header .typepanel{text-align: right;right: 40px;}
-}
-
-@media (max-width: 500px){
-    #header .typepanel{display: none;}
-}
-
-@media (max-width: 450px){
-    #header .typepanel span:nth-child(1){font-size:15px;}
-    #header .typepanel span:nth-child(2){font-size:18px;}
 }
