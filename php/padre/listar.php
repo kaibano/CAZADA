@@ -66,8 +66,8 @@
         $total = array();
         $contador = 0;
 
-        foreach($array as $x){
-            if($x[2] != $asig){
+        for($x= 0; $x < count($array);$x++){
+            if($array[$x][2] != $asig){
                 if ($contador == 1){
                     array_push($aux,'-');
                     $contador ++;
@@ -81,15 +81,16 @@
                     $aux = array();
                 }
                 $contador = 1;
-                $asig = $x[2];
+                $asig = $array[$x][2];
                 array_push($aux,$asig);
-                array_push($aux,$x[4]);
+                array_push($aux,$array[$x][4]);
             }else{
                 $contador ++;
-                array_push($aux,$x[4]);
+                array_push($aux,$array[$x][4]);
             }
-
-
+            if ($x == count($array)-1){
+                array_push($total,$aux);
+            }
         }
 
 
@@ -98,4 +99,4 @@
     }
 
 
-     echo json_encode($aux);
+     echo json_encode($total);
