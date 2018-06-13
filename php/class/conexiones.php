@@ -254,4 +254,26 @@ class Conexion {
         return $notas;
     }
 
+    function getMailProfesor($alum) {
+        $this->conectar();
+        $mail = "";
+        $this->resultado = $this->conexion->query("SELECT ID_Clase FROM alumnos WHERE ID_Alumno = $alum");
+        if ($this->resultado->num_rows > 0) {
+            $fila = $this->resultado->fetch_array();
+            $idClase = $fila[0];
+            $this->resultado = $this->conexion->query("SELECT Tutor FROM clases WHERE ID_Clase = $idClase");
+            if ($this->resultado->num_rows > 0) {
+                $fila = $this->resultado->fetch_array();
+                $tutor = $fila[0];
+                $this->resultado = $this->conexion->query("SELECT Mail FROM profesores WHERE Usuario = '$tutor'");
+                if ($this->resultado->num_rows > 0) {
+                    $fila = $this->resultado->fetch_array();
+                    $mail = $fila[0];
+                }
+            }
+        }
+        $this->desconectar();
+        return $mail;
+    }
+
 }

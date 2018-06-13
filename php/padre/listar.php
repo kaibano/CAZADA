@@ -43,7 +43,7 @@
         $numero = array();
         $final = array();
         $todo = array();
-        $resultado = $con->query("SELECT * FROM $tabla WHERE ID_Alumno = ".(int)$_SESSION['usuario']->alumnos);
+        $resultado = $con->query("SELECT * FROM $tabla WHERE ID_Alumno = ".(int)$_SESSION['usuario']->alumnos." order by ID_Asig,Evaluacion");
         while ($fila = $resultado->fetch_array()) {
             array_push($array, $fila);
         }
@@ -61,7 +61,37 @@
             }
         }
 
+        $asig = "";
+        $aux = array();
+        $total = array();
+        $contador = 0;
+        for($x= 0; $x < count($array);$x++){
+            if($array[$x][2] != $asig){
+                if ($contador == 1){
+                    array_push($aux,'-');
+                    $contador ++;
+                } 
+                if ($contador == 2){
+                    array_push($aux,'-');
+                    $contador ++;
+                }
+                if ($contador == 3){
+                    array_push($total,$aux);
+                    $aux = array();
+                }
+                $contador = 1;
+                $asig = $array[$x][2];
+                array_push($aux,$asig);
+                array_push($aux,$array[$x][4]);
+            }else{
+                $contador ++;
+                array_push($aux,$array[$x][4]);
+            }
+            if ($x == count($array)-1){
+                array_push($total,$aux);
+            }
+        }
+
+        $array = $total;
     }
-
-
      echo json_encode($array);
