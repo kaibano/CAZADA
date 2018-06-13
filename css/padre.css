@@ -27,11 +27,26 @@ table{margin:0 auto;}
 #content #freeContent #claseContent .divClase .divId{width: 40px;}
 #content #freeContent #claseContent .divClase .divAsignatura{width: 120px;}
 #content #freeContent #claseContent .divClase .divFecha{width: 300px;}
-#content #freeContent #claseContent .divClase .divHora {width: 25px; margin-right: 5px;cursor: pointer;}
+#content #freeContent #claseContent .divClase .divHora {width: 25px; margin-right: 5px;}
 
-.divAsignaturas{float: left;padding-right: 5%;}
+/*TABLA DE LISTAR NOTAS*/
+.divClase .divAsignaturas,.divClase .divPrimerTrimestre,.divClase .divSegundoTrimestre,.divClase .divTercerTrimestre{display: inline-block;padding: 10px;text-align: center;margin: 5px; font-size: 18px;}
+#content #freeContent #claseContent{padding-top: 50px;}
+#content #freeContent #claseContent .divClase:nth-child(1){font-weight: bold; font-size: 20px !important;border-bottom: 1px solid lightgray;width: 70%;margin: 0 auto;}
+#content #freeContent #claseContent .divClase .divAsignaturas{float: left;padding-right: 5%;}
+#content #freeContent #claseContent .divClase .divPrimerTrimestre{float: left;padding-right: 5%;}
+#content #freeContent #claseContent .divClase .divSegundoTrimestre{float: left;padding-right: 5%;}
+#content #freeContent #claseContent .divClase .divTercerTrimestre {width: 100px; margin-right: 5%;}
+
+/* .divAsignaturas{float: left;padding-right: 5%;} */
 .divPrimerTrimestre{float: left;padding-right: 5%;}
 .divSegundoTrimestre{float: left;padding-right: 5%;}
+
+table{ width: 80%; margin-top: 5%;}
+
+#formContacto{margin-top: 5%;}
+#asunto{margin-bottom: 1%;}
+
 
 .header {
     color: #36A0FF;

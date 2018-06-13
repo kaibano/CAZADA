@@ -16,7 +16,6 @@ window.addEventListener("load",function(){
                 if (connection.readyState === 4) {
                     if (connection.status === 200) {
                         var res = JSON.parse(connection.responseText);
-                        console.log(res);
                         if(lista === "faltas"){
                             pintarListaFalta(res);
                         }else{
@@ -45,22 +44,25 @@ window.addEventListener("load",function(){
     }
 
     function pintarListaNota(arrayLista) {
-        $('#content #freeContent').empty().append('<div id="claseContent"><div class="divClase"><div class="divAsignaturas">Asignaturas</div><div class="divPrimerTrimestre">Primer Trimestre</div><div class="divSegundoTrimestre">Segundo Trimestre</div><div class="divTercerTrimestre">Tercero Trimestre</div></div></div>');
+        $('#content #freeContent').empty().append('<table id="tablaNotas"><tr><th>Asignaturas</th><th>Primer Trimestre</th><th>Segundo Trimestre</th><th>Tercer Trimestre</th></tr></table>');
 
         for(var x = 0 ; x < arrayLista.length ; x++){
-            $('#content #freeContent #claseContent').append('<div class="divClase">' +
-                '<div class="divAsignaturas">'+arrayLista[x][2]+'</div>' +
-                '<div class="divPrimerTrimestre">'+arrayLista[x][4]+'</div>');
+            $('#tablaNotas').append(
+                '<tr><td>'+arrayLista[x][0]+'</td>' +
+                '<td>'+arrayLista[x][1]+'</td>' +
+                '<td>'+arrayLista[x][2]+'</td>' +
+                '<td>'+arrayLista[x][3]+'</td></tr>');
         }
+        
+        
     }
 
 
     /*****FUNCION PARA MANDAR EMAIL *****/
 
     function getFormularioContacto() {
-        $('#content #freeContent').empty().append('<form method="POST" action="../padre/sendMail.php">' +
-        ' <input type="text" name="asunto" placeholder="Asunto"/><br>' +
-        ' <input type="text" name="email" placeholder="Email"/><br>' +
+        $('#content #freeContent').empty().append('<form id="formContacto" method="POST" action="../padre/sendMail.php">' +
+        ' <input type="text" id ="asunto" name="asunto" placeholder="Asunto"/><br>' +
         ' <textarea name="mensaje" cols="40" rows="5" placeholder="Mensaje"></textarea><br>' +
         ' <input type="submit" value="Enviar"/>' +
         ' </form>');

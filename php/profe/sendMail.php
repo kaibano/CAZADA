@@ -1,14 +1,9 @@
 <?php
-session_start();
 include "../phpmailer/class.phpmailer.php";
 include "../phpmailer/class.smtp.php";
-include "../class/conexiones.php";
-
-$bbdd = new Conexion();
-$correo = $bbdd->getMailProfesor((int)$_SESSION['usuario']->alumnos);
 
 $body = $_POST['mensaje'];
-$address_to = $correo;
+$address_to = $_POST['mailTo'];
 $the_subject = $_POST['asunto'];
 
 
@@ -28,7 +23,7 @@ $phpmailer->Port = 587;
 $phpmailer->IsSMTP(); // use SMTP
 $phpmailer->SMTPAuth = true;
 
-$phpmailer->setFrom("cazadaDaw@gmail.com","Instituto");//email que uso para mandar y el alias
+$phpmailer->setFrom("cazadaDaw@gmail.com","INSTITUTO");//email que uso para mandar y el alias
 $phpmailer->AddAddress($address_to); // recipients email
 //$phpmailer->addBCC("email de copia oculta");
 
@@ -39,9 +34,10 @@ $phpmailer->IsHTML(true);
 
 if($phpmailer->Send()){
     echo "true";
-    header ("Location: ../index/padre.php");
+    header ("Location: ../index/profe.php");
 }else{
     echo "false";
     print_r($phpmailer->ErrorInfo);die;
 }
 ?>
+
