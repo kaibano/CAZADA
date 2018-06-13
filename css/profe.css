@@ -25,7 +25,7 @@
 #content #freeContent #tablaHorario td{background-color: #F7F7F7;min-width: 90px;border:1px solid black;font-weight: bold}
 #content #freeContent #tablaHorario td:hover{background-color: #F06565;}
 #content #freeContent #tablaHorario td.noBorde{border:none; background: none;}
-#content #freeContent #tablaHorario td:hover span{color:white; text-shadow:10px 5px 5px black;cursor:pointer;transition:0.25s;}
+#content #freeContent #tablaHorario td:hover span{color:white; text-shadow:10px 5px 5px black;transition:0.25s;}
 
 
 #content #freeContent #misClases h3{margin-bottom: 4%}
@@ -40,6 +40,7 @@
 
 #content #freeContent #cajaNotas {width: 500px;border:black 1px solid;position:absolute;background-color: #9EFF98;}
 #content #freeContent #cajaNotas span {float:right; margin:5px;}
+#content #freeContent #cajaNotas h4 {font-weight: bold; text-decoration: underline}
 #content #freeContent #cajaNotas #close {cursor:pointer;font-size:1.2em;}
 #content #freeContent #cajaNotas #close:hover {transform: scaleY(1.2) scaleX(1.2);}
 #content #freeContent #cajaNotas #tablaNotas{width: 400px;margin:25px auto;border:5px inset black; border-collapse: collapse;}
@@ -49,3 +50,20 @@
 #content #freeContent #cajaNotas #tablaNotas td input{text-align:center}
 #content #freeContent #cajaNotas #botonGuardar {font-size: 12pt; width:120px;margin-bottom: 3%}
 #content #freeContent #aux {height: 300px;}
+
+#content #freeContent #cajaFaltas {width: 500px;border:black 1px solid;position:absolute;background-color: #9EFF98;}
+#content #freeContent #cajaFaltas span {float:right; margin:5px;}
+#content #freeContent #cajaFaltas h4 {font-weight: bold; text-decoration: underline}
+#content #freeContent #cajaFaltas h2 {color:red;font-style: italic}
+#content #freeContent #cajaFaltas #close {cursor:pointer;font-size:1.2em;}
+#content #freeContent #cajaFaltas #close:hover {transform: scaleY(1.2) scaleX(1.2);}
+#content #freeContent #cajaFaltas #divFaltas {width: 400px;margin:25px auto;}
+#content #freeContent #cajaFaltas #divFaltas .meses{color:black;border:2px black solid;margin-bottom: 2.5px; padding:2.5px;font-size:14pt;border-radius:10px;background-color: #39B2F7;font-weight: bold;}
+#content #freeContent #cajaFaltas .tablaFaltas{display:none;width: 400px;margin:25px auto;border:5px inset black; border-collapse: collapse;}
+#content #freeContent #cajaFaltas .tablaFaltas td, .tablaFaltas th{;border:1px solid black; padding: 2.5px;}
+#content #freeContent #cajaFaltas .tablaFaltas th {background-color: #FEF37F}
+#content #freeContent #cajaFaltas .tablaFaltas td {background-color: #F7FDB3;}
+#content #freeContent #cajaFaltas .tablaFaltas td input{text-align:center}
+#content #freeContent #cajaFaltas .tablaFaltas td span{float:none; color:red; font-size: 12pt;font-weight: bold}
+#content #freeContent #cajaFaltas .tablaFaltas td span:hover{transform: scaleY(1.5) scaleX(1.5)}
+#content #freeContent #cajaFaltas #botonGuardar {font-size: 12pt; width:120px;margin-bottom: 3%}
