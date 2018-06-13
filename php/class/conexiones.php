@@ -253,6 +253,48 @@ class Conexion {
         $this->desconectar();
         return $notas;
     }
+	
+	function setNotas($lista) {
+        $this->conectar();
+
+        $this->resultado = $this->conexion->query("INSERT INTO notas VALUES ($lista[0],"
+                . "$lista[1],$lista[2],1,'$lista[3]') on duplicate key update Nota = '$lista[3]'");
+        $this->resultado = $this->conexion->query("INSERT INTO notas VALUES ($lista[0],"
+                . "$lista[1],$lista[2],2,'$lista[4]') on duplicate key update Nota = '$lista[4]'");
+        $this->resultado = $this->conexion->query("INSERT INTO notas VALUES ($lista[0],"
+                . "$lista[1],$lista[2],3,'$lista[5]') on duplicate key update Nota = '$lista[5]'");
+        $this->desconectar();
+    }
+
+    function getTotalFaltas($alum, $asig) {
+        $this->conectar();
+        $faltas = array();
+        foreach ($asig as $a) {
+            $this->resultado = $this->conexion->query("SELECT * FROM faltas"
+                    . " where ID_Alumno = '$alum'"
+                    . " AND ID_Asig = $a[0]");
+            if ($this->resultado->num_rows > 0) {
+                while ($fila = $this->resultado->fetch_assoc()) {
+                    array_push($faltas, $fila);
+                }
+            }
+        }
+        $this->desconectar();
+        return $faltas;
+    }
+
+    function borrarFalta($alum, $asig, $fecha, $hora) {
+        $this->conectar();
+        $this->resultado = $this->conexion->query("DELETE FROM faltas"
+                . " where ID_Alumno = '$alum' AND ID_Asig = $asig AND Fecha = '$fecha' AND Hora = $hora");
+        if ($this->resultado) {
+            $ok = true;
+        } else {
+            $ok = false;
+        }
+        $this->desconectar();
+        return $ok;
+    }
 
     function getMailProfesor($alum) {
         $this->conectar();
