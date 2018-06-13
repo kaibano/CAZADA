@@ -295,4 +295,23 @@ class Conexion {
         return $ok;
     }
 
+    function getDatosPadre($alum) {
+        $this->conectar();
+        $datos = array();
+        $this->resultado = $this->conexion->query("SELECT Padre FROM alumnos"
+                . " where ID_Alumno = $alum");
+        if ($this->resultado->num_rows > 0) {
+            $fila = $this->resultado->fetch_array();
+            $padre = $fila[0];
+            $this->resultado = $this->conexion->query("SELECT * FROM padres"
+                    . " where Usuario = '$padre'");
+            if ($this->resultado->num_rows > 0) {
+                $fila = $this->resultado->fetch_assoc();
+                $datos = $fila;
+            }
+        }
+        $this->desconectar();
+        return $datos;
+    }
+
 }
