@@ -1,5 +1,9 @@
 window.addEventListener("load", function () {
     idAsig = 0;
+    
+    //al inicio mostrará el horario
+    listarHorario();
+    
     /***** FUNCION PARA EL RELOJ *****/
     function ActualizarHora() {
         var fecha = new Date();
