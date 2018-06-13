@@ -4,12 +4,6 @@
     if(!isset($_SESSION{'usuario'})){
         header("Location: ../../index.php");
     }
-    print_r($_SESSION['usuario']);
-
-    echo $_SESSION['usuario']->mail;
-
-    
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,20 +34,11 @@
         <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión <span class="glyphicon glyphicon-off"></span></a>
     </div>
     <div id="content">
-        <div id="addButtonsBar">
-            <div>
-                <div id="listaFaltas" class="listButton"><img src="../../img/lista.png">Faltas</div>
-                <div id="listaNotas" class="listButton"><img src="../../img/lista.png">Notas</div>
-                <div id="contacto" class="listButton"><img src="../../img/lista.png">Contacto</div>
-            </div>
-        </div>
-        <div id="freeContent">
-            
 
-        </div>
-        <div id="footer">
+    </div>
+    <div id="footer">
 
-        </div>
+    </div>
 </div>
 </body>
 </html>
