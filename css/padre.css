@@ -58,3 +58,7 @@ table{ width: 80%; margin-top: 5%;}
     font-size: 35px;
     color: #36A0FF;
 }
+
+#content #addButtonsBar span {
+    margin-right: 5px;
+}

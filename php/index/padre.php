@@ -29,16 +29,16 @@
             </div>
         </a>
         <div class="typepanel">
-            <p><span>Panel</span><span>MADRE/PADRE/TUTOR</span></p>
+            <p><span>Bienvenido/a:</span><span><?php echo $_SESSION['usuario']->nombre; ?></span></p>
         </div>
         <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión <span class="glyphicon glyphicon-off"></span></a>
     </div>
     <div id="content">
         <div id="addButtonsBar">
             <div>
-                <div id="listaFaltas" class="listButton"><img src="../../img/lista.png">Faltas</div>
-                <div id="listaNotas" class="listButton"><img src="../../img/lista.png">Notas</div>
-                <div id="contacto" class="listButton"><img src="../../img/lista.png">Contacto</div>
+                <div id="listaFaltas" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Faltas</div>
+                <div id="listaNotas" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Notas</div>
+                <div id="contacto" class="listButton"><span class="glyphicon glyphicon-th-list"></span>Contacto</div>
             </div>
         </div>
         <div id="freeContent">
