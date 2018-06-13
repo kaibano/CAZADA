@@ -1,2 +1,4 @@
 .idea/
 nbproject/*
+php/class/conexiones.php
+php/index/padre.php

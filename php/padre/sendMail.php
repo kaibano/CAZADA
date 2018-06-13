@@ -1,14 +1,19 @@
 <?php
+session_start();
 include "../phpmailer/class.phpmailer.php";
 include "../phpmailer/class.smtp.php";
+include "../class/conexiones.php";
+
+$bbdd = new Conexion();
+$correo = $bbdd->getMailProfesor((int)$_SESSION['usuario']->alumnos);
 
 $body = $_POST['mensaje'];
-$address_to = "josedamian92@gmail.com";
+$address_to = $correo;
 $the_subject = $_POST['asunto'];
 
 
-$email_user = "josedamian92@gmail.com";//aqui el usuario de la cuenta de correo
-$email_password = "xxx";//aqui la contraseña de la cuenta de correo
+$email_user = "cazadaDaw@gmail.com";//aqui el usuario de la cuenta de correo
+$email_password = "cazada12345";//aqui la contraseña de la cuenta de correo
 $from_name = "Alias(alias)";//aqui el alias que sustituye al correo
 $phpmailer = new PHPMailer();
 
@@ -23,7 +28,7 @@ $phpmailer->Port = 587;
 $phpmailer->IsSMTP(); // use SMTP
 $phpmailer->SMTPAuth = true;
 
-$phpmailer->setFrom("josedamian92@gmail.com","Web");//email que uso para mandar y el alias
+$phpmailer->setFrom("cazadaDaw@gmail.com","Instituto");//email que uso para mandar y el alias
 $phpmailer->AddAddress($address_to); // recipients email
 //$phpmailer->addBCC("email de copia oculta");
 

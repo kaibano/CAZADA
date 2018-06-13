@@ -65,7 +65,6 @@
         $aux = array();
         $total = array();
         $contador = 0;
-
         for($x= 0; $x < count($array);$x++){
             if($array[$x][2] != $asig){
                 if ($contador == 1){
@@ -93,10 +92,6 @@
             }
         }
 
-
-
-
+        $array = $total;
     }
-
-
-     echo json_encode($total);
+     echo json_encode($array);
