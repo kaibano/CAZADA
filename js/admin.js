@@ -1254,6 +1254,7 @@ window.addEventListener("load",function(){
 
     /***** FUNCION PARA MODIFICAR DATOS DE ALUMNO-PADRE, LLAMA AL PHP QUE LO MODIFICA *****/
     function modificarDatosAlumno(objeto,nombreAlumno,apellidosAlumno,dniPadre,nombrePadre,apellidosPadre,emailPadre,id_clase,id_alumno){
+        console.log(id_clase);
         var connection = null;
         var msg = null;
         if(objeto.childNodes[7]) {
