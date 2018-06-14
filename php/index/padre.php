@@ -29,7 +29,7 @@
             </div>
         </a>
         <div class="typepanel">
-            <p><span>Bienvenido/a:</span><span><?php echo $_SESSION['usuario']->nombre; ?></span></p>
+            <p><span>Bienvenido/a:</span><span><?php echo $_SESSION['usuario']->nombre." ".$_SESSION['usuario']->apellidos; ?></span></p>
         </div>
         <a class="cerrarSesion" href="cerrarSesion.php">Cerrar sesión <span class="glyphicon glyphicon-off"></span></a>
     </div>
