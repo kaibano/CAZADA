@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2018 a las 21:51:54
+-- Tiempo de generación: 14-06-2018 a las 10:19:38
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `cazada`
 --
+
+CREATE DATABASE cazada COLLATE utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,7 @@ CREATE TABLE `horarios` (
   `Clase` int(11) NOT NULL,
   `Dia` int(1) NOT NULL,
   `Hora` int(1) NOT NULL,
-  `Asignatura` int(11) NOT NULL,
+  `Asignatura` int(11) DEFAULT NULL,
   `Profesor` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -99,21 +101,6 @@ CREATE TABLE `horas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `horas`
---
-
-INSERT INTO `horas` (`Hora`, `Start`, `End`) VALUES
-(1, '08:30:00', '09:20:00'),
-(2, '09:25:00', '10:15:00'),
-(3, '10:20:00', '11:10:00'),
-(4, '11:35:00', '12:25:00'),
-(5, '12:30:00', '13:20:00'),
-(6, '13:25:00', '14:15:00'),
-(7, '14:20:00', '15:10:00');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `notas`
 --
 
@@ -121,8 +108,8 @@ CREATE TABLE `notas` (
   `ID_Alumno` int(5) NOT NULL,
   `ID_Clase` int(11) NOT NULL,
   `ID_Asig` int(11) NOT NULL,
-  `Nota` double DEFAULT NULL,
-  `Evaluacion` int(1) NOT NULL
+  `Evaluacion` int(1) NOT NULL,
+  `Nota` varchar(3) COLLATE utf8_spanish_ci DEFAULT '-'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -149,6 +136,10 @@ CREATE TABLE `profesores` (
   `Nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `Tutoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `administradores`
@@ -181,7 +172,7 @@ ALTER TABLE `clases`
 -- Indices de la tabla `faltas`
 --
 ALTER TABLE `faltas`
-  ADD PRIMARY KEY (`ID_Alumno`,`ID_Asig`,`Fecha`),
+  ADD PRIMARY KEY (`ID_Alumno`,`ID_Asig`,`Fecha`,`Hora`),
   ADD KEY `ID_Asig` (`ID_Asig`);
 
 --
@@ -203,7 +194,7 @@ ALTER TABLE `horas`
 -- Indices de la tabla `notas`
 --
 ALTER TABLE `notas`
-  ADD PRIMARY KEY (`ID_Alumno`,`ID_Clase`,`ID_Asig`),
+  ADD PRIMARY KEY (`ID_Alumno`,`ID_Clase`,`ID_Asig`,`Evaluacion`),
   ADD KEY `ID_Asig` (`ID_Asig`);
 
 --
@@ -233,7 +224,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

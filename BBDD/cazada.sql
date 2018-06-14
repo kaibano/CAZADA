@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2018 a las 12:39:01
+-- Tiempo de generación: 14-06-2018 a las 10:19:38
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `cazada`
 --
+
+CREATE DATABASE cazada COLLATE utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -173,10 +175,15 @@ INSERT INTO `faltas` (`ID_Alumno`, `ID_Asig`, `Fecha`, `Hora`) VALUES
 (1, 5, '2018-06-13', 4),
 (4, 5, '2018-06-11', 0),
 (4, 5, '2018-06-12', 0),
+(5, 5, '2018-06-13', 0),
+(5, 5, '2018-06-13', 6),
+(7, 5, '2018-06-13', 0),
 (9, 5, '2018-06-11', 0),
 (9, 5, '2018-06-12', 0),
+(9, 5, '2018-06-13', 0),
 (9, 5, '2018-06-13', 4),
 (10, 5, '2018-06-11', 0),
+(10, 5, '2018-06-13', 0),
 (11, 3, '2017-10-04', 2),
 (11, 3, '2017-11-04', 2),
 (11, 3, '2018-02-04', 2),
@@ -433,7 +440,7 @@ CREATE TABLE `padres` (
 --
 
 INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alumnos`) VALUES
-('49268543X', '1234', 'padre1@gmail.com', 'Papa', 'papito papi', '1'),
+('49268543X', '1234', 'ruzamca@gmail.com', 'Papa', 'papito papi', '1'),
 ('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '10'),
 ('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '11'),
 ('23456270A', '1234', 'padre12@gmail.com', 'Papa', 'papito papi', '12'),
@@ -495,7 +502,7 @@ CREATE TABLE `profesores` (
 INSERT INTO `profesores` (`Usuario`, `Password`, `Mail`, `Nombre`, `Tutoria`) VALUES
 ('00000001A', '1234', 'profe1@gmail.com', 'Agustin Hidalgo Ramirez', NULL),
 ('00000002A', '1234', 'profe2@gmail.com', 'Elena Vazquez Bernal', NULL),
-('00000003A', '1234', 'profe3@gmail.com', 'Manuel Elias Perez', 1),
+('00000003A', '1234', 'josedamian92@gmail.com', 'Manuel Elias Perez', 1),
 ('00000004A', '1234', 'profe4@hotmail.com', 'Tomas Linda Soriano', NULL),
 ('00000005A', '1234', 'profe5@gmail.com', 'Paloma Estaban Garrido', NULL),
 ('00000006A', '1234', 'profe6@gmail.com', 'Manuela Velasco Zorrilla', 2),
@@ -593,7 +600,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `clases`
 --
 ALTER TABLE `clases`
-  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

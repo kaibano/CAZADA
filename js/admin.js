@@ -1210,6 +1210,8 @@ window.addEventListener("load",function(){
     function modificarProfesor(usu,nombre,email,tutoria,tutor,objeto){
         var connection = null;
         var msg = null;
+        console.log(tutoria);
+        console.log(tutor);
         if(objeto.childNodes[6]){
             objeto.childNodes[6].remove();
         }
