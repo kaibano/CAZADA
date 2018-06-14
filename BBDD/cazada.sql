@@ -440,11 +440,7 @@ CREATE TABLE `padres` (
 --
 
 INSERT INTO `padres` (`Usuario`, `Password`, `Mail`, `Nombre`, `Apellidos`, `Alumnos`) VALUES
-<<<<<<< HEAD
-('49268543X', '1234', 'ruzamca@gmail.com', 'Papa', 'papito papi', '1'),
-=======
 ('49268543X', '1234', 'kaibano22@gmail.com', 'Papa', 'papito papi', '1'),
->>>>>>> f37f72c1482eea52315ad1b97f31d1d0f9a1f835
 ('49268553X', '1234', 'padre10@gmail.com', 'Papa', 'papito papi', '10'),
 ('49268552X', '1234', 'padre11@gmail.com', 'Papa', 'papito papi', '11'),
 ('23456270A', '1234', 'padre12@gmail.com', 'Papa', 'papito papi', '12'),
