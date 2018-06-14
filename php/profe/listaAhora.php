@@ -8,7 +8,7 @@ $hoy = getdate();
 $dia = $hoy['wday'];
 $hora = "$hoy[hours]:$hoy[minutes]:$hoy[seconds]";
 
-$busqueda = $con->listaAhora(1, '12:45:00'); //$dia, $hora
+$busqueda = $con->listaAhora($dia, $hora); //$dia, $hora ---- 1, '12:45:00'
 
 if ($busqueda == 0) {
     echo "NO";

@@ -94,7 +94,7 @@ window.addEventListener("load", function () {
                         }
                     }
                     for (var i = 0; i < clases.length; i++) {
-                        $("#" + clases[i]['Dia'] + "_" + clases[i]['Hora']).html("<span>" + clases[i]['Clase'] + "<span>")
+                        $("#" + clases[i]['Dia'] + "_" + (clases[i]['Hora']-1)).html("<span>" + clases[i]['Clase'] + "<span>")
                     }
                 }
             }
